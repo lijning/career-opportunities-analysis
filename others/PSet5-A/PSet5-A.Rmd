@@ -1,0 +1,149 @@
+---
+author:
+title: "EDAV Fall 2019 PSet 5, part A"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+This assignment is designed to help you get started on the final project. Be sure to review the final project instructions (https://edav.info/project.html), in particular the new section on reproducible workflow (https://edav.info/project.html#reproducible-workflow), which summarizes principles that we've discussed in class.
+    
+### 1. The Team
+
+[2 points]
+
+a) Who's on the team? (Include names and UNIs)
+
+Xinyuan He (xh2439)  
+Jianing Li (jl5543)  
+Weitao chen (wc2696)  
+Mutian Wang (mw3386)  
+
+
+b) How do you plan to divide up the work? (Grading is on a group basis. The point of asking is to encourage you to think about this.)
+
+Below is tentative and subject to adjustment:  
+1) Data Collection: wc2696 & mw3386  
+2) Data Cleaning: xh2439 & jl5543  
+3) Graph Drawing (static): wc2696 & mw3386  
+4) Graph Drawing (dynamic): xh2439 & jl5543  
+5) Analysis: xh2439 & jl5543  
+6) Report Writing: wc2696 & mw3386  
+
+
+### 2. The Questions
+
+[6 points]
+
+List three questions that you hope you will be able to answer from your research.
+
+We want to explore the job market in the US, especially for the data science jobs. 
+
+a) What are the secular and cyclical trends of different jobs? (especially for data scientists)
+
+b) What is the relationship between city conditions and data scientists in American major cities? (e.g. GDP against job openings)
+
+c) What is the correlation between jobs and their median base pay? (e.g. compare SDE and DS)
+
+d) What is the correlation between number of job openings and median base pay?
+
+e) What are people’s opinions on data scientist jobs?
+
+
+### 3. Which output format do you plan to use to submit the project? 
+
+[2 points]
+
+Our choice is html_document.
+
+
+### 4. The Data
+
+What is your data source?  What is your method for importing data? Please be specific. Provide relevant information such as any obstacles you're encountering and what you plan to do to overcome them.
+
+[5 points]
+
+a) [Job Market Report from Glassdoor](https://www.glassdoor.com/research/data-sets/job-market-report-historical/)  
+
+We choose the latest job market report from Glassdoor (Oct. 2019). This dataset includes number of job openings and median base pay grouped by job titles, industries, company sizes, locations, time, etc.  
+
+We download the xlsx file directly and import it to R by openxlsx::read.xlsx.  
+
+This xlsx file is a hodgepodge, combining everything into one sheet. We will do some data cleaning work and separate the file into several data frames. Also there are 84 job titles in the dataset, so it's hard to include all of them in one graph. We will only focus on the jobs in which we are interested, and we might manually combine some similar jobs to one "super job".  
+
+b) Statistics of Metropolises from [Statista](https://www.statista.com/)  
+
+Statista is a very good platform to obtain all kinds of city data. For example, we can make use of the [CPI data](https://www.statista.com/statistics/245014/consumer-price-index-for-selected-us-cities/), [GDP data](https://www.statista.com/statistics/183815/gdp-of-the-new-york-metro-area/) and [income tax rate data](https://www.statista.com/statistics/762795/corporate-income-tax-rates-by-state-us/).
+
+We can download the xls file directly and import it to R.
+
+Statista has some limits on viewing and downloading the data, but we can request a campus license and no more limits! Another issue is that some data are not complete. For instance, a particular year is missing in some dataset. We might use other sources to fill the missing data, or we will simply drop all the data in that year when drawing related graphs. 
+
+
+c) Data from [Job Search API](https://opensource.indeedeng.io/api-documentation/docs/job-search/)  
+
+We plan to acquire job information of Indeed through its API. Indeed, an American worldwide employment-related search engine, provides an API to search the jobs listed on Indeed. We plan to use the API to acquire related information: job title, company, city, state, contry, posting date, review, etc.  
+
+We will use Python to access the API, then import the data in R.  
+
+However, Indeed is still reviewing our request, and it seems that this API targets company users instead of individual users, so we might not have access to it. If this happens, we will try use other available APIs.  
+
+
+### 5. Provide a short summary, including 2-3 graphs, of your initial investigations. 
+
+[10 points]
+
+a) Since we are data science students, we are very interested in the job market of data science. What is its prospect? Which city or which industry is most friendly to data scientists? What about our salary? Based on these general questions, we asked five detailed questions in the second part.
+
+b) To answer these questions, we collected related data and tried to understand them. For example, we dived into the Glassdoor data. We figured out the data structure, and cleaned the data for further use. We discussed what the dataset includes and what can be told from the data.  
+
+c) With a basic understanding of our data, we discussed what graphs we could draw to answer our questions. For example, a scatter plot to present the relationship between number of job openings and median base pay; a parallel coordinate plot to show the correlation between city related variables and data scientit related variables. 
+
+d) Though this is still a very early stage of our project, we have already found something interesting, as shown in the graphs below.  
+
+```{r}
+library(tidyverse)
+
+job.title.median.base.df <- read_tsv("job-title-median-base-2019_10.tsv")
+
+pay.by.job.df <- job.title.median.base.df %>%
+  transmute(location = Metro,	pay = parse_number(Value), job = Dimension)
+
+national.pay.by.job.df <- pay.by.job.df %>%
+  filter(location == "National")
+
+pay.by.location.df <- pay.by.job.df %>%
+  filter(location != "National")
+```
+
+```{r fig.height = 10}
+national.pay.by.job.df %>%
+  filter(pay > 60000) %>% 
+  ggplot() +
+  geom_col(mapping = aes(x = reorder(job, pay), y = pay)) +
+  coord_flip() + 
+  labs(x = "", y = "Median Base Pay", title = "Median Base Pay (>60k) in the US") + 
+  scale_y_continuous(labels = scales::dollar)
+```
+
+Data source: Glassdoor
+
+We found that the median pay of data scientists is very high (~10k), but data analysts, financial analysts and business analysts have low median base pays (~6k). This is quite surprising and confusing, since we think these jobs are fairly similar. We hope we can explore more and explain this phenomenon.  
+
+From this graph, we can also see that most of jobs having a high median base pay are engineers and managers. 
+
+```{r}
+ggplot(pay.by.location.df) + 
+  geom_boxplot(mapping = aes(x = reorder(location, pay, median), y = pay), varwidth = T) + 
+  labs(x = "", y = "Median Base Pay", title = "Median Base Pay in the US") + 
+  coord_flip()
+```
+
+Data Source: Glassdoor
+
+From the graph we can see that San Francisco has the highest median base pay (both for the median and the max). This might have something to do with the Silicon Valley, where big techs are located. Next are Seattle, NYC, DC and LA - their box plots are quite similar. 
+
+This graph just shows the general median base pay in each city. Later we will explore the salary levels and job opportunities of data scientists in these metropolises. We also plan to associate these data with other city statistics like tax rate, price level, etc. Finally, we can know which city is best for us to work and live in. 
