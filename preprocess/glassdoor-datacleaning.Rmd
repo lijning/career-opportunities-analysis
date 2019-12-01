@@ -1,0 +1,153 @@
+---
+title: "5702 Project"
+author: "Xinyuan He"
+date: "11/25/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("openxlsx")
+library(openxlsx)
+
+url = c("https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_data-2019-10.xlsx", 
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_data-2019-09.xlsx", 
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_data-2019-08.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_data-2019-07.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/07/JMR_data-2019-06.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/06/JMR_data-2019-05.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/04/LPR_data-2019-04.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/04/LPR_data-2019-03.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/03/LPR_data-2019-02.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_data-2019-01.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_data-2018-12.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/10/LPR_data-2018-10.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/10/LPR_data-2018-09.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/09/LPR_data-2018-08.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_data-2018-07.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_data-2018-06.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_data-2018-05.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_data-2018-04.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/04/LPR_data-2018-03.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/03/LPR_data-2018-02.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/LPR_data-2018-01.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/LPR_data-2017-12.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/12/LPR_data-2017-11.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/11/LPR_data-2017-10.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/10/LPR_data-2017-09.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/10/LPR_data-2017-08.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/08/LPR_data-2017-07.xlsx")
+
+
+#2018-11 can not be opened so not included in the url vector and not taken into account
+
+i = 1
+df_total = data.frame()
+for(item in 1:length(url)){
+  name = paste("df", i, sep = "")
+  print(name)
+  a = read.xlsx(url[i])
+  assign(name, a)
+  df_total <- rbind(df_total,a)
+  i = i+1
+}
+df_total
+
+#checking whether df_total contains all data from original datasets
+nrow(df_total) == (nrow(df1) + nrow(df2)+ nrow(df3)+ nrow(df4)+ nrow(df5)+ nrow(df6)+ nrow(df7)+ nrow(df8)+ nrow(df9)+ nrow(df10)+ nrow(df11)+ nrow(df12)+ nrow(df13)+ nrow(df14)+ nrow(df15)+ nrow(df16)+ nrow(df17)+ nrow(df18)+ nrow(df19)+ + nrow(df20) + nrow(df21)+ nrow(df22)+ nrow(df23)+ nrow(df24)+ nrow(df25)+ nrow(df26)+ nrow(df27))
+```
+
+Timeseries 
+national timeseries job opening is weekly data while national timeseries median pay is monthly data
+city timeseries job opening is monthly data while city timeseries median pay is weekly data 
+no much missing value in general
+```{r}
+#National + Timeseries, only have Job Openings under Dimension, no meidan pay data. weekly base
+na_ts_opening = subset(df1, Metro == "National" & Dimension.Type == "Timeseries")
+na_ts_opening
+#US +Timeseries only timeseries median base pay, no job opening. monthly base 
+na_ts_pay = subset(df1, Metro == "U.S."& Dimension.Type == "Timeseries")
+na_ts_pay
+#not able to combine na_ts and us_ts_pay since one weekly base and one monthly base
+
+
+city_ts = subset(df1, Metro != "U.S." & Metro != "National" & Dimension.Type == "Timeseries")
+drops <- c("Dimension.Type","YoY")
+city_ts[drops]<- list(NULL)
+city_ts
+
+library(tidyr)
+city_ts1 = city_ts %>% 
+  spread(Measure, Value)
+city_ts1
+#job opening is monthly scale and pay is weekly scale 
+```
+
+Job Title
+Have only median pay data but no job opening data at all 
+```{r}
+#national job title, only pay, no job opening data
+na_jobtitle = subset(df_total, Metro == "National" & Dimension.Type == "Job Title")
+#names(na_jobtitle)
+na_jobtitle
+#na_jobtitle$Measure <- as.factor(na_jobtitle$Measure)
+#levels(na_jobtitle$Measure)
+
+
+#city job title, only pay, no job opening data
+city_jobtitle = subset(df_total, Metro != "National" & Dimension.Type == "Job Title")
+city_jobtitle
+#city_jobtitle$Measure <- as.factor(city_jobtitle$Measure)
+#levels(city_jobtitle$Measure)
+#city_jobtitle$Metro <- as.factor(city_jobtitle$Metro)
+#levels(city_jobtitle$Metro)
+```
+
+Company Size
+Have both median pay and job opening data 
+problem is job opening data for earlier year are missing
+```{r}
+#national company size, with both pay and job opening
+na_size = subset(df_total, Metro == "National" & Dimension.Type == "Company Size")
+drops <- c("Dimension.Type","YoY")
+na_size[drops]<- list(NULL)
+na_size1 = na_size %>% 
+  spread(Measure, Value)
+na_size1
+
+#city company size with both pay and job opening
+city_size = subset(df_total, Metro != "National" & Dimension.Type == "Company Size")
+drops <- c("Dimension.Type","YoY")
+city_size[drops]<- list(NULL)
+city_size1 = city_size %>% 
+  spread(Measure, Value)
+city_size1
+#median pay data is pretty much complete while job opening missing lot of early data
+```
+
+Industry
+Have both median pay and job opening data 
+problem is job opening data for earlier year are missing
+```{r}
+#national industry, with both pay and job opening
+na_industry = subset(df_total, Metro == "National" & Dimension.Type == "Industry")
+drops <- c("Dimension.Type","YoY")
+na_industry[drops]<- list(NULL)
+na_industry1 = na_industry %>% 
+  spread(Measure, Value)
+na_industry1
+#median pay data is pretty much complete while job opening missing lot of early data
+
+
+#city industry with both pay and job opening 
+city_industry = subset(df_total, Metro != "National" & Dimension.Type == "Industry")
+drops <- c("Dimension.Type","YoY")
+city_industry[drops]<- list(NULL)
+city_industry1 = city_industry %>% 
+  spread(Measure, Value)
+city_industry1
+#median pay data is pretty much complete while job opening missing lot of early data
+```
