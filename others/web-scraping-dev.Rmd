@@ -1,0 +1,125 @@
+---
+title: "Web Scraping Dev"
+output: html_notebook
+---
+
+# Search results profile
+
+- empn id: an identity for companies that sponsor the search results.
+- job key: unique key for each post of job.
+  - can be used to identify the overlapping results from different search results.
+  
+# Web page issues
+
+- The maximum of visible page number is 100, but results are still available for pages after that.
+- Number of rows each results is random?
+- Two rows of description in the summary part.
+- #searchCountPages for result count
+- Adavanced search URL <https://www.indeed.com/jobs?as_and=software+developer&as_ttl={TitleName}&as_cmp={CompanyName}&jt={JobType}&st=&as_src=&salary=&radius=50&l=New+York&fromage=any&limit=20&sort=date&psf=advsrch&from=advancedsearch>
+
+
+
+# Dirty values
+
+- company is "seen by indeed" 5 of them each page?
+
+# Testing codes
+
+Importing defined functions.
+
+```{r}
+source('../preprocess/lib-web-scraping.R')
+```
+
+```{r}
+function(key.words, loc.words='any where', start.pos=1){
+  key.words = "data analyst" %>% trimws() %>% str_replace_all(" ","+")
+  location.words = "New York" %>% trimws() %>% str_replace_all(" ","+")
+  start.pos <- as.character((2-1)*10)
+  base.query <- "/jobs?q={key.words}&l={loc.words}&start={start.pos}"
+  url.path <- base.query %>% 
+    str_replace('\\{key\\.words\\}',key.words) %>% 
+    str_replace('\\{loc\\.words\\}',location.words) %>% 
+    str_replace('\\{start\\.pos\\}',start.pos)
+  url.domain <- 'http://www.indeed.com'
+  return(str_c(url.domain, url.path))
+}
+
+key.words = "data analyst" %>% trimws() %>% str_replace_all(" ","+")
+location.words = "New York" %>% trimws() %>% str_replace_all(" ","+")
+start.pos <- as.character((2-1)*10)
+base.query <- "/jobs?q={key.words}&l={loc.words}&start={start.pos}"
+url.path <- base.query %>% 
+  str_replace('\\{key\\.words\\}',key.words) %>% 
+  str_replace('\\{loc\\.words\\}',location.words) %>% 
+  str_replace('\\{start\\.pos\\}',start.pos)
+
+url.domain <- 'http://www.indeed.com'
+local.page.url <- '../data/raw/Indeed_searchresults_demo.html'
+if(file.exists(local.page.url)){
+  webpage <- read_html(local.page.url)
+}else{
+  webpage <- read_html(str_c(url.domain, 
+                             "/jobs?q=data+scientist+%2420%2C000&l=New+York&start=10"))
+  write_html(webpage, local.page.url)
+}
+```
+
+```{r}
+format.search.url('data analyst', 'los angeles')
+```
+
+```{r}
+format.search.url("software engineer", "new york")
+
+#for(i in seq(1,9))
+```
+
+Extracting results count.
+```{r}
+'Page 1 of 624 jobs' %>% str_extract('\\d+(?= jobs)') %>% as.integer()
+
+read.search.result.page(webpage)
+```
+
+
+
+All results of one query.
+```{r}
+
+first.url <- format.search.url("software developer", "New York", 
+                               company.name = "amazon")
+data.file.name <- '../data/raw/'
+file.name <- str_extract(first.url, "(?<=and=).+(?=&limit)")
+dump.path <- str_c('../data/raw/', file.name, '.csv')
+if(file.exists(dump.path)){
+  results.df <- read_csv(dump.path)
+}else{
+  first.page <- read_html(first.url)
+  cur.result <- read.search.result.page(first.page)
+  data <- data.frame(cur.result$data)
+  
+  page.cnt <- cur.result$total %/% 50
+  
+  for(page.idx in seq(2, page.cnt)){
+    cur.url <- format.search.url("software developer", "New York", 
+                                 company.name = "amazon",
+                                 start.pos = page.idx, )
+    Sys.sleep(runif(1,min = 1,max = 3)) # in seconds
+    cur.result <- cur.url %>% 
+      read_html() %>% read.search.result.page()
+    data <- bind_rows(data, cur.result$data)
+    if(nrow(data) > cur.result$total)break
+  }
+  
+  data$job_type <- ""
+  write_csv(data, dump.path)
+}
+
+
+
+
+```
+
+
+

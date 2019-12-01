@@ -1,0 +1,67 @@
+---
+title: "Indeed Data Scraping Pipeline"
+author: "Jianing Li"
+date: "11/30/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, root.dir=TRUE}
+knitr::opts_chunk$set(echo = TRUE)
+if(!file.exists("data/raw")){
+        root <- rprojroot::find_rstudio_root_file()
+        knitr::opts_knit$set(root.dir = root)
+}
+```
+
+## Testing paths
+
+```{r}
+getwd()
+```
+
+## Importing functions
+
+```{r sourcing}
+source("preprocess/lib-web-scraping.R")
+
+metros <- read_tsv("   name         
+ 1 New York City
+ 2 Los Angeles  
+ 3 Chicago      
+ 4 Houston      
+ 5 Washington DC
+ 6 Philadelphia 
+ 7 Atlanta      
+ 8 Boston       
+ 9 San Francisco
+10 Seattle ")
+
+job.titles <- read_tsv("name
+                       Data sceitist
+                       Data analyst
+                       Data engineer
+                       software developer")
+```
+
+## Do scraping
+
+All scraped data will be saved to 'data/raw'. Following chunks searched for jobs anywhere in the states.
+
+```{r}
+df1 = search.job("data scientist", job.type = JOB.TYPE$intern)
+
+df2 = search.job("data scientist", job.type = JOB.TYPE$full.time)
+```
+
+```{r}
+df3 = search.job("data analyst", job.type = JOB.TYPE$intern)
+
+df4 = search.job("data analyst", job.type = JOB.TYPE$full.time)
+```
+
+```{r}
+df5 = search.job("data engineer", job.type = JOB.TYPE$intern)
+
+df6 = search.job("data engineer", job.type = JOB.TYPE$full.time)
+```
+
