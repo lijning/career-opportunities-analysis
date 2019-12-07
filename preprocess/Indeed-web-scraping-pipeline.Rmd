@@ -60,8 +60,8 @@ df4 = search.job("data analyst", job.type = JOB.TYPE$full.time)
 ```
 
 ```{r}
-df5 = search.job("data engineer", job.type = JOB.TYPE$intern)
+df5 = search.job("", title.words = "data engineer", job.type = JOB.TYPE$intern)
 
-df6 = search.job("data engineer", job.type = JOB.TYPE$full.time)
+df6 = search.job("", title.words = "data engineer", job.type = JOB.TYPE$full.time)
 ```
 

@@ -12,25 +12,41 @@ if(!file.exists("data/raw")){
 
 JOB.TYPE <- list(intern="internship", full.time="fulltime")
 
-format.search.url <- function(key.words, loc.words='Anywhere', start.pos=1,
-                              title.words="", company.name="", job.type=""){
-  key.words = key.words %>% trimws() %>% str_replace_all(" ","+")
-  location.words = loc.words %>% trimws() %>% str_replace_all(" ","+")
-  start.pos <- as.character((start.pos-1)*50)
-  # base.query <- "/jobs?q={key.words}&l={loc.words}&start={start.pos}&limit=50"
-  base.query <- "/jobs?as_and={key.words}&radius=50&l={loc.words}&start={start.pos}"
-  advanced.query <- "&as_ttl={TitleName}&as_cmp={CompanyName}&jt={JobType}"
-  noted.query <- "&limit=50&sort=date&psf=advsrch&from=advancedsearch"
-  url.path <- str_c(base.query, advanced.query, noted.query) %>% 
-    str_replace('\\{key\\.words\\}',key.words) %>% 
-    str_replace('\\{loc\\.words\\}',location.words) %>% 
-    str_replace('\\{TitleName\\}',title.words) %>% 
-    str_replace('\\{CompanyName\\}',company.name) %>% 
-    str_replace('\\{JobType\\}',job.type) %>% 
-    str_replace('\\{start\\.pos\\}',start.pos)
-  url.domain <- 'http://www.indeed.com'
-  return(str_c(url.domain, url.path))
-}
+
+format.search.url <-
+  function(key.words,
+           loc.words = 'Anywhere',
+           start.pos = 1,
+           title.words = "",
+           company.name = "",
+           job.type = "") {
+    key.words = key.words %>% trimws() %>% str_replace_all(" ", "+")
+    title.words = title.words %>% trimws() %>% str_replace_all(" ", "+")
+    company.name = company.name %>% trimws() %>% str_replace_all(" ", "+")
+    location.words = loc.words %>% trimws() %>% str_replace_all(" ", "+")
+    
+    start.pos <- as.character((start.pos - 1) * 50)
+    simple.query <-
+      "/jobs?q={key.words}&l={Location}&start={Offset}&limit=50"
+    
+    base.query <-
+      "/jobs?as_and={key.words}&radius=50&l={Location}&start={Offset}"
+    advanced.query <-
+      "&as_ttl={TitleName}&as_cmp={CompanyName}&jt={JobType}"
+    noted.query <-
+      "&limit=50&sort=date&psf=advsrch&from=advancedsearch"
+    
+    url.path <- str_c(base.query, advanced.query, noted.query) %>%
+      str_replace('\\{key\\.words\\}', key.words) %>%
+      str_replace('\\{Location\\}', location.words) %>%
+      str_replace('\\{TitleName\\}', title.words) %>%
+      str_replace('\\{CompanyName\\}', company.name) %>%
+      str_replace('\\{JobType\\}', job.type) %>%
+      str_replace('\\{Offset\\}', start.pos)
+    
+    url.domain <- 'http://www.indeed.com'
+    return(str_c(url.domain, url.path))
+  }
 
 read.search.result.row <- function(row.node){
   url.domain <- 'http://www.indeed.com'
@@ -81,24 +97,31 @@ read.search.result.page <- function(page.node){
 }
 
 
-search.job <- function(key.words, location="Anywhere", job.type="", 
+search.job <- function(key.words="", location="Anywhere", job.type="", 
                        company.name="", title.words=""){
   t1 = proc.time()
-  first.url <- format.search.url(key.words = key.words, loc.words = location, 
-                                 title.words = title.words, 
-                                 company.name = company.name, 
-                                 job.type = job.type)
+  first.url <-
+    format.search.url(
+      key.words = key.words,
+      loc.words = location,
+      title.words = title.words,
+      company.name = company.name,
+      job.type = job.type
+    )
+  print(c("First URL:", first.url))
+  
   file.name <- str_extract(first.url, "(?<=and=).+(?=&limit)")
   dump.path <- str_c('data/raw/', file.name, '.csv')
-  if(file.exists(dump.path)){
+  
+  if (file.exists(dump.path)) {
     results.df <- read_csv(dump.path)
-  }else{
+  } else{
     first.page <- read_html(first.url)
     cur.result <- read.search.result.page(first.page)
     results.df <- data.frame(cur.result$data)
-    
     page.cnt <- cur.result$total %/% 50
-    print(cur.result$total)
+    
+    print(c('Total rows number: ', cur.result$total))
     
     for(page.idx in seq(2, page.cnt)){
       cur.url <- format.search.url(key.words = key.words, loc.words = location,
