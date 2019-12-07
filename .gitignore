@@ -39,4 +39,5 @@ rsconnect/
 *.nb.html
 *demo.html
 data/raw/hidden
+*.zip
 
