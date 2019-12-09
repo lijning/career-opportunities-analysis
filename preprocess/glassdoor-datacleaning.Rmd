@@ -9,38 +9,32 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+##loading in data from urls
 ```{r}
 #install.packages("openxlsx")
 library(openxlsx)
-<a href="https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro_2019-10.xlsx">October 2019</a>
-url = c("https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro_2019-11.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro_2019-10.xlsx", 
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro-2019-09.xlsx", 
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro-2019-08.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/JMR_ByMetro-2019-07.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/07/JMR_ByMetro-2019-06.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/06/JMR_ByMetro-2019-05.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/04/LPR_ByMetro-2019-04.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/04/LPR_ByMetro-2019-03.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/03/LPR_ByMetro-2019-02.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_ByMetro-2019-01.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_ByMetro-2018-12.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/10/LPR_ByMetro-2018-10.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/10/LPR_ByMetro-2018-09.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/09/LPR_ByMetro-2018-08.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_ByMetro-2018-07.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_ByMetro-2018-06.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_ByMetro-2018-05.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/07/LPR_ByMetro-2018-04.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/04/LPR_ByMetro-2018-03.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/03/LPR_ByMetro-2018-02.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/LPR_ByMetro-2018-01.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2018/01/LPR_ByMetro-2017-12.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/12/LPR_ByMetro-2017-11.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/11/LPR_ByMetro-2017-10.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/10/LPR_ByMetro-2017-09.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/10/LPR_ByMetro-2017-08.xlsx",
-        "https://www.glassdoor.com/research/app/uploads/sites/2/2017/08/LPR_ByMetro-2017-07.xlsx")
+
+url = c("https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2019-03.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/03/LPR_data-2019-02.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_data-2019-01.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/01/LPR_data-2018-12.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-10.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-09.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-08.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-07.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-06.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-05.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-04.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-03.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-02.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2018-01.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-12.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-11.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-10.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-09.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-08.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-07.xlsx",
+        "https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2017-06.xlsx")
 
 
 #2018-11 can not be opened so not included in the url vector and not taken into account
@@ -49,33 +43,41 @@ i = 1
 df_total = data.frame()
 for(item in 1:length(url)){
   name = paste("df", i, sep = "")
-  print(name)
+  #print(name)
   a = read.xlsx(url[i])
   assign(name, a)
   df_total <- rbind(df_total,a)
   i = i+1
 }
 df_total
+write.csv(df_total, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/df_total.csv")
 
 #checking whether df_total contains all data from original datasets
-nrow(df_total) == (nrow(df1) + nrow(df2)+ nrow(df3)+ nrow(df4)+ nrow(df5)+ nrow(df6)+ nrow(df7)+ nrow(df8)+ nrow(df9)+ nrow(df10)+ nrow(df11)+ nrow(df12)+ nrow(df13)+ nrow(df14)+ nrow(df15)+ nrow(df16)+ nrow(df17)+ nrow(df18)+ nrow(df19)+ + nrow(df20) + nrow(df21)+ nrow(df22)+ nrow(df23)+ nrow(df24)+ nrow(df25)+ nrow(df26)+ nrow(df27))
+nrow(df_total) == (nrow(df1) + nrow(df2)+ nrow(df3)+ nrow(df4)+ nrow(df5)+ nrow(df6)+ nrow(df7)+ nrow(df8)+ nrow(df9)+ nrow(df10)+ nrow(df11)+ nrow(df12)+ nrow(df13)+ nrow(df14)+ nrow(df15)+ nrow(df16)+ nrow(df17)+ nrow(df18)+ nrow(df19)+ + nrow(df20) + nrow(df21))
 ```
 
-Timeseries 
+##loading in 2019 10 data from local csv
+```{r}
+#read in 2019.10 data for timeseries data
+df_1910 = read.xlsx("/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/raw/JMR_data-2019-10.xlsx")
+df_1910
+```
+
+##Timeseries 
 national timeseries job opening is weekly data while national timeseries median pay is monthly data
 city timeseries job opening is monthly data while city timeseries median pay is weekly data 
 no much missing value in general
 ```{r}
 #National + Timeseries, only have Job Openings under Dimension, no meidan pay data. weekly base
-na_ts_opening = subset(df1, Metro == "National" & Dimension.Type == "Timeseries")
+na_ts_opening = subset(df_1910, Metro == "National" & Dimension.Type == "Timeseries")
 na_ts_opening
 #US +Timeseries only timeseries median base pay, no job opening. monthly base 
-na_ts_pay = subset(df1, Metro == "U.S."& Dimension.Type == "Timeseries")
+na_ts_pay = subset(df_1910, Metro == "U.S."& Dimension.Type == "Timeseries")
 na_ts_pay
 #not able to combine na_ts and us_ts_pay since one weekly base and one monthly base
 
 
-city_ts = subset(df1, Metro != "U.S." & Metro != "National" & Dimension.Type == "Timeseries")
+city_ts = subset(df_1910, Metro != "U.S." & Metro != "National" & Dimension.Type == "Timeseries")
 drops <- c("Dimension.Type","YoY")
 city_ts[drops]<- list(NULL)
 city_ts
@@ -85,9 +87,14 @@ city_ts1 = city_ts %>%
   spread(Measure, Value)
 city_ts1
 #job opening is monthly scale and pay is weekly scale 
+
+#saving df as csv
+write.csv(na_ts_opening, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_ts_opening.csv")
+write.csv(na_ts_pay,"/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_ts_pay.csv")
+write.csv(city_ts1,"/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/city_ts.csv")
 ```
 
-Job Title
+##Job Title
 Have only median pay data but no job opening data at all 
 ```{r}
 #national job title, only pay, no job opening data
@@ -105,9 +112,13 @@ city_jobtitle
 #levels(city_jobtitle$Measure)
 #city_jobtitle$Metro <- as.factor(city_jobtitle$Metro)
 #levels(city_jobtitle$Metro)
+
+write.csv(na_jobtitle, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_jobtitle.csv")
+write.csv(city_jobtitle, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/city_jobtitle.csv")
+
 ```
 
-Company Size
+##Company Size
 Have both median pay and job opening data 
 problem is job opening data for earlier year are missing
 ```{r}
@@ -127,9 +138,12 @@ city_size1 = city_size %>%
   spread(Measure, Value)
 city_size1
 #median pay data is pretty much complete while job opening missing lot of early data
+
+write.csv(na_size1, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_size1.csv")
+write.csv(city_size1, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/city_size1.csv")
 ```
 
-Industry
+##Industry
 Have both median pay and job opening data 
 problem is job opening data for earlier year are missing
 ```{r}
@@ -151,4 +165,8 @@ city_industry1 = city_industry %>%
   spread(Measure, Value)
 city_industry1
 #median pay data is pretty much complete while job opening missing lot of early data
+
+
+write.csv(na_industry1,"/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_industry1.csv")
+write.csv(city_industry1,"/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/city_industry1.csv")
 ```
