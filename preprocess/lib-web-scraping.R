@@ -130,7 +130,7 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
                                   company.name = company.name, 
                                   job.type = job.type,
                                   start.pos = page.idx)
-      Sys.sleep(runif(1,min = 1, max = 5)) # in seconds
+      Sys.sleep(runif(1,min = 1, max = 3.9)) # in seconds
       cur.result <- cur.url %>% 
         read_html() %>% read.search.result.page()
       results.df <- bind_rows(results.df, cur.result$data)
@@ -148,7 +148,7 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
 }
 
 retrieve.job.detail.page <- function(url){
-
+  
   page <- read_html(url)
   content <- page %>% 
     html_node("#jobDescriptionText") %>% 
@@ -158,6 +158,8 @@ retrieve.job.detail.page <- function(url){
     str_replace_all("\\n", " | ")
   return(content)
 }
+
+retrieve.job.detail.page <- possibly(retrieve.job.detail.page, NA)
 
 add.job.details.on <- function(df=FALSE, path,
                                max.size = 3000, 
