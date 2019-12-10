@@ -41,3 +41,4 @@ rsconnect/
 data/raw/hidden
 *.zip
 others/hidden
+*fulltime.csv
