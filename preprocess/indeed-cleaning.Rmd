@@ -1,0 +1,45 @@
+---
+title: "indeed-cleaning"
+author: "Xinyuan He"
+date: "12/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(openxlsx)
+df_indeed_de = read.csv("/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/raw/de_fulltime_test.csv")
+df_indeed_de
+```
+
+##generate job opening by city
+```{r}
+library(dplyr)
+df_indeed_de_withStateCity  = df_indeed_de %>% mutate(state = stringr::str_extract(string = df_indeed_de$location, pattern = "[A-Z][A-Z]")) %>% mutate(city = stringr::str_extract(string = df_indeed_de$location, pattern = "^([^,])+")) %>% subset(city != "United States")
+#write.csv(df_indeed_de_withStateCity,"/Users/xinyuanhe/Desktop/df_indeed_de_withStateCity.csv")
+
+#typeof(df_indeed_de_withStateCity$city)
+#levels(as.factor(df_indeed_de_withStateCity$city))
+#levels(as.factor(df_indeed_de_withStateCity$state))
+
+#sort(table(df_indeed_de_withStateCity$city))
+city_jo = df_indeed_de_withStateCity %>%
+	group_by(city) %>%
+	summarise(job_opening = n()) %>%
+	arrange(desc(job_opening))
+
+write.csv(city_jo,"../data/clean/city_jo.csv")
+```
+
+##generate job opening by state 
+```{r}
+state_jo = df_indeed_de_withStateCity %>%
+	group_by(state) %>%
+	summarise(job_opening = n()) %>%
+	arrange(desc(job_opening))
+
+write.csv(state_jo,"../data/clean/state_jo.csv")
+```
