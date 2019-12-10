@@ -188,7 +188,7 @@ add.job.details.on <- function(df=FALSE, path,
     } else {
       content <- retrieve.job.detail.page(lk)
       v.details = c(v.details, content)
-      Sys.sleep(runif(1,min = 1, max = 3))
+      Sys.sleep(runif(1,min = 1, max = 3.9))
     }
   }
   df$detail <- v.details

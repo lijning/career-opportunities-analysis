@@ -50,7 +50,7 @@ do.it <- function(target) {
                 df = bind_rows(rt1$data, rt2$data) %>% unique()
                 write_csv(df, path)
         }
-        rt = add.job.details.on(df = df, path = path, max.size = 1200)
+        rt = add.job.details.on(df = df, path = path, max.size = 1500)
         # file.remove(rt1$path)
         # file.remove(rt2$path)
         return(rt)
