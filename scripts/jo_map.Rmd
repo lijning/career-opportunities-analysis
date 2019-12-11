@@ -1,0 +1,104 @@
+---
+title: "JO_map"
+author: "Xinyuan He"
+date: "12/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+df_jo_ba_state = read.csv("../data/clean/indeed/state_jo_ba.csv",na.strings = "NNN") %>% select(state, jo_ba)
+df_jo_da_state = read.csv("../data/clean/indeed/state_jo_da.csv",na.strings = "NNN") %>% select(state, jo_da)
+df_jo_ds_state = read.csv("../data/clean/indeed/state_jo_ds.csv",na.strings = "NNN") %>% select(state, jo_ds)
+df_jo_fa_state = read.csv("../data/clean/indeed/state_jo_fa.csv",na.strings = "NNN") %>% select(state, jo_fa)
+
+df_total_state = df_jo_ba_state %>% 
+  merge(df_jo_da_state, by = "state") %>% 
+  merge(df_jo_ds_state, by = "state") %>% 
+  merge(df_jo_fa_state, by = "state")
+
+df_total_state$jo_total <- rowSums(df_total_state[,c(2,3,4,5)])
+df_total_state
+
+df_total_state$hover <- with(df_total_state, paste(state, '<br>', "BA job openings:", jo_ba, '<br>', "DA job openings:", jo_da, '<br>', "DS job openings:", jo_ds, '<br>', "FA job openings:", jo_fa))
+```
+
+```{r}
+library(plotly)
+# give state boundaries a white border
+l <- list(color = toRGB("white"), width = 2)
+
+# specify some map projection/options
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
+)
+
+p1 <- plot_geo(df_total_state, locationmode = 'USA-states') %>%
+  add_trace(
+    z = ~jo_total, text = ~hover, locations = ~state,
+    color = ~jo_total, colors = 'Purples'
+  ) %>%
+  colorbar(title = "number of job openings") %>%
+  layout(
+    title = 'Data Related Job Openings Count by State<br>(Hover for breakdown by jobs)',
+    geo = g,
+    annotations = list(x = 1, y = -0.1, text = "BA: business analyst DA: data analyst <br> DS: data scientist FA: financial analyst", showarrow = F, xref='paper', yref='paper', 
+      xanchor='middle', yanchor='auto', xshift=0, yshift=0,
+      font=list(size=15, color="black"))
+  )
+
+p1
+```
+
+
+
+
+```{r}
+df_city_jo = read.csv("/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/indeed/city_jo_ba.csv")
+df_longlat <- read.csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv')
+#df_10city_jo <- subset(df_city_jo, city == "New York"| city == "Boston"| city == "San Francisco"| city #== "Washington"| city == "Chicago"| city == "Houston"| city == "Seattle"| city == "Atlanta"| city == #"Philadelphia"| city == "Los Angeles",
+#select=c(city, job_opening))
+
+df_total = merge(df_city_jo, df_longlat, by = "city", all.x = TRUE)
+df_total = subset(df_total, select=c(city, job_opening, long, lat))
+df_total = df_total[-c(4,5,8), ]
+df_total$long[(which(df_total$city == "Washington"))] = -77.0369
+df_total$lat[(which(df_total$city == "Washington"))] = 38.9072
+```
+
+```{r}
+library(plotly)
+# geo styling
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showland = TRUE,
+  landcolor = toRGB("gray95"),
+  subunitcolor = toRGB("gray85"),
+  countrycolor = toRGB("gray85"),
+  countrywidth = 0.5,
+  subunitwidth = 0.5
+)
+
+p2 <- plot_geo(df_total, lat = ~lat, lon = ~long) %>%
+  add_markers(
+    text = ~paste(city, paste("job_opening:", job_opening), sep = "<br />"),
+    color = ~job_opening, symbol = I("square"), size = I(8), hoverinfo = "text"
+  ) %>%
+  colorbar(title = "number of job opening") %>%
+  layout(
+    title = 'Data Engineer Job Opening Count by City', 
+    geo = g
+  )
+p2
+
+
+```
+
