@@ -1,0 +1,60 @@
+---
+title: "missing_value"
+author: "Mutian Wang"
+date: "2019/12/11"
+output: 
+  html_document:
+    code_folding: hide  
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(extracat)
+
+city_job <- read_csv("../data/clean/glassdoor/city_jobtitle.csv") # no NA
+nation_job <- read_csv("../data/clean/glassdoor/na_jobtitle.csv") # no NA
+
+city_ts <- read_csv("../data/clean/glassdoor/city_ts.csv")
+nation_ts <- read_csv("../data/clean/glassdoor/na_ts_pay.csv") # no NA
+```
+
+```{r}
+indeed_ds <- read_csv("../data/raw/indeed_ds.csv")
+indeed_da <- read_csv("../data/raw/indeed_da.csv")
+indeed_fa <- read_csv("../data/raw/indeed_fa.csv")
+indeed_ba <- read_csv("../data/raw/indeed_ba.csv")
+```
+
+```{r}
+city_ts %>% 
+  select(-c(X1)) %>% 
+  visna(sort = "b") + 
+  labs(title = "ljn")
+```
+
+```{r}
+indeed_ds %>% 
+  visna(sort = "b")
+```
+
+```{r}
+indeed_da %>% 
+  visna(sort = "b")
+```
+
+```{r}
+indeed_ba %>% 
+  visna(sort = "b")
+```
+
+```{r}
+indeed_fa %>% 
+  visna(sort = "b")
+```
