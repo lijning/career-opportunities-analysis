@@ -7,3 +7,17 @@ site: bookdown::bookdown_site
 
 # Introduction
 
+## Background
+
+{
+[xh]
+Provide context for readers who are not familiar with the topic.
+}
+
+
+## Motivation
+
+{
+[xh]
+Explain why we chose this topic, and the questions we are interested in
+}
