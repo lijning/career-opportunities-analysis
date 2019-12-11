@@ -1,0 +1,181 @@
+---
+title: "bar_chart"
+author: "Mutian Wang"
+output:
+  html_document:
+    code_folding: hide
+  pdf_document:
+    code_folding: hide
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+Import libraries and read data
+```{r}
+library(zoo)
+library(tidyverse)
+city_job <- read_csv("../data/clean/city_jobtitle.csv")
+nation_job <- read_csv("../data/clean/na_jobtitle.csv")
+
+city_ts <- read_csv("../data/clean/city_ts.csv")
+nation_ts <- read_csv("../data/clean/na_ts_pay.csv")
+```
+
+Clean data
+```{r}
+invisible(Sys.setlocale("LC_TIME", "C"))
+city_job <- city_job %>% 
+  mutate_at(vars(Value), ~str_replace(.x, "[$]", "")) %>% 
+  mutate_at(vars(Value), ~str_replace(.x, ",", "")) %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Metro = as.factor(Metro)) %>% 
+  transform(Month = as.Date(as.yearmon(Month)))
+
+nation_job <- nation_job %>% 
+  mutate_at(vars(Value), ~str_replace(.x, "[$]", "")) %>% 
+  mutate_at(vars(Value), ~str_replace(.x, ",", "")) %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Month = as.Date(as.yearmon(Month)))
+
+city_ts <- city_ts %>% 
+  filter(!is.na(`Median Base Pay`)) %>% 
+  transform(`Median Base Pay` = as.numeric(`Median Base Pay`)) %>% 
+  transform(Month = as.Date(as.yearmon(Month))) %>%
+  filter(Month >= as.Date("2017-06-01") & Month <= as.Date("2019-03-01")) %>%
+  mutate_at(vars(Dimension), ~str_replace(.x, "Metro Median Base Pay", "Metro")) %>% 
+  rename(Value = Median.Base.Pay) %>% 
+  select(-c(Job.Openings))
+  
+nation_ts <- nation_ts %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Month = as.Date(as.yearmon(Month))) %>%
+  filter(Month >= as.Date("2017-06-01") & Month <= as.Date("2019-03-01")) %>%
+  mutate_at(vars(Dimension), ~str_replace(.x, "Metro Median Base Pay", "US"))
+```
+
+Bar chart (national)
+```{r fig.height = 8, fig.width = 8}
+nation_job %>% 
+  group_by(Dimension) %>%
+  summarize(Pay = sum(Value)/n()) %>% 
+  filter(Pay > 59000) %>% 
+  ggplot() + 
+  geom_col(aes(x = reorder(Dimension, Pay), y = Pay)) + 
+  coord_flip() + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay (> ~60k) in the US") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  theme_light(16) + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Time series (national)
+```{r}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst", 
+        "Java Developer", "Software Engineer", "Systems Engineer", "Web Developer")
+nation_job %>% 
+  filter(Dimension %in% joi) %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value))) + 
+  geom_point(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value)), size = 1) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in the US (2017-2019)") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_color_manual(values = c("red", "brown", "coral2", "green4", 
+                                "yellow3", "magenta", "chartreuse2", "deepskyblue")) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5))
+```
+
+Time series (national & scaled)
+```{r}
+joi = c("Data Analyst", "Data Scientist", "Financial Analyst", "Business Analyst")
+nation_job %>% 
+  filter(Dimension %in% joi) %>% 
+  rbind(nation_ts) %>% 
+  group_by(Dimension) %>%
+  arrange(Month, .by_group = TRUE) %>%
+  mutate(index = row_number()) %>% 
+  mutate(tmp = if_else(index == 1, Value, as.numeric(NA))) %>% 
+  fill(tmp) %>% 
+  mutate(Value1 = 100*Value/tmp) %>% 
+  ungroup() %>% 
+  ggplot() +
+  geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
+  labs(x = "", y = "Scaled Median Base Pay",
+       title = "Median Base Pay in the US (2017-2019)") + 
+  scale_color_manual(values = c("deepskyblue", "black", "magenta", "chartreuse2", "red")) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  theme_light(16) +
+  theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5))
+```
+
+Bar chart (Metro)
+```{r fig.height = 7, fig.width = 12}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst", 
+        "Java Developer", "Software Engineer", "Systems Engineer", "Web Developer")
+city_job %>% 
+  filter(Dimension %in% joi) %>% 
+  group_by(Dimension, Metro) %>% 
+  summarize(Pay = sum(Value)/n()) %>%
+  ggplot() + 
+  geom_col(aes(x = reorder(Dimension, Pay), y = Pay)) + 
+  facet_wrap(~Metro) + 
+  coord_flip() + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  theme_light(16) + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+Time Series (metro)
+```{r fig.height = 8, fig.width = 12}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst")
+city_job %>% 
+  filter(Dimension %in% joi) %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value))) + 
+  facet_wrap(~Metro) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros (2017-2019)") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_color_manual(values = c("red", "magenta", "deepskyblue", "chartreuse2")) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), panel.grid = element_blank(), 
+        plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = -40))
+```
+
+Time Series (metro & scaled)
+```{r fig.height = 8, fig.width = 12}
+joi = c("Data Analyst", "Data Scientist", "Business Analyst", "Financial Analyst")
+city_job %>% 
+  select(-c(Dimension.Type, Measure, YoY)) %>%
+  filter(Dimension %in% joi) %>% 
+  rbind(city_ts) %>% 
+  group_by(Dimension, Metro) %>%
+  arrange(Month, .by_group = TRUE) %>%
+  mutate(index = row_number()) %>% 
+  mutate(tmp = if_else(index == 1, Value, as.numeric(NA))) %>% 
+  fill(tmp) %>% 
+  mutate(Value1 = 100*Value/tmp) %>% 
+  ungroup() %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
+  facet_wrap(~Metro) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros (2017-2019)") + 
+  scale_color_manual(values = c("gray", "magenta", "deepskyblue", "chartreuse2", "red")) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_y_continuous(limits = c(90, 110)) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), panel.grid = element_blank(), 
+        plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = -40))
+```
