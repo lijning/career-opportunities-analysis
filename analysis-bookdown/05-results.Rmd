@@ -1,1 +1,68 @@
 # Results
+
+
+## US labor market: IT jobs vs. others 
+
+{
+[mw]
+(1) Briefly describe the content of the graph. What does this graph show?
+(2) State the patterns obtained from the graph.
+(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
+(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+
+All graphs should be accompanied by textual description / interpretation.
+}
+
+
+## Trends of data related jobs 
+
+{
+[mw]
+(1) Briefly describe the content of the graph. What does this graph show?
+(2) State the patterns obtained from the graph.
+(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
+(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+
+All graphs should be accompanied by textual description / interpretation.
+}
+
+
+## Geographical patterns of data related jobs
+
+{
+[xh]
+(1) Briefly describe the content of the graph. What does this graph show?
+(2) State the patterns obtained from the graph.
+(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
+(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+
+All graphs should be accompanied by textual description / interpretation.
+}
+
+
+## Best cities for data related jobs 
+
+{
+[wc]
+(1) Briefly describe the content of the graph. What does this graph show?
+(2) State the patterns obtained from the graph.
+(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
+(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+
+All graphs should be accompanied by textual description / interpretation.
+}
+
+
+## What are the most relevant to data related jobs? 
+
+{
+[wc]
+(1) Briefly describe the content of the graph. What does this graph show?
+(2) State the patterns obtained from the graph.
+(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
+(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+
+All graphs should be accompanied by textual description / interpretation.
+}
+
+

@@ -1,2 +1,28 @@
 # Data sources
 
+## Glassdoor
+
+{
+[xh]
+(1) What is the data source (with links)? Who collected it? How were the data collected?
+(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
+(3) Describe the problems of the data. For instance, Glassdoor data changed.
+}
+
+## Indeed
+
+{
+[jl]
+(1) What is the data source (with links)? Who collected it? How were the data collected?
+(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
+(3) Describe the problems of the data. For instance, Glassdoor data changed.
+}
+
+## City data
+
+{
+[wc]
+(1) What is the data source (with links)? Who collected it? How were the data collected?
+(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
+(3) Describe the problems of the data. For instance, Glassdoor data changed.
+}

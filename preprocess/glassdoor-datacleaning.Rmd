@@ -59,7 +59,8 @@ nrow(df_total) == (nrow(df1) + nrow(df2)+ nrow(df3)+ nrow(df4)+ nrow(df5)+ nrow(
 ##loading in 2019 10 data from local csv
 ```{r}
 #read in 2019.10 data for timeseries data
-df_1910 = read.xlsx("/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/raw/JMR_data-2019-10.xlsx")
+library(openxlsx)
+df_1910 = read.xlsx("../data/raw/JMR_data-2019-10.xlsx")
 df_1910
 ```
 
