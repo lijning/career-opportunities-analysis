@@ -19,11 +19,11 @@ Import libraries and read data
 ```{r}
 library(zoo)
 library(tidyverse)
-city_job <- read_csv("../data/clean/city_jobtitle.csv")
-nation_job <- read_csv("../data/clean/na_jobtitle.csv")
+city_job <- read_csv("../data/clean/glassdoor/city_jobtitle.csv")
+nation_job <- read_csv("../data/clean/glassdoor/na_jobtitle.csv")
 
-city_ts <- read_csv("../data/clean/city_ts.csv")
-nation_ts <- read_csv("../data/clean/na_ts_pay.csv")
+city_ts <- read_csv("../data/clean/glassdoor/city_ts.csv")
+nation_ts <- read_csv("../data/clean/glassdoor/na_ts_pay.csv")
 ```
 
 Clean data
