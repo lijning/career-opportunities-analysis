@@ -65,6 +65,7 @@ All scraped data will be saved to 'data/raw'. Following chunks searched for jobs
 
 ```{r}
 df1 = do.it("data scientist")
+target = "data scientist"
 ```
 
 ### 2

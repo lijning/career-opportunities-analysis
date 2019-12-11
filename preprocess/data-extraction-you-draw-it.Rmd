@@ -1,0 +1,42 @@
+---
+title: "Data extraction for "You draw it""
+author: "Jianing Li"
+date: "12/11/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Data Import
+
+```{r import}
+na_jobtitle <- read_csv("career-opportunities-analysis/data/clean/na_jobtitle.csv")
+```
+
+## Data Filtering
+
+```{r filtering}
+jobs.of.interest <-
+  c("Data Analyst",
+    "Data Scientist",
+    "Business Analyst",
+    "Financial Analyst")
+data.of.interest <- na_jobtitle %>%
+  subset(Dimension %in% jobs.of.interest, c(Dimension, Month, Value)) %>%
+  transmute(
+    job = Dimension,
+    month = as.Date(zoo::as.yearmon(Month)),
+    medianBasePay = Value %>% str_remove_all("[$]|,") %>% as.numeric()
+  )
+```
+
+## Data Export
+
+```{r}
+write_csv(data.of.interest, "data/clean/job-month-pay.csv")
+```
+
+
