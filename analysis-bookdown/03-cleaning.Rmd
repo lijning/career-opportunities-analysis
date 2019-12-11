@@ -1,1 +1,28 @@
 # Data transformation
+
+
+## Glassdoor
+
+{
+[xh]
+(1) Describe how we cleaned the data. 
+(2) What do the clean data look like?
+}
+
+
+## Indeed
+
+{
+[xh]
+(1) Describe how we cleaned the data. 
+(2) What do the clean data look like?
+}
+
+
+## City data
+
+{
+[wc]
+(1) Describe how we cleaned the data. 
+(2) What do the clean data look like?
+}
