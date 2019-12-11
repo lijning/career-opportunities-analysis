@@ -108,21 +108,23 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
       company.name = company.name,
       job.type = job.type
     )
-  print(c("First URL:", first.url))
-  
+  message(c("First URL:", first.url))
+   
   file.name <- str_extract(first.url, "(?<=and=).+(?=&limit)") %>% 
     str_remove_all("(&radius=\\d*)|(&start=\\d*)")
   dump.path <- str_c('data/raw/', file.name, '.csv')
+  message(dump.path)
   
   if (file.exists(dump.path)) {
     results.df <- read_csv(dump.path)
+    message("Data file exists.")
   } else{
     first.page <- read_html(first.url)
     cur.result <- read.search.result.page(first.page)
     results.df <- data.frame(cur.result$data)
     page.cnt <- cur.result$total %/% 50
     
-    print(c('Total rows number: ', cur.result$total))
+    message(c('Total rows number: ', cur.result$total))
     
     for(page.idx in seq(2, page.cnt)){
       cur.url <- format.search.url(key.words = key.words, loc.words = location,
@@ -144,7 +146,6 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
   t2 = proc.time()
   print(t2 - t1)
   return(list(data=results.df, path=dump.path))
-  # return(results.df)
 }
 
 retrieve.job.detail.page <- function(url){
@@ -152,14 +153,14 @@ retrieve.job.detail.page <- function(url){
   page <- read_html(url)
   content <- page %>% 
     html_node("#jobDescriptionText") %>% 
-    html_children() %>% 
+    # html_children() %>% 
     html_text() %>% 
     str_c(sep = " | ", collapse = TRUE) %>% 
     str_replace_all("\\n", " | ")
   return(content)
 }
 
-retrieve.job.detail.page <- possibly(retrieve.job.detail.page, NA)
+# retrieve.job.detail.page <- possibly(retrieve.job.detail.page, NA)
 
 add.job.details.on <- function(df=FALSE, path,
                                max.size = 3000, 
@@ -168,7 +169,7 @@ add.job.details.on <- function(df=FALSE, path,
     warning(path)
   }
   if("detail" %in% colnames(df)){
-    print("Already scraped data.")
+    message("Already scraped data.")
     return(df)
   }
   workload <- length(df$link)
@@ -176,24 +177,29 @@ add.job.details.on <- function(df=FALSE, path,
     warning("Over 3000 requests to make. Dangerous.")
     return(df)
   }
-  #if(workload>max.size){
-  #  df = df[1:max.size,]
-  #}
-  count = 1
-  
+
   t1 = proc.time()
-  v.details = c()
-  for(lk in df$link){
-    count = count + 1
-    if(count > max.size){
-      v.details = c(v.details, NA)
-    } else {
-      content <- retrieve.job.detail.page(lk)
-      v.details = c(v.details, content)
-      Sys.sleep(runif(1,min = 1, max = 3.9))
+  df$detail = NA
+  message("Begin: Scraping details.")
+  for(idx in seq(1, dim(df)[1])){
+    tryCatch({
+      df[idx,"detail"] = retrieve.job.detail.page(
+        as.character(df[idx,"link"])
+      )
+    },error = function(e){
+      cat("ERR:", conditionMessage(e),"\n")
+    })
+
+    if(idx > max.size)break
+    Sys.sleep(runif(1,min = 1, max = 2.7))
+    if(idx %% 100 == 3){
+      message("Num scraped: ", idx)
+      tryCatch({
+        print(df[idx,"detail"])
+      })
     }
   }
-  df$detail <- v.details
+
   t2 = proc.time()
   print(t2 - t1)
   write_csv(df, path = path)
