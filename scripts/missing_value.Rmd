@@ -35,8 +35,7 @@ indeed_ba <- read_csv("../data/raw/indeed_ba.csv")
 ```{r}
 city_ts %>% 
   select(-c(X1)) %>% 
-  visna(sort = "b") + 
-  labs(title = "ljn")
+  visna(sort = "b")
 ```
 
 ```{r}
