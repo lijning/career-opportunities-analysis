@@ -1,0 +1,83 @@
+---
+title: "indeed-cleaning"
+author: "Xinyuan He"
+date: "12/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(openxlsx)
+df_indeed_ba = read.csv("../data/raw/indeed_ba.csv")
+df_indeed_da = read.csv("../data/raw/indeed_da.csv")
+df_indeed_ds = read.csv("../data/raw/indeed_ds.csv")
+df_indeed_fa = read.csv("../data/raw/indeed_fa.csv")
+```
+
+##generate job opening by city
+```{r}
+library(dplyr)
+df_indeed_ba_withStateCity  = df_indeed_ba %>% mutate(state = stringr::str_extract(string = df_indeed_ba$location, pattern = "[A-Z][A-Z]")) %>% mutate(city = stringr::str_extract(string = df_indeed_ba$location, pattern = "^([^,])+")) %>% subset(city != "United States")
+
+df_indeed_da_withStateCity  = df_indeed_da %>% mutate(state = stringr::str_extract(string = df_indeed_da$location, pattern = "[A-Z][A-Z]")) %>% mutate(city = stringr::str_extract(string = df_indeed_da$location, pattern = "^([^,])+")) %>% subset(city != "United States")
+
+df_indeed_ds_withStateCity  = df_indeed_ds %>% mutate(state = stringr::str_extract(string = df_indeed_ds$location, pattern = "[A-Z][A-Z]")) %>% mutate(city = stringr::str_extract(string = df_indeed_ds$location, pattern = "^([^,])+")) %>% subset(city != "United States")
+
+df_indeed_fa_withStateCity  = df_indeed_fa %>% mutate(state = stringr::str_extract(string = df_indeed_fa$location, pattern = "[A-Z][A-Z]")) %>% mutate(city = stringr::str_extract(string = df_indeed_fa$location, pattern = "^([^,])+")) %>% subset(city != "United States")
+
+city_jo_ba = df_indeed_ba_withStateCity %>%
+	group_by(city) %>%
+	summarise(jo_ba = n()) %>%
+	arrange(desc(jo_ba))
+
+city_jo_da = df_indeed_da_withStateCity %>%
+	group_by(city) %>%
+	summarise(jo_da = n()) %>%
+	arrange(desc(jo_da))
+
+city_jo_ds = df_indeed_ds_withStateCity %>%
+	group_by(city) %>%
+	summarise(jo_ds = n()) %>%
+	arrange(desc(jo_ds))
+
+city_jo_fa = df_indeed_fa_withStateCity %>%
+	group_by(city) %>%
+	summarise(jo_fa = n()) %>%
+	arrange(desc(jo_fa))
+
+write.csv(city_jo_ba,"../data/clean/indeed/city_jo_ba.csv")
+write.csv(city_jo_da,"../data/clean/indeed/city_jo_da.csv")
+write.csv(city_jo_ds,"../data/clean/indeed/city_jo_ds.csv")
+write.csv(city_jo_fa,"../data/clean/indeed/city_jo_fa.csv")
+```
+
+##generate job opening by state 
+```{r}
+state_jo_ba = df_indeed_ba_withStateCity %>%
+	group_by(state) %>%
+	summarise(jo_ba = n()) %>%
+	arrange(desc(jo_ba))
+
+state_jo_da = df_indeed_da_withStateCity %>%
+	group_by(state) %>%
+	summarise(jo_da = n()) %>%
+	arrange(desc(jo_da))
+
+state_jo_ds = df_indeed_ds_withStateCity %>%
+	group_by(state) %>%
+	summarise(jo_ds = n()) %>%
+	arrange(desc(jo_ds))
+
+state_jo_fa = df_indeed_fa_withStateCity %>%
+	group_by(state) %>%
+	summarise(jo_fa = n()) %>%
+	arrange(desc(jo_fa))
+
+write.csv(state_jo_ba,"../data/clean/indeed/state_jo_ba.csv")
+write.csv(state_jo_da,"../data/clean/indeed/state_jo_da.csv")
+write.csv(state_jo_ds,"../data/clean/indeed/state_jo_ds.csv")
+write.csv(state_jo_fa,"../data/clean/indeed/state_jo_fa.csv")
+```

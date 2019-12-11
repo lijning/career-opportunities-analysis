@@ -110,7 +110,8 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
     )
   print(c("First URL:", first.url))
   
-  file.name <- str_extract(first.url, "(?<=and=).+(?=&limit)")
+  file.name <- str_extract(first.url, "(?<=and=).+(?=&limit)") %>% 
+    str_remove_all("(&radius=\\d*)|(&start=\\d*)")
   dump.path <- str_c('data/raw/', file.name, '.csv')
   
   if (file.exists(dump.path)) {
@@ -142,7 +143,58 @@ search.job <- function(key.words="", location="Anywhere", job.type="",
   
   t2 = proc.time()
   print(t2 - t1)
+  return(list(data=results.df, path=dump.path))
+  # return(results.df)
+}
+
+retrieve.job.detail.page <- function(url){
+
+  page <- read_html(url)
+  content <- page %>% 
+    html_node("#jobDescriptionText") %>% 
+    html_children() %>% 
+    html_text() %>% 
+    str_c(sep = " | ", collapse = TRUE) %>% 
+    str_replace_all("\\n", " | ")
+  return(content)
+}
+
+add.job.details.on <- function(df=FALSE, path,
+                               max.size = 3000, 
+                               force=FALSE){
+  if(!file.exists(path)){
+    warning(path)
+  }
+  if("detail" %in% colnames(df)){
+    print("Already scraped data.")
+    return(df)
+  }
+  workload <- length(df$link)
+  if(workload>3000 & force){
+    warning("Over 3000 requests to make. Dangerous.")
+    return(df)
+  }
+  #if(workload>max.size){
+  #  df = df[1:max.size,]
+  #}
+  count = 1
   
-  return(results.df)
+  t1 = proc.time()
+  v.details = c()
+  for(lk in df$link){
+    count = count + 1
+    if(count > max.size){
+      v.details = c(v.details, NA)
+    } else {
+      content <- retrieve.job.detail.page(lk)
+      v.details = c(v.details, content)
+      Sys.sleep(runif(1,min = 1, max = 3.9))
+    }
+  }
+  df$detail <- v.details
+  t2 = proc.time()
+  print(t2 - t1)
+  write_csv(df, path = path)
+  return(df)
 }
 

@@ -1,0 +1,402 @@
+"","city","jo_ba"
+"1","New York",378
+"2","Washington",245
+"3","Fort Lee",196
+"4","Iron Mountain",187
+"5","Indianapolis",185
+"6","Beloit",161
+"7","New Castle",151
+"8","Scottsdale",111
+"9","Newburyport",108
+"10","Jersey",103
+"11","San Francisco",43
+"12","Chicago",42
+"13","Columbia",42
+"14","Pittsburgh",28
+"15","Seattle",28
+"16","Austin",24
+"17","Los Angeles",23
+"18","Atlanta",21
+"19","Dallas",17
+"20","San Antonio",16
+"21","Southbury",16
+"22","Houston",15
+"23","Arlington",14
+"24","Boston",14
+"25","Cincinnati",14
+"26","Colorado Springs",14
+"27","San Diego",14
+"28","Denver",13
+"29","Eagan",13
+"30","Irvine",13
+"31","Madison",13
+"32","Albany",12
+"33","Buffalo",12
+"34","Elgin",12
+"35","Minneapolis",12
+"36","Newark",12
+"37","Sacramento",12
+"38","Overland Park",11
+"39","Pleasanton",11
+"40","Sunnyvale",11
+"41","Topeka",11
+"42","Englewood",10
+"43","Redmond",10
+"44","Richmond",10
+"45","Walnut Creek",10
+"46","Deerfield",9
+"47","Detroit",9
+"48","Phoenix",9
+"49","Roswell",9
+"50","Tampa",9
+"51","Columbus",8
+"52","Kansas City",8
+"53","Memphis",8
+"54","New Orleans",8
+"55","North Kansas City",8
+"56","Rockville",8
+"57","Salt Lake City",8
+"58","Alexandria",7
+"59","Baltimore",7
+"60","Charlotte",7
+"61","Franklin",7
+"62","Lawrence",7
+"63","Oshkosh",7
+"64","Pasadena",7
+"65","Philadelphia",7
+"66","Raleigh",7
+"67","Redlands",7
+"68","Riverwoods",7
+"69","Woodland Hills",7
+"70","Ave Maria",6
+"71","Bethesda",6
+"72","Highlands Ranch",6
+"73","Jersey City",6
+"74","Las Vegas",6
+"75","Milwaukee",6
+"76","Monroe",6
+"77","Mount Laurel",6
+"78","North Las Vegas",6
+"79","Oakland",6
+"80","Quincy",6
+"81","Tucson",6
+"82","Wilmington",6
+"83","Baton Rouge",5
+"84","Beaverton",5
+"85","Bellevue",5
+"86","Eden Prairie",5
+"87","Falls Church",5
+"88","Lake Mary",5
+"89","Nashville",5
+"90","New Albany",5
+"91","Reno",5
+"92","San Jose",5
+"93","San Juan",5
+"94","Somerset",5
+"95","St. Louis",5
+"96","Woodbridge",5
+"97","Aiken",4
+"98","Boise",4
+"99","Burbank",4
+"100","Dublin",4
+"101","East Hanover",4
+"102","Jackson",4
+"103","Lehi",4
+"104","Lincoln",4
+"105","Marietta",4
+"106","Merrimack",4
+"107","Miami",4
+"108","Oklahoma City",4
+"109","Orlando",4
+"110","Plano",4
+"111","Portland",4
+"112","Redwood City",4
+"113","Rochester",4
+"114","Scott AFB",4
+"115","Sioux Falls",4
+"116","Waltham",4
+"117","Aliso Viejo",3
+"118","Alpharetta",3
+"119","Anaheim",3
+"120","Ashburn",3
+"121","Bloomington",3
+"122","Brookfield",3
+"123","Brooklyn",3
+"124","Cambridge",3
+"125","Chandler",3
+"126","Chantilly",3
+"127","Clemson",3
+"128","Davenport",3
+"129","Evanston",3
+"130","Fairfax",3
+"131","Fairfield",3
+"132","Honolulu",3
+"133","Hoover",3
+"134","Jacksonville",3
+"135","Juno Beach",3
+"136","Monmouth Junction",3
+"137","Naperville",3
+"138","Princeton",3
+"139","Reston",3
+"140","Rolling Meadows",3
+"141","Santa Clara",3
+"142","Springfield",3
+"143","Tacoma",3
+"144","Wauwatosa",3
+"145","Addison",2
+"146","Ann Arbor",2
+"147","Armonk",2
+"148","Basking Ridge",2
+"149","Belleville",2
+"150","Belmont",2
+"151","Birmingham",2
+"152","Blooming Grove",2
+"153","Boca Raton",2
+"154","Boone",2
+"155","Brentwood",2
+"156","Bronx",2
+"157","Carlsbad",2
+"158","Cedar Rapids",2
+"159","Charleston",2
+"160","Chesterbrook",2
+"161","Cleveland",2
+"162","Conway",2
+"163","Dallas-Fort Worth",2
+"164","De Pere",2
+"165","Elkton",2
+"166","Farmers Branch",2
+"167","Fort Collins",2
+"168","Fort Lauderdale",2
+"169","Fort Worth",2
+"170","Gainesville",2
+"171","Gardena",2
+"172","Georgia",2
+"173","Grand Rapids",2
+"174","Greensboro",2
+"175","Greenwood Village",2
+"176","Hopkins",2
+"177","Livonia",2
+"178","Londonderry",2
+"179","Maryville",2
+"180","Milford",2
+"181","Minnetonka",2
+"182","Newtown Square",2
+"183","Omaha",2
+"184","Providence",2
+"185","Redondo Beach",2
+"186","Richardson",2
+"187","Richland",2
+"188","Roseville",2
+"189","Saint Paul",2
+"190","Saint Petersburg",2
+"191","Salem",2
+"192","Santa Cruz",2
+"193","Spring",2
+"194","Springdale",2
+"195","Tallahassee",2
+"196","Tempe",2
+"197","Valencia",2
+"198","Westwood",2
+"199","Wichita",2
+"200","Windsor",2
+"201","Winston-Salem",2
+"202","Woodbury",2
+"203","Allen",1
+"204","American Fork",1
+"205","Amherst",1
+"206","Annapolis",1
+"207","Arizona",1
+"208","Athens",1
+"209","Auburn Hills",1
+"210","Aurora",1
+"211","Ballwin",1
+"212","Bannockburn",1
+"213","Beech Grove",1
+"214","Bentonville",1
+"215","Bethpage",1
+"216","Billerica",1
+"217","Blue Bell",1
+"218","Bossier City",1
+"219","Boulder",1
+"220","Bowie",1
+"221","Bradenton",1
+"222","Brecksville",1
+"223","Brewer",1
+"224","Brooklyn Park",1
+"225","Brown Deer",1
+"226","Buffalo Grove",1
+"227","Burlington",1
+"228","Burnsville",1
+"229","Camp Hill",1
+"230","Carmichael",1
+"231","Carolina",1
+"232","Catonsville",1
+"233","Chapel Hill",1
+"234","Charlottesville",1
+"235","Chattanooga",1
+"236","Chula Vista",1
+"237","Clackamas",1
+"238","Clayton",1
+"239","Colchester",1
+"240","College Station",1
+"241","Collierville",1
+"242","Concord",1
+"243","Coppell",1
+"244","Costa Mesa",1
+"245","Covina",1
+"246","Culver City",1
+"247","Davis",1
+"248","Dayton",1
+"249","Dearborn",1
+"250","Des Moines",1
+"251","Downers Grove",1
+"252","Downingtown",1
+"253","Durham",1
+"254","East Lansing",1
+"255","Eau Claire",1
+"256","Edison",1
+"257","Ellisville",1
+"258","Elmhurst",1
+"259","Enon",1
+"260","Evansville",1
+"261","Fairburn",1
+"262","Fargo",1
+"263","Farmington",1
+"264","Fishers",1
+"265","Fort Mill",1
+"266","Fort Smith",1
+"267","Foxborough",1
+"268","Franklin Lakes",1
+"269","Freeport",1
+"270","Fresno County",1
+"271","Frisco",1
+"272","Gaithersburg",1
+"273","Germantown",1
+"274","Glenview",1
+"275","Grapevine",1
+"276","Green Bay",1
+"277","Greenbelt",1
+"278","Greenville",1
+"279","Heathrow",1
+"280","Helena",1
+"281","Hiawatha",1
+"282","Hilliard",1
+"283","Hillsdale",1
+"284","Hinds County",1
+"285","Holmdel",1
+"286","Hopewell",1
+"287","Horsham",1
+"288","Hudson",1
+"289","Huntington Beach",1
+"290","Huntsville",1
+"291","Iowa City",1
+"292","Irving",1
+"293","Janesville",1
+"294","Jeffersonville",1
+"295","La Jolla",1
+"296","Lake Buena Vista",1
+"297","Lakeland",1
+"298","Lakeville",1
+"299","Lansing",1
+"300","Largo",1
+"301","Latham",1
+"302","Le Mars",1
+"303","Lee's Summit",1
+"304","Lewisville",1
+"305","Little Rock",1
+"306","Lombard",1
+"307","Long Island City",1
+"308","Lorton",1
+"309","Louisville",1
+"310","Lowell",1
+"311","Malvern",1
+"312","Manchester",1
+"313","Manhattan",1
+"314","Marlborough",1
+"315","Maryland",1
+"316","McLean",1
+"317","Mechanicsburg",1
+"318","Mecklenburg County",1
+"319","Melville",1
+"320","Menasha",1
+"321","Middleton",1
+"322","Milpitas",1
+"323","Modesto",1
+"324","Moline",1
+"325","Morris Plains",1
+"326","Morristown",1
+"327","Morrisville",1
+"328","Mountain View",1
+"329","Neenah",1
+"330","Newport Beach",1
+"331","Newport News",1
+"332","Newton",1
+"333","Newtown",1
+"334","Norcross",1
+"335","North Andover",1
+"336","North Olmsted",1
+"337","Oakbrook Terrace",1
+"338","Ohio",1
+"339","Olympia",1
+"340","Oracle",1
+"341","Owings Mills",1
+"342","Oxnard",1
+"343","Parsippany",1
+"344","Parsons",1
+"345","Piketon",1
+"346","Piscataway",1
+"347","Plymouth",1
+"348","Portsmouth",1
+"349","Rancho Cordova",1
+"350","Rancho Cucamonga",1
+"351","Raritan",1
+"352","Renton",1
+"353","Research Triangle Park",1
+"354","Rex",1
+"355","Ridgefield Park",1
+"356","Rio Rancho",1
+"357","Riverside",1
+"358","Rockledge",1
+"359","Rosemont",1
+"360","Round Rock",1
+"361","Saginaw",1
+"362","Saint Ann",1
+"363","San Francisco Bay Area",1
+"364","San Mateo",1
+"365","San Ramon",1
+"366","Santa Rosa",1
+"367","Shawnee County",1
+"368","Solon",1
+"369","Somerville",1
+"370","Southfield",1
+"371","Southlake",1
+"372","Stafford",1
+"373","Stamford",1
+"374","Statesville",1
+"375","Sterling",1
+"376","Sturtevant",1
+"377","Sugar Land",1
+"378","Syracuse",1
+"379","Texas",1
+"380","Thousand Oaks",1
+"381","Torrance",1
+"382","Town and Country",1
+"383","Trenton",1
+"384","Troy",1
+"385","Tualatin",1
+"386","Tyler",1
+"387","Union",1
+"388","University Park",1
+"389","Valdosta",1
+"390","Valhalla",1
+"391","Vancouver",1
+"392","Vienna",1
+"393","Virginia Beach",1
+"394","Washington State",1
+"395","Wayne",1
+"396","Webster",1
+"397","West Palm Beach",1
+"398","West Trenton",1
+"399","Westlake",1
+"400","Winona",1
+"401","Woodinville",1

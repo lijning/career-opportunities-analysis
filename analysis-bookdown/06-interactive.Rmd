@@ -1,3 +1,9 @@
 # Interactive component
 
 
+{
+[jl]
+Brief introduction to the interactive component
+
+The interactive component (a link? javascript?)
+}

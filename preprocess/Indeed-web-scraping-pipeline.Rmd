@@ -13,7 +13,13 @@ if(!file.exists("data/raw")){
 }
 ```
 
+## Instructions
+
+Don't run all the chunks.
+
 ## Testing paths
+
+It should be the root of this project.
 
 ```{r}
 getwd()
@@ -24,44 +30,57 @@ getwd()
 ```{r sourcing}
 source("preprocess/lib-web-scraping.R")
 
-metros <- read_tsv("   name         
- 1 New York City
- 2 Los Angeles  
- 3 Chicago      
- 4 Houston      
- 5 Washington DC
- 6 Philadelphia 
- 7 Atlanta      
- 8 Boston       
- 9 San Francisco
-10 Seattle ")
-
-job.titles <- read_tsv("name
-                       Data sceitist
-                       Data analyst
-                       Data engineer
-                       software developer")
+do.it <- function(target) {
+        rt1 = search.job(
+                "",
+                title.words = target,
+                # location = "Alsace, CA",
+                job.type = JOB.TYPE$intern
+        )
+        path <- rt1$path %>% str_remove("=internship")
+        if (file.exists(path)) {
+                df = read_csv(path)
+        } else {
+                rt2 = search.job(
+                        "",
+                        title.words = target,
+                        # location = "Alsace, CA",
+                        job.type = JOB.TYPE$full.time
+                )
+                df = bind_rows(rt1$data, rt2$data) %>% unique()
+                write_csv(df, path)
+        }
+        rt = add.job.details.on(df = df, path = path, max.size = 1500)
+        # file.remove(rt1$path)
+        # file.remove(rt2$path)
+        return(rt)
+}
 ```
 
 ## Do scraping
 
 All scraped data will be saved to 'data/raw'. Following chunks searched for jobs anywhere in the states.
 
-```{r}
-df1 = search.job("data scientist", job.type = JOB.TYPE$intern)
-
-df2 = search.job("data scientist", job.type = JOB.TYPE$full.time)
-```
+### 1
 
 ```{r}
-df3 = search.job("data analyst", job.type = JOB.TYPE$intern)
-
-df4 = search.job("data analyst", job.type = JOB.TYPE$full.time)
+df1 = do.it("data scientist")
 ```
+
+### 2
 
 ```{r}
-df5 = search.job("", title.words = "data engineer", job.type = JOB.TYPE$intern)
-
-df6 = search.job("", title.words = "data engineer", job.type = JOB.TYPE$full.time)
+df2 = do.it("data analyst")
 ```
 
+### 3
+
+```{r}
+df3 = do.it("business analyst")
+```
+
+### 4
+
+```{r}
+df4 = do.it("financial analyst")
+```
