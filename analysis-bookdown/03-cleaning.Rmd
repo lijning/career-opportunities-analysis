@@ -10,13 +10,15 @@
 
 3.	The next step is to construct the datasets containing only the variables we are interested in, which are for futher analysis. Here are a few examples:
 
-      a.	In order to focus on the relationship between job title and median base pay, we subsetted the corresponding dataset:
+  a. In order to focus on the relationship between job title and median base pay, we subsetted the corresponding dataset:
+      
 ```{r, echo=FALSE}
 city_jobtitle = read_csv("../data/clean/glassdoor/city_jobtitle.csv")
 head(city_jobtitle)
 ```
 
-      b.	In order to find out the secular and cyclical trend of median base pay, we subsetted the corresponding dataset:
+  b. In order to find out the secular and cyclical trend of median base pay, we subsetted the corresponding dataset:
+      
       
 ```{r, echo=FALSE}
 na_ts_pay = read_csv("../data/clean/glassdoor/na_ts_pay.csv")
