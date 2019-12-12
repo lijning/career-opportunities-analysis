@@ -1,5 +1,7 @@
 # Data sources
 
+![](../others/resource/22.png)
+
 ## Glassdoor
 
 One dataset we used is gathered from the [Job Market Report from Glassdoor](https://www.glassdoor.com/research/job-market-report-historical/). This website has the monthly data from October 2016 to November 2019. 
