@@ -1,6 +1,6 @@
 # Interactive component
 
-![](../others/resource/66.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/66.png)
 
 <iframe width="1000px" height="800px" src="https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/You-Draw-It.html"></iframe>
 
