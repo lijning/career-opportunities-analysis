@@ -13,7 +13,7 @@ library(tidyverse)
 
 # Introduction
 
-![](../others/resource/Introduction.png)
+![](../others/resource/1.png)
 
 ## Background
 
