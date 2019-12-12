@@ -1,0 +1,288 @@
+<head>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js"></script>
+    <style>
+        svg {
+            height: 500;
+            width: 750;
+        }
+
+        chart-title {
+            text-align: center;
+            font: 300 18px / 1.2 'nyt-franklin', Arial, sans-serif;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .g-chart path {
+            stroke-width: 2.5;
+        }
+
+        .player-line {
+            fill: none;
+            stroke-dasharray: 5, 5;
+        }
+
+        .dot {
+            fill: #ffab00;
+            stroke: #fff;
+        }
+
+        g.playable rect {
+            fill: yellowgreen;
+            opacity: 0.1;
+        }
+
+        .huge-button {
+            display: block;
+            /* width: fit-content; */
+            padding: 0.35em 1.2em;
+            border: 0.05em solid rgb(36, 17, 66);
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            color: rgb(36, 17, 66);
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .huge-button:hover {
+            color: #FFFFFF;
+            background-color: #000000;
+        }
+
+        .g-points circle {
+            fill: cornflowerblue;
+            stroke: cornflowerblue;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function groupBy(list, keyGetter) {
+            const map = new Map();
+            list.forEach((item) => {
+                const key = keyGetter(item);
+                const collection = map.get(key);
+                if (!collection) {
+                    map.set(key, [item]);
+                } else {
+                    collection.push(item);
+                }
+            });
+            return map;
+        }
+        function usePalette(key) {
+            return globalPool.colorScale(key);
+            // if (globalPool.palette.has(key)) {
+            //     return globalPool.palette.get(key);
+            // } else {
+            //     pick = colorsArray.pop();
+            //     if (pick) {
+            //         globalPool.palette.set(key, pick);
+            //         return pick;
+            //     } else {
+            //         throw Error("Running out of colors.")
+            //     }
+            // }
+        }
+        function getCoordinates(data) {
+            return data.map(
+                elem => {
+                    return {
+                        k: elem.job,
+                        x: new Date(elem.month),
+                        y: elem.medianBasePay
+                    }
+                }
+            ).sort((a, b) => a.x - b.x);
+        }
+        function forkDataset(dataMap, hiddenKey) {
+            let keys = Array.from(dataMap.keys());
+            hiddenKVP = { key: hiddenKey, values: undefined }
+            let kvps = keys.map(key => {
+                let arr = getCoordinates(dataMap.get(key));
+                if (key == hiddenKey) {
+                    hiddenKVP.values = arr.slice(idxHiddenStart - 1);
+                    lastElem = arr[idxHiddenStart - 1];
+                    globalPool.playerData
+                        .push([globalPool.xScale(lastElem.x), globalPool.yScale(lastElem.y)])
+                    shownValues = arr.slice(0, idxHiddenStart);
+                }
+                else {
+                    shownValues = arr;
+                }
+                return {
+                    key: key, values: shownValues
+                };
+            });
+            if (!hiddenKVP.values) {
+                throw Error("Key not matched.");
+            }
+            globalPool.shownData = kvps;
+            globalPool.hiddenData = hiddenKVP;
+            return hiddenKVP;
+        }
+        const dataSrc = "https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/data/clean/job-month-pay.csv";
+        const chartMargin = { left: 80, bottom: 80, top: 30 };
+        const idxHiddenStart = 8;
+        const chartDim = { height: 400, width: 500 };
+        const legendTrans = { left: chartMargin.left + chartDim.width + 50, top: chartMargin.top + 80 };
+        const globalPool = {
+            xScale: undefined, yScale: undefined,
+            shownData: [], hiddenData: {},
+            playerData: [], palette: new Map(),
+            allDataPoints: [], colorScale: undefined
+        };
+        const colorsArray = ["#FF4136", "#2ECC40", "#FFDC00", "#001f3f", "#FF851B"]
+        const jobPlayWith = "Data Scientist";
+    </script>
+    <script>
+        function addPoints(points) {
+            points.forEach(pt => { globalPool.allDataPoints.push(pt); })
+            let gPt = d3.select("#diy #g-points");
+            let sel = gPt.selectAll("circle");
+            sel.data(globalPool.allDataPoints)
+                .enter()
+                .append("circle")
+                .merge(sel)
+                .attr('cx', d => globalPool.xScale(d.x))
+                .attr('cy', d => globalPool.yScale(d.y))
+                .transition()
+                .attr('r', 3);
+        }
+        function drawLines(data, flag) {
+            let lineGen = d3.line()
+                .x((d, i) => { return globalPool.xScale(d.x); }) // set the x values for the line generator
+                .y((d, i) => { return globalPool.yScale(d.y); }) // set the y values for the line generator 
+                .curve(d3.curveMonotoneX);
+            let lineClass;
+            if (flag == 0) {
+                lineClass = "fact-line"
+            } else {
+                lineClass = "answer-line"
+            }
+            let gPaths = d3.select("g#g-paths");
+
+            gPaths
+                //.selectAll("g").attr("class", "g-fact-line")
+                .selectAll(`path .${lineClass}`)
+                .data(data.map(elem => elem.values))
+                .enter()
+                .append("path")
+                .attr("class", lineClass)
+                .attr("fill", "none")
+                .style('stroke', (d, i) => usePalette(d[0].k))
+                .style("opacity", 0)
+                // .attr("duration",5000)
+                .transition().duration(1000)
+                .style("opacity", 1)
+                .attr("d", lineGen);
+            data.forEach(elem => { addPoints(elem.values) });
+        }
+        function fnClickingDraw() {
+            let chart = d3.select(".g-chart");
+            let coords = d3.mouse(chart.node());
+            xValue = globalPool.xScale.invert(coords[0]);
+            yValue = globalPool.yScale.invert(coords[1]);
+            globalPool.playerData.push(coords);
+            globalPool.playerData.sort((a, b) => a[0] - b[0]);
+            let sel = d3.select(".g-chart").selectAll("path.player-line")
+            sel.data([globalPool.playerData])
+                .enter()
+                .append("path").attr("class", "player-line")
+                .merge(sel)
+                .attr("d", d3.line())
+                .style("stroke", usePalette(jobPlayWith));
+        }
+    </script>
+</head>
+
+<body>
+    <h3 class="chart-title">Guess how is data jobs' pay compared with other jobs? <br> You draw it!</h3>
+    <h5>Since the beginning of 2018, the median base pay of data scientist jobs have been...</h5>
+    <svg id="diy">
+        <text x="20" y="10" style="font: 10px sans-serif;">Median Base Pay</text>
+        <g class="g-y-axis"></g>
+        <g class="g-x-axis"></g>
+        <g class="g-chart">
+            <g id="g-paths"></g>
+            <g id="g-points"></g>
+        </g>
+        <g class="g-legend"></g>
+    </svg>
+    <div id="answer-board">
+        <p id="btn-show-answer" class="huge-button">Show me the answer.</p>
+        <h5 id="answer-text" class="hidden">...fluctuating and reach the peak at the end of this year. Over two
+            years, it's been always the highest one.</h5>
+    </div>
+
+
+    <script>
+
+        let svg = d3.select("svg#diy");
+        let yAxis = svg.select(".g-y-axis")
+            .attr("transform", "translate(" + chartMargin.left + ", " + chartMargin.top + ")");
+        let xAxis = svg.select(".g-x-axis")
+            .attr("transform",
+                `translate(${chartMargin.left},${chartMargin.top + chartDim.height})`);
+        let chart = svg.select(".g-chart")
+            .attr("transform", `translate(${chartMargin.left},${chartMargin.top})`);
+        d3.select("svg#diy .g-legend")
+            .attr('transform', 'translate(' + (legendTrans.left) +
+                ',' + (legendTrans.top) + ')')
+        d3.csv(dataSrc).then(data => {
+            globalPool.rawDataset = data;
+            data = data.filter(row => ["Data Scientist",
+                "Software Engineer", "Product Manager"].includes(row.job));
+            mapDataGrouped = groupBy(data, row => row.job);
+            globalPool.mapDataGrouped = mapDataGrouped;
+
+            let xScale = d3.scaleTime()
+                // .domain([d3.extent(data, row => new Date(row.month))])
+                .domain([new Date(2017, 5, 1), new Date(2019, 3, 1)])
+                .range([0, chartDim.width]);
+            globalPool.xScale = xScale;
+            let yScale = d3.scaleLinear()
+                .domain(d3.extent(data, row => +row.medianBasePay)).nice()
+                .range([chartDim.height, 0]);
+            globalPool.yScale = yScale;
+            xAxis.call(d3.axisBottom(xScale));
+            yAxis.call(d3.axisLeft(yScale));
+
+            let hiddenKVP = forkDataset(mapDataGrouped, jobPlayWith);
+            globalPool.colorScale = d3.scaleOrdinal()
+                .domain(["Data Scientist", "Software Engineer", "Product Manager"])
+                .range(colorsArray.slice(0, 3));
+
+            let leftBoundPlayable = xScale(hiddenKVP.values[0].x);
+            let playground = chart.append("g")
+                .attr("class", "playable")
+                .attr("transform", `translate(${leftBoundPlayable},0)`);
+            let clickboard = playground.append("rect")
+                .attr("width", chartDim.width - leftBoundPlayable)
+                .attr("height", chartDim.height)
+                .attr("id", "playboard");
+            clickboard.on("click", fnClickingDraw);
+            drawLines(globalPool.shownData, 0);
+            let legendOrdinal = d3.legendColor()
+                .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
+                .shapePadding(10)
+                //use cellFilter to hide the "e" cell
+                .cellFilter(function (d) { return d.label !== "e" })
+                .scale(globalPool.colorScale);
+            d3.selectAll("#diy .g-legend").call(legendOrdinal);
+        });
+        d3.select("#btn-show-answer").on("click", () => {
+            drawLines([globalPool.hiddenData], 1);
+            d3.select("#btn-show-answer").style("display", "none");
+            d3.select("#answer-text").style("display", "block");
+        });
+
+    </script>
+</body>
