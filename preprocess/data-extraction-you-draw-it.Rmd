@@ -13,22 +13,27 @@ library(tidyverse)
 ## Data Import
 
 ```{r import}
-na_jobtitle <- read_csv("career-opportunities-analysis/data/clean/na_jobtitle.csv")
+getwd()
+na_jobtitle <- read_csv("../data/clean/glassdoor/na_jobtitle.csv")
+```
+
+## Job list
+
+```{r}
+unique(na_jobtitle$Dimension)
 ```
 
 ## Data Filtering
 
 ```{r filtering}
-jobs.of.interest <-
-  c("Data Analyst",
-    "Data Scientist",
-    "Business Analyst",
-    "Financial Analyst")
+jobs.of.interest <- c( "Attorney","Product Manager","Data Scientist","Software Engineer","Systems Engineer")
+# jobs.of.interest <- c("Data Analyst","Data Scientist","Business Analyst","Financial Analyst")
 data.of.interest <- na_jobtitle %>%
   subset(Dimension %in% jobs.of.interest, c(Dimension, Month, Value)) %>%
   transmute(
     job = Dimension,
-    month = as.Date(zoo::as.yearmon(Month)),
+    # month = as.Date(zoo::as.yearmon(Month)),
+    month = as.Date(stringr::str_c(Month,"-01")),
     medianBasePay = Value %>% str_remove_all("[$]|,") %>% as.numeric()
   )
 ```
@@ -36,7 +41,7 @@ data.of.interest <- na_jobtitle %>%
 ## Data Export
 
 ```{r}
-write_csv(data.of.interest, "data/clean/job-month-pay.csv")
+write_csv(data.of.interest, "../data/clean/job-month-pay.csv")
 ```
 
 
