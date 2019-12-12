@@ -13,23 +13,21 @@ library(tidyverse)
 
 # Introduction
 
-![](../others/resource/1.png)
+![](../others/resource/11.png)
 
 ## Background
 
-As the development of the businesses, Data Science and Analytics are no longer just optional auxiliary accessories, they are essential business tools. As new technologies and methods make a dent in the economy, so too are they making a dent in the data science job market. Data-related jobs are being considered as emerging industry that providing lots of opportunities. 
+As the development of the businesses, Data Science and Analytics are no longer just accessories, they are essential business tools. As new technologies and methods make a dent in the economy, so are they making a dent in the data science job market. Data related jobs are being considered as an emerging industry that provides lots of opportunities. 
 
-Backed in 2012, the Harvard Business review called data scientists “the sexiest job of 21st century”. Also, according to the article “Data Scientist: A Hot Job That Pays Well” published by Indeed Hiring Lab, since 2013, the job posting of data-related job has been almost tripled while the job interests has grown more slowly. The article also mentions that the salary for data scientists varies a lot for different regions-Houston and San Francisco offer best salaries. 
+Back in 2012, the Harvard Business review called data scientists “the sexiest job of 21st century”. Also, according to the article [“Data Scientist: A Hot Job That Pays Well”](https://www.hiringlab.org/2019/01/17/data-scientist-job-outlook/) published by Indeed Hiring Lab, since 2013, the job posting of data related job has been almost tripled while the interests of job seekers have grown slowly. The article also mentions that the salary for data scientists varies a lot for different regions - Houston and San Francisco offer best salaries. 
 
 
 ## Motivation
 
 In this project, we want to find out and verify:
 
-1.	Whether data science industry is indeed a high-paid industry and in the stage of emerging and offering lots of positions, compared to other jobs in IT industry
+1.	Whether data science industry is indeed a high-paid industry, compared to other jobs in IT industry.
 
-2.	The regional patterns of the job posting and median pay of data-related jobs and the potential attributes that may contribute to the patterns
+2.	The regional and temporal patterns of median base pay of data related jobs as well as the potential factors that may contribute to the patterns.
 
-3.	the timeseries patterns in job opening and median pay of data related jobs and the potential attributes 
-
-4.	the comparison between the four different data-related jobs: data scientist, data analyst, business analyst and financial analyst.
+3.	The comparison between the four different data related jobs: data scientist, data analyst, business analyst and financial analyst. We make the comparison from the perspective of (1) skill sets, (2) median base pay and (3) regional job openings.
