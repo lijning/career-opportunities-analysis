@@ -24,7 +24,7 @@
 <meta name="author" content="Mutian Wang, Xinyuan He, Weitao Chen, Jianing Li" />
 
 
-<meta name="date" content="2019-12-11" />
+<meta name="date" content="2019-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,8 +50,77 @@
 
 
 
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -83,7 +152,11 @@
 <li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#indeed-1"><i class="fa fa-check"></i><b>3.2</b> Indeed</a></li>
 <li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#city-data-1"><i class="fa fa-check"></i><b>3.3</b> City data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#glassdoor-2"><i class="fa fa-check"></i><b>4.1</b> Glassdoor</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#indeed-2"><i class="fa fa-check"></i><b>4.2</b> Indeed</a></li>
+<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#city-data-2"><i class="fa fa-check"></i><b>4.3</b> City data</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#us-labor-market-data-related-jobs-vs.-others"><i class="fa fa-check"></i><b>5.1</b> US labor market: Data related jobs vs. others</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
@@ -119,19 +192,56 @@
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
 <div id="glassdoor-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Glassdoor</h2>
-<p>{
-[xh]
-(1) Describe how we cleaned the data.
-(2) What do the clean data look like?
-}</p>
+<ol style="list-style-type: decimal">
+<li>Since the raw dataset is monthly, in order to explore the timeseries changes of median pay, we first concatenated the 22 datasets into a single data frame.</li>
+<li>Since national data and city level data are on different levels, we separate the dataset into two main categories: national and city levels.</li>
+<li>The next step is to construct the datasets containing only the variables we are interested in, used for analysis later. Here are a few examples:
+<ol style="list-style-type: lower-alpha">
+<li>In order to focus on relationship between job title and median base pay, we subset the corresponding dataset:</li>
+</ol></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">city_jobtitle =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/glassdoor/city_jobtitle.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">head</span>(city_jobtitle)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##      X1 Metro  Dimension.Type Month  Dimension       Measure   Value  YoY  
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;
+## 1   127 Atlan~ Job Title      2019-~ Accountant      Median B~ $58,6~ 2.20%
+## 2   128 Atlan~ Job Title      2019-~ Administrative~ Median B~ $43,2~ 1.90%
+## 3   129 Atlan~ Job Title      2019-~ Attorney        Median B~ $105,~ -2.2~
+## 4   130 Atlan~ Job Title      2019-~ Bank Teller     Median B~ $33,2~ 6.70%
+## 5   131 Atlan~ Job Title      2019-~ Barista         Median B~ $23,6~ 3.90%
+## 6   132 Atlan~ Job Title      2019-~ Bartender       Median B~ $36,8~ 14.1~</code></pre>
+<pre><code>  b.    In order to find out the timeseries trend of change in median pay, we subset the corresponding dataset:</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">na_ts_pay =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/glassdoor/na_ts_pay.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">head</span>(na_ts_pay)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##      X1 Metro Dimension.Type Month  Dimension       Measure     Value YoY  
+##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;
+## 1  1440 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 54327. NA   
+## 2  1441 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 54175. NA   
+## 3  1442 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 54023. NA   
+## 4  1443 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 53860. NA   
+## 5  1444 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 53647  NA   
+## 6  1445 U.S.  Timeseries     2019-~ Metro Median B~ Median Ba~ 53525  NA</code></pre>
+<p>We did the subseting for all possible dimensions and got 10 separate datasets in total, which are na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts, where na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay.</p>
 </div>
 <div id="indeed-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Indeed</h2>
-<p>{
-[xh]
-(1) Describe how we cleaned the data.
-(2) What do the clean data look like?
-}</p>
+<p>We used Indeed dataset in two parts of the analysis and conducted the data cleaning process differently based on different needs:</p>
+<ol style="list-style-type: decimal">
+<li>To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we web scraped all the search result from indeed.com using the four job titles, then grouped the jobs from the same state and finally counted the number of four jobs from each state.</li>
+</ol>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">df_total_state =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/indeed/df_total_state.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="kw">head</span>(df_total_state)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##      X1 state jo_ba jo_da jo_ds jo_fa jo_total
+##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
+## 1     1 AL        6     2    11    16       35
+## 2     2 AR        6    12     4     6       28
+## 3     3 AZ      131    20    14    19      184
+## 4     4 CA      223   177   298   242      940
+## 5     5 CO       48    38    64    41      191
+## 6     6 CT       23   107    13    13      156</code></pre>
 </div>
 <div id="city-data-1" class="section level2">
 <h2><span class="header-section-number">3.3</span> City data</h2>

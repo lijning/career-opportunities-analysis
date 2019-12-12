@@ -1,11 +1,6 @@
 # Missing values
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-```
-
 ```{r, echo=FALSE}
 library(tidyverse)
 library(extracat)

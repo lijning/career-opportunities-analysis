@@ -24,7 +24,7 @@
 <meta name="author" content="Mutian Wang, Xinyuan He, Weitao Chen, Jianing Li" />
 
 
-<meta name="date" content="2019-12-11" />
+<meta name="date" content="2019-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,8 +50,77 @@
 
 
 
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.46.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -83,7 +152,11 @@
 <li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#indeed-1"><i class="fa fa-check"></i><b>3.2</b> Indeed</a></li>
 <li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#city-data-1"><i class="fa fa-check"></i><b>3.3</b> City data</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#glassdoor-2"><i class="fa fa-check"></i><b>4.1</b> Glassdoor</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#indeed-2"><i class="fa fa-check"></i><b>4.2</b> Indeed</a></li>
+<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#city-data-2"><i class="fa fa-check"></i><b>4.3</b> City data</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#us-labor-market-data-related-jobs-vs.-others"><i class="fa fa-check"></i><b>5.1</b> US labor market: Data related jobs vs. others</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
@@ -119,36 +192,100 @@
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
 <div id="us-labor-market-data-related-jobs-vs.-others" class="section level2">
 <h2><span class="header-section-number">5.1</span> US labor market: Data related jobs vs. others</h2>
-<p>{
-[mw]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.</p>
-<p>All graphs should be accompanied by textual description / interpretation.
-}</p>
+<p>The horizontal bar chart shows the jobs in the US with median base pay higher than ~60k. The base pay of each job is the average salary between Jun 2017 and Mar 2019.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-10-1.png" width="768" /></p>
+<p>It can be seen that pharmacists, solution architects and attorneys have the highest median base pay. Besides, most of job titles in this graph contains “manager”, “engineer” or “analyst”.</p>
+<p>In fact, there are 38 jobs in the graph, and at least 8 of them are highly related to IT industry. This report mainly focuses on data scientists (DS), data analysts (DA), business analysts (BA) and financial analysts (FA), because they are the jobs that are most relevant to data science program. All of the four jobs have something to do with data, but their base pay varies. To be specific, in the Unites States, data scientists have much higher salary than DA, BA and FA.</p>
+<p>This pattern surprised us, because we thought these jobs are similar and they should have the same salary level. Is this just a national pattern? Can we still observe this pattern locally?</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-11-1.png" width="1152" /></p>
+<p>This graph can confirm our findings! It shows the base pay of eight IT jobs in ten metropolises. We removed other jobs which we are not interested in.</p>
+<p>The previous pattern is still true in this faceted bar chart. Generally speaking, in all of the ten metropoises, data scientists have the highest salary, while BA, FA and DA have the lowest. Why does this happen?</p>
+<p>We did some research and tried to explain this pattern. In the article, <a href="https://www.springboard.com/blog/data-analyst-vs-data-scientist">Data Analyst vs. Data Scientist</a>, Leigh Kunis compares the differences between DS and DA. She thinks data analysts can be considered as junior data scientists. The former focuses on basic data analysis and visualization. Data scientists, however, have to do some more profound data analysis. They need to grasp machine learning skills. They also need to know how to clean data, build algorithms, design experiments and present the results. In conclusion, data scientists’ work is more complicated and comprehensive.</p>
+<p>As for financial analysts and business analysts, they need to know more domain knowledge than pure data analysts, so their salary is slightly higher than DA. Yet their analysis is still not that profound, which makes their salary lower than data scientists. In the later part, we scraped some job descriptions from Indeed and used basic NLP techniques to prove our explanation.</p>
+<p>Based on this pattern we found, we suggest that DSI students should look for a DS job instead of a DA job.</p>
+<p>Another pattern is that, the 8 IT jobs in this faceted bar chart are clearly divided into 4 clusters. The first cluster is the job ending with “scientist”; this cluster has the highest base pay. The second cluster is the jobs ending with “engineer”; this cluster has the second highest salary. The third cluster is the jobs ending with “developer”; its salary is the third highest. The last cluster is the jobs ending with “analyst”; its salary is the lowest among the 8 IT jobs.</p>
+<p>This pattern is not counterintuitive at all, since there is a natural order: scientist &gt; engineer &gt; developer &gt; analyst.</p>
 </div>
 <div id="trends-of-data-related-jobs" class="section level2">
 <h2><span class="header-section-number">5.2</span> Trends of data related jobs</h2>
-<p>{
-[mw]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.</p>
-<p>All graphs should be accompanied by textual description / interpretation.
-}</p>
+<p>The line chart shows the salary of eight IT jobs in the US from Jun 2017 to Mar 2019.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The graph of time series can again prove the pattern we found before. That is, from Jun 2017 to Mar 2019, the salary of DS is much higher than DA, BA and FA.</p>
+<p>It can also be shown that the salary of each job does not change too much since Jun 2017. Two jobs that fluctuate the most are data scientists and Java developers. The salary of software engineers and data analysts increases steadily in this period.</p>
+<p>In addition, the lines representing web developers and business analysts have several crosses, while the relative position of other jobs remains unchanged.</p>
+<p>To have a clearer view of the salary change of the data related jobs, we scaled the data and drew the line chart below.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>In this graph, the value of the first data point is scaled to 100, and the trend of salary is magnified. In addition, the median base pay of the US is added to this graph. It can function as a reference.</p>
+<p>Cyclical trend: To help us recognize the cyclical trend, the tick mark labels of this graph are the first month of every quarter. However, We can hardly observe any cyclical trend, perhaps because the time span is too short.</p>
+<p>Secular trend: Generally speaking, every median base pay slightly increases. 2017/10 - 2017/11 seems to be a bad time when the median base pay of most jobs are the lowest. However, since 2018/08, the overall salary steps up to a higher level.</p>
+<p>The salary of DA fluctuates a lot, and it “greatly” drops since the beginning of 2019. The salary of DA has the best momentum, since it has the highest growth rate in 2019. The trends of BA and FA are very similar, and they are similar to the trend of US median base pay.</p>
+<p>Since the absolute value of DA’s salary is the lowest, so it’s not strange that DA’s salary has the highest growth rate. Similarly, the absolute value of DS’s salary is very high, so it’s natural that the salary drops a bit. Since BA and FA are similar, it’s reasonable that there trends are similar.</p>
+<p>So far we have analyzed in detail the trend of median base pay in the national level. What about the city level?</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-14-1.png" width="1152" /></p>
+<p>This faceted line chart shows the change of salary in 10 metropolises from Jun 2017 to Mar 2019. Overall speaking, the change of 4 data related jobs’ salary is very small. However, it seems that the salary of DS in Houston fluctuates the most.</p>
+<p>Obviously, the overall salary in San Francisco is the highest. This is expected because of the big techs in the Silicon Valley.</p>
+<p>The interest thing is that the salary of DA, BA and FA in Seattle and DC is almost the same, but the salary of DS in Seattle is much higher than that in DC. We guess seattle has more big companies, such as Amazon, Boeing, Mircosoft, etc. In fact, Seattle is also the nation’s fastest growing tech hub.</p>
+<p>To have a clearer view of the change over time, we scaled the data and drew the following graph.</p>
+<p><img src="_main_files/figure-html/unnamed-chunk-15-1.png" width="1152" /></p>
+<p>In this graph, the value of the first data point is scaled to 100. In addition, the median base pay of each city is added to this graph.</p>
+<p>It can be seen that Boston, LA, NYC, SF, Chicago and Philadelphia share the similar pattern. The trend of the 4 data related jobs’ base pay is close to the trend of city base pay.</p>
+<p>In Atlanta, the trend of BA and FA’s base pay is close to the trend of city base pay. Compared to the city base pay, the salary of DS grows faster and the salary of DA grows slower.</p>
+<p>In Houston, the trend of DA, BA and FA’s base pay is close to the trend of city base pay. The salary of DS fluctuates and decreases, compared to the city base pay.</p>
+<p>In Seattle, the salary of DA does not have a good growth rate. In DC, the salary of DS does not have a good growth rate.</p>
+<p>From the above observation, we don’t suggest DSI students to look for a DS job in Houston or DC, because salary there grows slowly or even negatively and its absolute value is not that high.</p>
 </div>
 <div id="geographical-patterns-of-data-related-jobs" class="section level2">
 <h2><span class="header-section-number">5.3</span> Geographical patterns of data related jobs</h2>
-<p>{
-[xh]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.</p>
-<p>All graphs should be accompanied by textual description / interpretation.
-}</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb10-2" title="2">df_jo_ba_state =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/clean/indeed/state_jo_ba.csv&quot;</span>,<span class="dt">na.strings =</span> <span class="st">&quot;NNN&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(state, jo_ba)</a>
+<a class="sourceLine" id="cb10-3" title="3">df_jo_da_state =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/clean/indeed/state_jo_da.csv&quot;</span>,<span class="dt">na.strings =</span> <span class="st">&quot;NNN&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(state, jo_da)</a>
+<a class="sourceLine" id="cb10-4" title="4">df_jo_ds_state =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/clean/indeed/state_jo_ds.csv&quot;</span>,<span class="dt">na.strings =</span> <span class="st">&quot;NNN&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(state, jo_ds)</a>
+<a class="sourceLine" id="cb10-5" title="5">df_jo_fa_state =<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;../data/clean/indeed/state_jo_fa.csv&quot;</span>,<span class="dt">na.strings =</span> <span class="st">&quot;NNN&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(state, jo_fa)</a>
+<a class="sourceLine" id="cb10-6" title="6"></a>
+<a class="sourceLine" id="cb10-7" title="7">df_total_state =<span class="st"> </span>df_jo_ba_state <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-8" title="8"><span class="st">  </span><span class="kw">merge</span>(df_jo_da_state, <span class="dt">by =</span> <span class="st">&quot;state&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-9" title="9"><span class="st">  </span><span class="kw">merge</span>(df_jo_ds_state, <span class="dt">by =</span> <span class="st">&quot;state&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="st">  </span><span class="kw">merge</span>(df_jo_fa_state, <span class="dt">by =</span> <span class="st">&quot;state&quot;</span>)</a>
+<a class="sourceLine" id="cb10-11" title="11"></a>
+<a class="sourceLine" id="cb10-12" title="12">df_total_state<span class="op">$</span>jo_total &lt;-<span class="st"> </span><span class="kw">rowSums</span>(df_total_state[,<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</a>
+<a class="sourceLine" id="cb10-13" title="13"></a>
+<a class="sourceLine" id="cb10-14" title="14">df_total_state<span class="op">$</span>hover &lt;-<span class="st"> </span><span class="kw">with</span>(df_total_state, <span class="kw">paste</span>(state, <span class="st">&#39;&lt;br&gt;&#39;</span>, <span class="st">&quot;BA job openings:&quot;</span>, jo_ba, <span class="st">&#39;&lt;br&gt;&#39;</span>, <span class="st">&quot;DA job openings:&quot;</span>, jo_da, <span class="st">&#39;&lt;br&gt;&#39;</span>, <span class="st">&quot;DS job openings:&quot;</span>, jo_ds, <span class="st">&#39;&lt;br&gt;&#39;</span>, <span class="st">&quot;FA job openings:&quot;</span>, jo_fa))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">library</span>(plotly)</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="co"># give state boundaries a white border</span></a>
+<a class="sourceLine" id="cb11-3" title="3">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">color =</span> <span class="kw">toRGB</span>(<span class="st">&quot;white&quot;</span>), <span class="dt">width =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb11-4" title="4"></a>
+<a class="sourceLine" id="cb11-5" title="5"><span class="co"># specify some map projection/options</span></a>
+<a class="sourceLine" id="cb11-6" title="6">g &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
+<a class="sourceLine" id="cb11-7" title="7">  <span class="dt">scope =</span> <span class="st">&#39;usa&#39;</span>,</a>
+<a class="sourceLine" id="cb11-8" title="8">  <span class="dt">projection =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;albers usa&#39;</span>),</a>
+<a class="sourceLine" id="cb11-9" title="9">  <span class="dt">showlakes =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb11-10" title="10">  <span class="dt">lakecolor =</span> <span class="kw">toRGB</span>(<span class="st">&#39;white&#39;</span>)</a>
+<a class="sourceLine" id="cb11-11" title="11">)</a>
+<a class="sourceLine" id="cb11-12" title="12"></a>
+<a class="sourceLine" id="cb11-13" title="13">p1 &lt;-<span class="st"> </span><span class="kw">plot_geo</span>(df_total_state, <span class="dt">locationmode =</span> <span class="st">&#39;USA-states&#39;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-14" title="14"><span class="st">  </span><span class="kw">add_trace</span>(</a>
+<a class="sourceLine" id="cb11-15" title="15">    <span class="dt">z =</span> <span class="op">~</span>jo_total, <span class="dt">text =</span> <span class="op">~</span>hover, <span class="dt">locations =</span> <span class="op">~</span>state,</a>
+<a class="sourceLine" id="cb11-16" title="16">    <span class="dt">color =</span> <span class="op">~</span>jo_total, <span class="dt">colors =</span> <span class="st">&#39;Purples&#39;</span></a>
+<a class="sourceLine" id="cb11-17" title="17">  ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-18" title="18"><span class="st">  </span><span class="kw">colorbar</span>(<span class="dt">title =</span> <span class="st">&quot;number of job openings&quot;</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-19" title="19"><span class="st">  </span><span class="kw">layout</span>(</a>
+<a class="sourceLine" id="cb11-20" title="20">    <span class="dt">title =</span> <span class="st">&#39;Data Related Job Openings Count by State&lt;br&gt;(Hover for breakdown by jobs)&#39;</span>,</a>
+<a class="sourceLine" id="cb11-21" title="21">    <span class="dt">geo =</span> g,</a>
+<a class="sourceLine" id="cb11-22" title="22">    <span class="dt">annotations =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="fl">-0.1</span>, <span class="dt">text =</span> <span class="st">&quot;BA: business analyst DA: data analyst &lt;br&gt; DS: data scientist FA: financial analyst&quot;</span>, <span class="dt">showarrow =</span> F, <span class="dt">xref=</span><span class="st">&#39;paper&#39;</span>, <span class="dt">yref=</span><span class="st">&#39;paper&#39;</span>, </a>
+<a class="sourceLine" id="cb11-23" title="23">      <span class="dt">xanchor=</span><span class="st">&#39;middle&#39;</span>, <span class="dt">yanchor=</span><span class="st">&#39;auto&#39;</span>, <span class="dt">xshift=</span><span class="dv">0</span>, <span class="dt">yshift=</span><span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb11-24" title="24">      <span class="dt">font=</span><span class="kw">list</span>(<span class="dt">size=</span><span class="dv">15</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>))</a>
+<a class="sourceLine" id="cb11-25" title="25">  )</a>
+<a class="sourceLine" id="cb11-26" title="26"></a>
+<a class="sourceLine" id="cb11-27" title="27">p1</a></code></pre></div>
+<div id="htmlwidget-66df20741b7f872e90c0" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-66df20741b7f872e90c0">{"x":{"visdat":{"4818336e3cb9":["function () ","plotlyVisDat"]},"cur_data":"4818336e3cb9","attrs":{"4818336e3cb9":{"locationmode":"USA-states","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"z":{},"text":{},"locations":{},"color":{},"colors":"Purples","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","scene":{"zaxis":{"title":"jo_total"}},"geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"usa","projection":{"type":"albers usa"},"showlakes":true,"lakecolor":"rgba(255,255,255,1)"},"hovermode":"closest","showlegend":false,"legend":{"yanchor":"top","y":0.5},"title":"Data Related Job Openings Count by State<br>(Hover for breakdown by jobs)","annotations":[{"x":1,"y":-0.1,"text":"BA: business analyst DA: data analyst <br> DS: data scientist FA: financial analyst","showarrow":false,"xref":"paper","yref":"paper","xanchor":"middle","yanchor":"auto","xshift":0,"yshift":0,"font":{"size":15,"color":"black"}},{"x":1,"y":-0.1,"text":"BA: business analyst DA: data analyst <br> DS: data scientist FA: financial analyst","showarrow":false,"xref":"paper","yref":"paper","xanchor":"middle","yanchor":"auto","xshift":0,"yshift":0,"font":{"size":15,"color":"black"}}]},"source":"A","config":{"showSendToCloud":false},"data":[{"colorbar":{"title":"number of job openings","ticklen":2,"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top"},"colorscale":[["0","rgba(252,251,253,1)"],["0.0416666666666667","rgba(248,246,250,1)"],["0.0833333333333333","rgba(243,242,248,1)"],["0.125","rgba(239,237,245,1)"],["0.166666666666667","rgba(232,231,242,1)"],["0.208333333333333","rgba(225,224,238,1)"],["0.25","rgba(218,218,235,1)"],["0.291666666666667","rgba(208,208,230,1)"],["0.333333333333333","rgba(198,199,225,1)"],["0.375","rgba(188,189,220,1)"],["0.416666666666667","rgba(178,177,213,1)"],["0.458333333333333","rgba(168,166,207,1)"],["0.5","rgba(158,154,200,1)"],["0.541666666666667","rgba(148,144,195,1)"],["0.583333333333333","rgba(138,135,191,1)"],["0.625","rgba(128,125,186,1)"],["0.666666666666667","rgba(121,110,178,1)"],["0.708333333333333","rgba(114,96,171,1)"],["0.75","rgba(106,81,163,1)"],["0.791666666666667","rgba(99,68,156,1)"],["0.833333333333333","rgba(92,54,150,1)"],["0.875","rgba(84,39,143,1)"],["0.916666666666667","rgba(77,28,137,1)"],["0.958333333333333","rgba(70,16,131,1)"],["1","rgba(63,0,125,1)"]],"showscale":true,"locationmode":"USA-states","z":[35,28,184,940,191,156,499,33,397,273,24,32,12,338,249,40,22,27,386,194,281,319,106,22,257,18,546,33,1041,705,24,186,606,12,34,17,86,367,64,372,321,263,10],"text":["AL <br> BA job openings: 6 <br> DA job openings: 2 <br> DS job openings: 11 <br> FA job openings: 16","AR <br> BA job openings: 6 <br> DA job openings: 12 <br> DS job openings: 4 <br> FA job openings: 6","AZ <br> BA job openings: 131 <br> DA job openings: 20 <br> DS job openings: 14 <br> FA job openings: 19","CA <br> BA job openings: 223 <br> DA job openings: 177 <br> DS job openings: 298 <br> FA job openings: 242","CO <br> BA job openings: 48 <br> DA job openings: 38 <br> DS job openings: 64 <br> FA job openings: 41","CT <br> BA job openings: 23 <br> DA job openings: 107 <br> DS job openings: 13 <br> FA job openings: 13","DC <br> BA job openings: 244 <br> DA job openings: 39 <br> DS job openings: 83 <br> FA job openings: 133","DE <br> BA job openings: 13 <br> DA job openings: 13 <br> DS job openings: 6 <br> FA job openings: 1","FL <br> BA job openings: 52 <br> DA job openings: 81 <br> DS job openings: 105 <br> FA job openings: 159","GA <br> BA job openings: 142 <br> DA job openings: 30 <br> DS job openings: 46 <br> FA job openings: 55","HI <br> BA job openings: 3 <br> DA job openings: 1 <br> DS job openings: 4 <br> FA job openings: 16","IA <br> BA job openings: 7 <br> DA job openings: 12 <br> DS job openings: 4 <br> FA job openings: 9","ID <br> BA job openings: 4 <br> DA job openings: 5 <br> DS job openings: 2 <br> FA job openings: 1","IL <br> BA job openings: 92 <br> DA job openings: 58 <br> DS job openings: 47 <br> FA job openings: 141","IN <br> BA job openings: 197 <br> DA job openings: 15 <br> DS job openings: 4 <br> FA job openings: 33","KS <br> BA job openings: 25 <br> DA job openings: 9 <br> DS job openings: 1 <br> FA job openings: 5","KY <br> BA job openings: 1 <br> DA job openings: 7 <br> DS job openings: 1 <br> FA job openings: 13","LA <br> BA job openings: 20 <br> DA job openings: 2 <br> DS job openings: 2 <br> FA job openings: 3","MA <br> BA job openings: 145 <br> DA job openings: 67 <br> DS job openings: 108 <br> FA job openings: 66","MD <br> BA job openings: 65 <br> DA job openings: 39 <br> DS job openings: 49 <br> FA job openings: 41","MI <br> BA job openings: 210 <br> DA job openings: 27 <br> DS job openings: 14 <br> FA job openings: 30","MN <br> BA job openings: 45 <br> DA job openings: 131 <br> DS job openings: 15 <br> FA job openings: 128","MO <br> BA job openings: 30 <br> DA job openings: 24 <br> DS job openings: 25 <br> FA job openings: 27","NA <br> BA job openings: 7 <br> DA job openings: 2 <br> DS job openings: 7 <br> FA job openings: 6","NC <br> BA job openings: 27 <br> DA job openings: 34 <br> DS job openings: 36 <br> FA job openings: 160","NE <br> BA job openings: 6 <br> DA job openings: 3 <br> DS job openings: 1 <br> FA job openings: 8","NJ <br> BA job openings: 245 <br> DA job openings: 130 <br> DS job openings: 109 <br> FA job openings: 62","NV <br> BA job openings: 17 <br> DA job openings: 6 <br> DS job openings: 3 <br> FA job openings: 7","NY <br> BA job openings: 422 <br> DA job openings: 374 <br> DS job openings: 100 <br> FA job openings: 145","OH <br> BA job openings: 49 <br> DA job openings: 148 <br> DS job openings: 95 <br> FA job openings: 413","OK <br> BA job openings: 4 <br> DA job openings: 9 <br> DS job openings: 6 <br> FA job openings: 5","OR <br> BA job openings: 12 <br> DA job openings: 26 <br> DS job openings: 10 <br> FA job openings: 138","PA <br> BA job openings: 200 <br> DA job openings: 87 <br> DS job openings: 179 <br> FA job openings: 140","RI <br> BA job openings: 2 <br> DA job openings: 3 <br> DS job openings: 4 <br> FA job openings: 3","SC <br> BA job openings: 16 <br> DA job openings: 5 <br> DS job openings: 4 <br> FA job openings: 9","SD <br> BA job openings: 4 <br> DA job openings: 2 <br> DS job openings: 2 <br> FA job openings: 9","TN <br> BA job openings: 27 <br> DA job openings: 19 <br> DS job openings: 14 <br> FA job openings: 26","TX <br> BA job openings: 100 <br> DA job openings: 80 <br> DS job openings: 52 <br> FA job openings: 135","UT <br> BA job openings: 13 <br> DA job openings: 16 <br> DS job openings: 8 <br> FA job openings: 27","VA <br> BA job openings: 62 <br> DA job openings: 80 <br> DS job openings: 156 <br> FA job openings: 74","WA <br> BA job openings: 52 <br> DA job openings: 24 <br> DS job openings: 145 <br> FA job openings: 100","WI <br> BA job openings: 204 <br> DA job openings: 21 <br> DS job openings: 7 <br> FA job openings: 31","WV <br> BA job openings: 1 <br> DA job openings: 1 <br> DS job openings: 2 <br> FA job openings: 6"],"locations":["AL","AR","AZ","CA","CO","CT","DC","DE","FL","GA","HI","IA","ID","IL","IN","KS","KY","LA","MA","MD","MI","MN","MO","NA","NC","NE","NJ","NV","NY","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VA","WA","WI","WV"],"type":"choropleth","marker":{"line":{"colorbar":{"title":"","ticklen":2},"cmin":10,"cmax":1041,"colorscale":[["0","rgba(252,251,253,1)"],["0.0416666666666667","rgba(248,246,250,1)"],["0.0833333333333333","rgba(243,242,248,1)"],["0.125","rgba(239,237,245,1)"],["0.166666666666667","rgba(232,231,242,1)"],["0.208333333333333","rgba(225,224,238,1)"],["0.25","rgba(218,218,235,1)"],["0.291666666666667","rgba(208,208,230,1)"],["0.333333333333333","rgba(198,199,225,1)"],["0.375","rgba(188,189,220,1)"],["0.416666666666667","rgba(178,177,213,1)"],["0.458333333333333","rgba(168,166,207,1)"],["0.5","rgba(158,154,200,1)"],["0.541666666666667","rgba(148,144,195,1)"],["0.583333333333333","rgba(138,135,191,1)"],["0.625","rgba(128,125,186,1)"],["0.666666666666667","rgba(121,110,178,1)"],["0.708333333333333","rgba(114,96,171,1)"],["0.75","rgba(106,81,163,1)"],["0.791666666666667","rgba(99,68,156,1)"],["0.833333333333333","rgba(92,54,150,1)"],["0.875","rgba(84,39,143,1)"],["0.916666666666667","rgba(77,28,137,1)"],["0.958333333333333","rgba(70,16,131,1)"],["1","rgba(63,0,125,1)"]],"showscale":false,"color":[35,28,184,940,191,156,499,33,397,273,24,32,12,338,249,40,22,27,386,194,281,319,106,22,257,18,546,33,1041,705,24,186,606,12,34,17,86,367,64,372,321,263,10]}},"geo":"geo","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>From the interactive map, we will be able to gain an overall sense of distribution of the job opportunities at the first glance at the map by seeing the color of each state. Also, by hovering over the state, the breakdown of number of jobs for each of the four data related jobs will show up. There are a few patterns of the regional distribution of data-related jobs:</p>
+<ol style="list-style-type: decimal">
+<li>In general, east coast, west coast and Great Lakes area have more job opportunities compared to the central area. The main reason is that these areas have more technology companies and big companies, that will hire data related professionals.</li>
+<li>Among all the states, California and New York are the two states having most data-related job opportunities. Both of the two states are having around 1,000 data-related jobs posted, which the job breakdown is very different. California is mainly hiring for Data Scientist while New York is leaning more towards Data Analyst and Business Analyst. The main reason is that there are more technical companies in California, for example companies in Silicon Valley, who will have a higher need for Data Scientists than for Business Analyst and there are more financial companies in New York area, who are mainly looking for Analyst professionals.</li>
+<li>Almost all the states, except California, are offering more Data Analyst, Financial Analyst and Business Analyst compared to Data Scientist position, which indicates that the Data Scientist position is the rarest position among the four data-related jobs and potentially most competitive.</li>
+</ol>
+<p>In general, from this graph we can conclude that data scientist position is the rarest in most states. We would suggest people who are looking for data scientist job pay more attention to California and people who are interested in analyst related job pay more attention to east coast.</p>
 </div>
 <div id="best-cities-for-data-related-jobs" class="section level2">
 <h2><span class="header-section-number">5.4</span> Best cities for data related jobs</h2>

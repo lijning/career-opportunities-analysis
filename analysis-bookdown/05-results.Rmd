@@ -5,10 +5,7 @@
 
 The horizontal bar chart shows the jobs in the US with median base pay higher than ~60k. The base pay of each job is the average salary between Jun 2017 and Mar 2019. 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-```
+
 
 ```{r, echo=FALSE}
 library(zoo)
