@@ -1,6 +1,6 @@
 # Missing values
 
-![](../others/resource/44.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/44.png)
 
 ```{r, echo=FALSE}
 library(tidyverse)
