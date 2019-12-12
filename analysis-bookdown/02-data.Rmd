@@ -31,9 +31,34 @@ We encountered a major problem dealing with this data source. Glassdoor restruct
 
 ## City data
 
-{
-[wc]
-(1) What is the data source (with links)? Who collected it? How were the data collected?
-(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
-(3) Describe the problems of the data. For instance, Glassdoor data changed.
-}
+### [2018 median income](https://www.statista.com/statistics/205609/median-household-income-in-the-top-20-most-populated-cities-in-the-us)
+
+The data is available in the Statista website, originated from US Census Bureau and if connected to campus’s internet, we can download the excel file from the website for free.
+
+The dataset is about the median household income for each city in 2018 (in U.S. dollars). There are 2 columns, city names and median household income and 50 rows in the data. The data type of columns are characters. 
+
+There is two issues with this dataset. The city names do not match with the city names in the city_jobtitle.csv and the income column is of string type, with dollar sign($) and comma (,) in it. 
+
+### [Population](https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?src=bkmk)
+
+The data is available in the United States Census Bureau website and we can download the excel file from the website for free.
+
+The dataset is about the estimated population for each city from 2010-2018 labeled by geographic location. There are 20 columns of some government file naming conventions and populations in each cities for 8 years, and 782 rows in the data. The location columns are character and the population columns are numeric. 
+
+There is one issue with this dataset. The city names do not match with the city names in the city_jobtitle.csv. 
+
+### [Violent crime](https://ucr.fbi.gov/crime-in-the-u.s/2017/crime-in-the-u.s.-2017/tables/table-8/table-8.xls/view)
+
+The data is available in the United States Census Bureau, Population Division and we can download the excel file from it.
+
+The dataset is about the different crime rate for each city in 2019 labeled by geographic location. There are 10 columns of city names and crime rates of different crime types in each cities and 9583 rows in the data. The location columns are character and the crime rate columns are numeric. 
+
+There are some issues with this dataset. The city names do not match with the city names in the city_jobtitle.csv, and the year is 2017, since the statistics of 2018 is not released.
+
+### [CPI](https://www.statista.com/statistics/245014/consumer-price-index-for-selected-us-cities)
+
+The data is available in the United States Census Bureau website and we can download the excel file from the above link as long as we are connecting to campus Internet.
+
+The dataset is about the CPI (consumer-price-index) levels in different us cities. There are 2 columns of city names and cpi levels, and 22 rows in the data. The location column is character and the CPI column is numeric.
+
+There is one issue with this dataset. The city names do not match with the city names in the city_jobtitle.csv. 
