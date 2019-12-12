@@ -1,5 +1,6 @@
 # Missing values
 
+![](../others/resource/44.png)
 
 ```{r, echo=FALSE}
 library(tidyverse)
