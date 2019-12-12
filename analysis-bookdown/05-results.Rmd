@@ -569,8 +569,31 @@ df_total_3["job_title"]="Financial_Analyst"
 df_total_total=bind_rows(df_total, df_total_1,df_total_2,df_total_3)
 ```
 ```{r}
+df_total_total["job_title_abbr"]=NA
+for (i in rownames(df_total_total)){
+  jt=df_total_total[i,"job_title"]
+  if(jt == "data_scientist"){
+    df_total_total[i,"job_title_abbr"]="DS"
+  }
+  
+   if(jt == "Business_Analyst"){
+    df_total_total[i,"job_title_abbr"]="BA"
+   }
+  
+   if(jt == "Data_Analyst"){
+    df_total_total[i,"job_title_abbr"]="DA"
+   }
+  
+   if(jt == "Financial_Analyst"){
+    df_total_total[i,"job_title_abbr"]="FA"
+  }
+  
+}
+```
+
+```{r}
 library(GGally)
-ggpairs(df_total_total, columns = 2:6, aes(color = job_title))
+ggpairs(df_total_total, columns = 2:6, aes(color = job_title_abbr))
 ```
 
 This graph shows us the median income of four jobs (data scientist, data analyst, business analyst and financial analyst) vs. statistics of 10 different cities. We are only interested in the first column, since we want to compare the median income of four job vs. statistics of cities. (Dots in the second to fourth column overlap, because the city data are the same.)
