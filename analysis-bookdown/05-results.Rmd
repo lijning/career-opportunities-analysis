@@ -28,16 +28,60 @@ All graphs should be accompanied by textual description / interpretation.
 
 
 ## Geographical patterns of data related jobs
+```{r}
+library(tidyverse)
+df_jo_ba_state = read.csv("../data/clean/indeed/state_jo_ba.csv",na.strings = "NNN") %>% select(state, jo_ba)
+df_jo_da_state = read.csv("../data/clean/indeed/state_jo_da.csv",na.strings = "NNN") %>% select(state, jo_da)
+df_jo_ds_state = read.csv("../data/clean/indeed/state_jo_ds.csv",na.strings = "NNN") %>% select(state, jo_ds)
+df_jo_fa_state = read.csv("../data/clean/indeed/state_jo_fa.csv",na.strings = "NNN") %>% select(state, jo_fa)
 
-{
-[xh]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+df_total_state = df_jo_ba_state %>% 
+  merge(df_jo_da_state, by = "state") %>% 
+  merge(df_jo_ds_state, by = "state") %>% 
+  merge(df_jo_fa_state, by = "state")
 
-All graphs should be accompanied by textual description / interpretation.
-}
+df_total_state$jo_total <- rowSums(df_total_state[,c(2,3,4,5)])
+
+df_total_state$hover <- with(df_total_state, paste(state, '<br>', "BA job openings:", jo_ba, '<br>', "DA job openings:", jo_da, '<br>', "DS job openings:", jo_ds, '<br>', "FA job openings:", jo_fa))
+```
+
+```{r}
+library(plotly)
+# give state boundaries a white border
+l <- list(color = toRGB("white"), width = 2)
+
+# specify some map projection/options
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
+)
+
+p1 <- plot_geo(df_total_state, locationmode = 'USA-states') %>%
+  add_trace(
+    z = ~jo_total, text = ~hover, locations = ~state,
+    color = ~jo_total, colors = 'Purples'
+  ) %>%
+  colorbar(title = "number of job openings") %>%
+  layout(
+    title = 'Data Related Job Openings Count by State<br>(Hover for breakdown by jobs)',
+    geo = g,
+    annotations = list(x = 1, y = -0.1, text = "BA: business analyst DA: data analyst <br> DS: data scientist FA: financial analyst", showarrow = F, xref='paper', yref='paper', 
+      xanchor='middle', yanchor='auto', xshift=0, yshift=0,
+      font=list(size=15, color="black"))
+  )
+
+p1
+```
+
+From the interactive map, we will be able to gain an overall sense of distribution of the job opportunities at the first glance at the map by seeing the color of each state. Also, by hovering over the state, the breakdown of number of jobs for each of the four data related jobs will show up. There are a few patterns of the regional distribution of data-related jobs:
+
+1.	In general, east coast, west coast and Great Lakes area have more job opportunities compared to the central area. The main reason is that these areas have more technology companies and big companies, that will hire data related professionals. 
+2.	Among all the states, California and New York are the two states having most data-related job opportunities. Both of the two states are having around 1,000 data-related jobs posted, which the job breakdown is very different. California is mainly hiring for Data Scientist while New York is leaning more towards Data Analyst and Business Analyst. The main reason is that there are more technical companies in California, for example companies in Silicon Valley, who will have a higher need for Data Scientists than for Business Analyst and there are more financial companies in New York area, who are mainly looking for Analyst professionals. 
+3.	Almost all the states, except California, are offering more Data Analyst, Financial Analyst and Business Analyst compared to Data Scientist position, which indicates that the Data Scientist position is the rarest position among the four data-related jobs and potentially most competitive. 
+
+In general, from this graph we can conclude that data scientist position is the rarest in most states. We would suggest people who are looking for data scientist job pay more attention to California and people who are interested in analyst related job pay more attention to east coast. 
 
 
 ## Best cities for data related jobs 
