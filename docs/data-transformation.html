@@ -139,11 +139,11 @@
 <div id="glassdoor-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Glassdoor</h2>
 <ol style="list-style-type: decimal">
-<li>Since the raw dataset is monthly, in order to explore the timeseries changes of median pay, we first concatenated the 22 datasets into a single data frame.</li>
-<li>Since national data and city level data are on different levels, we separate the dataset into two main categories: national and city levels.</li>
-<li>The next step is to construct the datasets containing only the variables we are interested in, used for analysis later. Here are a few examples:
+<li><p>The raw dataset is monthly. In order to explore the temporal changes of median base pay, we first concatenated the 22 datasets into a single data frame.</p></li>
+<li><p>Since national data and city level data are on different levels, we separated the dataset into two main categories: national level and city levels.</p></li>
+<li><p>The next step is to construct the datasets containing only the variables we are interested in, which are for futher analysis. Here are a few examples:</p>
 <ol style="list-style-type: lower-alpha">
-<li>In order to focus on relationship between job title and median base pay, we subset the corresponding dataset:</li>
+<li>In order to focus on the relationship between job title and median base pay, we subsetted the corresponding dataset:</li>
 </ol></li>
 </ol>
 <pre><code>## # A tibble: 6 x 8
@@ -155,7 +155,8 @@
 ## 4   130 Atlan… Job Title      2019-… Bank Teller     Median B… $33,2… 6.70%
 ## 5   131 Atlan… Job Title      2019-… Barista         Median B… $23,6… 3.90%
 ## 6   132 Atlan… Job Title      2019-… Bartender       Median B… $36,8… 14.1…</code></pre>
-<pre><code>  b.    In order to find out the timeseries trend of change in median pay, we subset the corresponding dataset:</code></pre>
+<pre><code>  b.    In order to find out the secular and cyclical trend of median base pay, we subsetted the corresponding dataset:
+  </code></pre>
 <pre><code>## # A tibble: 6 x 8
 ##      X1 Metro Dimension.Type Month  Dimension       Measure     Value YoY  
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;
@@ -165,13 +166,13 @@
 ## 4  1443 U.S.  Timeseries     2019-… Metro Median B… Median Ba… 53860. NA   
 ## 5  1444 U.S.  Timeseries     2019-… Metro Median B… Median Ba… 53647  NA   
 ## 6  1445 U.S.  Timeseries     2019-… Metro Median B… Median Ba… 53525  NA</code></pre>
-<p>We did the subseting for all possible dimensions and got 10 separate datasets in total, which are na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts, where na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay.</p>
+<p>We did the subsetting for all possible dimensions and got 10 separate datasets in total: na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts. As for the filenames, na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay.</p>
 </div>
 <div id="indeed-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Indeed</h2>
 <p>We used Indeed dataset in two parts of the analysis and conducted the data cleaning process differently based on different needs:</p>
 <ol style="list-style-type: decimal">
-<li>To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we web scraped all the search result from indeed.com using the four job titles, then grouped the jobs from the same state and finally counted the number of four jobs from each state.</li>
+<li>To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we scraped all the search results from indeed using the four job titles, then grouped the jobs by state and finally counted their numbers.</li>
 </ol>
 <pre><code>## # A tibble: 6 x 7
 ##      X1 state jo_ba jo_da jo_ds jo_fa jo_total
@@ -182,15 +183,17 @@
 ## 4     4 CA      223   177   298   242      940
 ## 5     5 CO       48    38    64    41      191
 ## 6     6 CT       23   107    13    13      156</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>We need to plot wordclouds to help us analyze. In python, we vectorized the details by 1-gram and 2-gram, removing common English stopwords and some less informative words. Then we combined 1-gram and 2-gram into one list. The final result is in the form of word vs. frequency.</li>
+</ol>
 </div>
 <div id="city-data-1" class="section level2">
 <h2><span class="header-section-number">3.3</span> City data</h2>
-<p>The goal of the data cleaning is to map city statistics into 10 cities.</p>
-<p>To do that the median income column is supposed to be numeric but there are dollar sign and comma in this column, thus we need to remove the dollar sign and comma in this column and then convert it into numeric variables.</p>
-<p>Firstly I used two for loops to map the city statistics into cities. However, the city names in each dataset are different, which led to some mismatch. To fix it, I assign the values manually.</p>
-<p>There is no value of all_median_income in Atlanta in 2018. To make the Parallel Coordinates to work, I have to find this value online.</p>
-<p>To find the patterns in different cities, I standardized the resulting dataset for using Parallel Coordinates.</p>
-<p>We need to plot wordclouds to help us analyze. In python, I vectorized the details by 1-gram and 2-gram, removing common English stopwords and some less informative words and combining 1-gram and 2-gram into one list. The final result is in the form of word vs frequency.</p>
+<p>The goal of the data cleaning is to map city statistics to 10 cities.</p>
+<p>The median income column should be numeric, but they are characters with dollar signs and commas. Thus we removed the dollar signs and commas, and then convert them to numeric forms.</p>
+<p>Firstly we used two for loops to map the city statistics into cities. However, the city names in each dataset are different, which led to some mismatches. To fix it, we assigned the values manually.</p>
+<p>There is no value of all_median_income in Atlanta in 2018. In order to draw the parallel coordinates plot, we found this value from somewhere else.</p>
+<p>To find the patterns in different cities, I standardized the data before drawing the parallel coordinates plot.</p>
 
 </div>
 </div>

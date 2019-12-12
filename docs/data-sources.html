@@ -138,10 +138,8 @@
 <h1><span class="header-section-number">Chapter 2</span> Data sources</h1>
 <div id="glassdoor" class="section level2">
 <h2><span class="header-section-number">2.1</span> Glassdoor</h2>
-<p>One dataset we used is gathered from the Job Market Report from Glassdoor: <a href="https://www.glassdoor.com/research/job-market-report-historical/" class="uri">https://www.glassdoor.com/research/job-market-report-historical/</a> This dataset mainly contain the job opening number and median base pay of different type of jobs, facted by different dimensions</p>
-<p>One dataset we used is gathered from the Job Market Report from Glassdoor: <a href="https://www.glassdoor.com/research/job-market-report-historical/" class="uri">https://www.glassdoor.com/research/job-market-report-historical/</a>. This website has the monthly data from October, 2016 to November, 2019.</p>
-<p>Each monthly dataset mainly contains the national and ten cities’ job opening number and median base pay for different type of jobs, for different industry and for different company sizes. The structure of the dataset can be shown in the graph:</p>
-<p>#####################graph needed##################</p>
+<p>One dataset we used is gathered from the <a href="https://www.glassdoor.com/research/job-market-report-historical/">Job Market Report from Glassdoor</a>. This website has the monthly data from October 2016 to November 2019.</p>
+<p>Each monthly dataset mainly contains the national and ten cities’ job opening number and median base pay for different types of jobs, for different industry and for different company sizes.</p>
 <p>The dataset looks like:</p>
 <pre><code>##      Metro Dimension.Type   Month          Dimension            Measure
 ## 1 National    Quick Facts 2019-03  U.S. Job Openings  U.S. Job Openings
@@ -157,19 +155,17 @@
 ## 4 3,906,967 -24.50%
 ## 5  $54,826    1.90%
 ## 6  $52,748    1.40%</code></pre>
-<p>We encountered a major problem dealing with this data source. Glassdoor restructured and updated the datasets while we are doing data analysis part and only the datasets from June, 2017 to March, 2019 are left as same formatted and structured, so we only use the 22 months’ datasets when conducting data analysis.</p>
+<p>We encountered a major problem dealing with this data source. Glassdoor restructured and updated the datasets while we were doing data analysis part. Only the datasets from June 2017 to March 2019 are left with the same format and structure, so we only used these datasets as well as the Oct 2019 dataset (which we saved earlier).</p>
 </div>
 <div id="indeed" class="section level2">
 <h2><span class="header-section-number">2.2</span> Indeed</h2>
-<p>Since the dataset from glassdoor contain only job openings in 10 cities, and we are also interested in the frequent words in the job descriptions of different job openings, more detailed dataset are needed.</p>
-<p>Initially, we found that Indeed.com provides a <a href="https://opensource.indeedeng.io/api-documentation/docs/job-search/">job searching API</a>, which allow s users to get access to data about job openings. Its results would contain information about job titles, recruiting company and location. However, applications for token of this API failed, because we are not qualified. Then, we decided to scrape data from Indeed.com instead.</p>
-<p><a href="https://www.indeed.com/jobs?q=data+sceintist&amp;l=New+York%2C+NY">Sample search results on Web</a></p>
-<p>When searching on Indeed.com, users can filter the results with key words, job titles, location or companies. In the scraper pipeline, search results on job openings with title of “Data scientist”, “Data Analyst”, “Financial Analyst” and “Business Analyst” around the US were included. At the first phase, scraping results are like these:</p>
-<p>Only a preview of the job description is included, because the complete content of job description text require extra web requests, for which we concerned about its cost to Indeed.com server.</p>
-<p>However, the analysis of the preview is not satisfying, so in the next phase, we also scraped the complete job description. The complete job description page look like this.</p>
-<p><a href="https://www.indeed.com/viewjob?cmp=Biz2Credit-Inc.&amp;t=Data+Science+Manager&amp;jk=e7c5dc3b25111e1b&amp;sjdu=QwrRXKrqZ3CNX5W-O9jEveJgZ7DRbh_ySwPONsqRa9Y_P0u65BR9sswVPFKEuwHB-Scyziy6GodSDbmULzuMGw&amp;tk=1drtm5c5ep7ck800&amp;adid=320883392&amp;pub=4a1b367933fd867b19b072952f68dceb&amp;vjs=3">Sample detail page</a></p>
-<p>In the search results, there exist a bunch of duplicates. That’s because Indeed repeatedly presented some sponsored results.</p>
-<p>Eventually, the scraping results contain 4 files, each for search results of one job title in the US. Duplicates have been removed. A preview of the data is as below:</p>
+<p>Since the dataset from Glassdoor contains only job openings in 10 cities, and we are also interested in the frequent words in the job descriptions of different jobs, more data are needed.</p>
+<p>Initially, we found that Indeed provides a <a href="https://opensource.indeedeng.io/api-documentation/docs/job-search/">job searching API</a>, which allows users to get access to data about job openings. Its results would contain information about job titles, recruiting companies and locations. However, our application for API was denied. Then, we decided to scrape data from Indeed (only a limited amount!). This is the <a href="https://www.indeed.com/jobs?q=data+sceintist&amp;l=New+York%2C+NY">sample search results</a>.</p>
+<p>When searching on Indeed, users can filter the results with key words, job titles, locations or companies. In the web scraping pipeline, search results on job openings with title of “Data scientist”, “Data Analyst”, “Financial Analyst” and “Business Analyst” around the US were included. At the first phase, scraping results are like:</p>
+<p>Only a preview of the job description is included, because the complete content of job description requires extra web requests, and we are concerned about its cost to Indeed server.</p>
+<p>However, the analysis of the preview is not satisfying, so in the next phase, we also scraped the complete job descriptions. The complete job description page looks like this: <a href="https://www.indeed.com/viewjob?cmp=Biz2Credit-Inc.&amp;t=Data+Science+Manager&amp;jk=e7c5dc3b25111e1b&amp;sjdu=QwrRXKrqZ3CNX5W-O9jEveJgZ7DRbh_ySwPONsqRa9Y_P0u65BR9sswVPFKEuwHB-Scyziy6GodSDbmULzuMGw&amp;tk=1drtm5c5ep7ck800&amp;adid=320883392&amp;pub=4a1b367933fd867b19b072952f68dceb&amp;vjs=3">sample details page</a></p>
+<p>In the search results, there exist a bunch of duplicates. That’s because Indeed repeatedly presented some promotions/ads for some companies.</p>
+<p>Eventually, the scraping results contain 4 files, each of which contains search results of one job title in the US. Duplicates were removed. A preview of the data is as below:</p>
 <pre><code>##                                                             title
 ## 1                                           Intern Data Scientist
 ## 2                                           Data Scientist Intern
@@ -224,27 +220,27 @@
 <h2><span class="header-section-number">2.3</span> City data</h2>
 <div id="median-income" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> <a href="https://www.statista.com/statistics/205609/median-household-income-in-the-top-20-most-populated-cities-in-the-us">2018 median income</a></h3>
-<p>The data is available in the Statista website, originated from US Census Bureau and if connected to campus’s internet, we can download the excel file from the website for free.</p>
-<p>The dataset is about the median household income for each city in 2018 (in U.S. dollars). There are 2 columns, city names and median household income and 50 rows in the data. The data type of columns are characters.</p>
-<p>There is two issues with this dataset. The city names do not match with the city names in the city_jobtitle.csv and the income column is of string type, with dollar sign($) and comma (,) in it.</p>
+<p>The dataset is available in the Statista website, originated from US Census Bureau. If connected to campus Internet, we can download the excel file from the website for free.</p>
+<p>The dataset is about the median household income for each city in 2018 (in U.S. dollars). There are 2 columns, city names and median household income, and there’re 50 records. Every data type of the variables is character.</p>
+<p>There are two issues with this dataset. The city names do not match with the city names in the datasets we processed before, and the income column is not the numeric type, with dollar sign($) and comma (,) in it.</p>
 </div>
 <div id="population" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> <a href="https://factfinder.census.gov/faces/tableservices/jsf/pages/productview.xhtml?src=bkmk">Population</a></h3>
-<p>The data is available in the United States Census Bureau website and we can download the excel file from the website for free.</p>
-<p>The dataset is about the estimated population for each city from 2010-2018 labeled by geographic location. There are 20 columns of some government file naming conventions and populations in each cities for 8 years, and 782 rows in the data. The location columns are character and the population columns are numeric.</p>
-<p>There is one issue with this dataset. The city names do not match with the city names in the city_jobtitle.csv.</p>
+<p>The dataset is available in the United States Census Bureau website and we can download the excel file from the website for free.</p>
+<p>The dataset is about the historical population for each city from 2010-2018 labeled by geographic location. There are 20 columns of unique identifiers and 9 columns of populations in each city (one column for one year). There’re 782 rows in the data. The id columns are character and the population columns are numeric.</p>
+<p>There is one issue with this dataset. The city names also do not match with the city names in the previous dataset.</p>
 </div>
 <div id="violent-crime" class="section level3">
 <h3><span class="header-section-number">2.3.3</span> <a href="https://ucr.fbi.gov/crime-in-the-u.s/2017/crime-in-the-u.s.-2017/tables/table-8/table-8.xls/view">Violent crime</a></h3>
-<p>The data is available in the United States Census Bureau, Population Division and we can download the excel file from it.</p>
-<p>The dataset is about the different crime rate for each city in 2019 labeled by geographic location. There are 10 columns of city names and crime rates of different crime types in each cities and 9583 rows in the data. The location columns are character and the crime rate columns are numeric.</p>
-<p>There are some issues with this dataset. The city names do not match with the city names in the city_jobtitle.csv, and the year is 2017, since the statistics of 2018 is not released.</p>
+<p>The dataset is available in the United States Census Bureau, Population Division and we can download the excel file from it.</p>
+<p>The dataset is about the different crime rates for each city in 2019 labeled by geographic location. There are 10 columns of city names, and multiple columns showing crime rates of different crime types in each cities. There’re 9583 rows in the data. The location columns are character and the crime rate columns are numeric.</p>
+<p>There are some issues with this dataset. The city names do not match with the city names in the previous dataset. In addition, this dataset is from 2017, not in line with other datasets.</p>
 </div>
 <div id="cpi" class="section level3">
 <h3><span class="header-section-number">2.3.4</span> <a href="https://www.statista.com/statistics/245014/consumer-price-index-for-selected-us-cities">CPI</a></h3>
-<p>The data is available in the United States Census Bureau website and we can download the excel file from the above link as long as we are connecting to campus Internet.</p>
-<p>The dataset is about the CPI (consumer-price-index) levels in different us cities. There are 2 columns of city names and cpi levels, and 22 rows in the data. The location column is character and the CPI column is numeric.</p>
-<p>There is one issue with this dataset. The city names do not match with the city names in the city_jobtitle.csv.</p>
+<p>The dataset is available in the United States Census Bureau website and we can download the excel file from the above link as long as our computers are connected to campus Internet.</p>
+<p>The dataset is about the CPI (consumer price index) levels in different US cities. There are 2 columns of city names and CPI levels. There’re 22 rows in the dataset. The location column is character and the CPI column is numeric.</p>
+<p>There is one issue with this dataset. The city names do not match with the city names in the previous dataset.</p>
 
 </div>
 </div>
