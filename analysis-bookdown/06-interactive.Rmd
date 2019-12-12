@@ -2,4 +2,4 @@
 
 <iframe width="1000px" height="800px" src="https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/You-Draw-It.html"></iframe>
 
-This component is about the trend of Data Scientists' median base pay. A main interest of our project is why  the salaries of data sceintists position are usually higher. This game reveal the phenomenon, and the reader can find the answer in our analysis.
+This component is about the trend of Data Scientists' median base pay. A main interest of our project is why the salary of data sceintists is usually higher than other data related jobs. The game reveals this phenomenon, and the reader can find the answer in our analysis. (The graph is implemented in D3.)
