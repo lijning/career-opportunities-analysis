@@ -11,7 +11,7 @@ Each monthly dataset mainly contains the national and ten cities’ job opening 
 
 The dataset looks like:
 
-```{r}
+```{r, echo=FALSE}
 library(openxlsx)
 df = read.xlsx("https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2019-03.xlsx")
 head(df)
