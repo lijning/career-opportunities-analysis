@@ -230,7 +230,7 @@ From the above observation, we don't suggest DSI students to look for a DS job i
 
 
 ## Geographical patterns of data related jobs
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
 df_jo_ba_state = read.csv("../data/clean/indeed/state_jo_ba.csv",na.strings = "NNN") %>% select(state, jo_ba)
 df_jo_da_state = read.csv("../data/clean/indeed/state_jo_da.csv",na.strings = "NNN") %>% select(state, jo_da)
@@ -247,7 +247,7 @@ df_total_state$jo_total <- rowSums(df_total_state[,c(2,3,4,5)])
 df_total_state$hover <- with(df_total_state, paste(state, '<br>', "BA job openings:", jo_ba, '<br>', "DA job openings:", jo_da, '<br>', "DS job openings:", jo_ds, '<br>', "FA job openings:", jo_fa))
 ```
 
-```{r}
+```{r, echo=FALSE}
 library(plotly)
 # give state boundaries a white border
 l <- list(color = toRGB("white"), width = 2)

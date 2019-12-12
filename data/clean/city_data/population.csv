@@ -1,0 +1,781 @@
+﻿city,Population
+"New York city, New York",8398748
+"Los Angeles city, California",3990456
+"Chicago city, Illinois",2705994
+"Houston city, Texas",2325502
+"Phoenix city, Arizona",1660272
+"Philadelphia city, Pennsylvania",1584138
+"San Antonio city, Texas",1532233
+"San Diego city, California",1425976
+"Dallas city, Texas",1345047
+"San Jose city, California",1030119
+"Austin city, Texas",964254
+"Jacksonville city, Florida",903889
+"Fort Worth city, Texas",895008
+"Columbus city, Ohio",892533
+"San Francisco city, California",883305
+"Charlotte city, North Carolina",872498
+"Indianapolis city (balance), Indiana",867125
+"Seattle city, Washington",744955
+"Denver city, Colorado",716492
+"Washington city, District of Columbia",702455
+"Boston city, Massachusetts",694583
+"El Paso city, Texas",682669
+"Detroit city, Michigan",672662
+"Nashville-Davidson metropolitan government (balance), Tennessee",669053
+"Portland city, Oregon",653115
+"Memphis city, Tennessee",650618
+"Oklahoma City city, Oklahoma",649021
+"Las Vegas city, Nevada",644644
+"Louisville/Jefferson County metro government (balance), Kentucky",620118
+"Baltimore city, Maryland",602495
+"Milwaukee city, Wisconsin",592025
+"Albuquerque city, New Mexico",560218
+"Tucson city, Arizona",545975
+"Fresno city, California",530093
+"Mesa city, Arizona",508958
+"Sacramento city, California",508529
+"Atlanta city, Georgia",498044
+"Kansas City city, Missouri",491918
+"Colorado Springs city, Colorado",472688
+"Miami city, Florida",470914
+"Raleigh city, North Carolina",469298
+"Omaha city, Nebraska",468262
+"Long Beach city, California",467354
+"Virginia Beach city, Virginia",450189
+"Oakland city, California",429082
+"Minneapolis city, Minnesota",425403
+"Tulsa city, Oklahoma",400669
+"Arlington city, Texas",398112
+"Tampa city, Florida",392890
+"New Orleans city, Louisiana",391006
+"Wichita city, Kansas",389255
+"Cleveland city, Ohio",383793
+"Bakersfield city, California",383579
+"Aurora city, Colorado",374114
+"Anaheim city, California",352005
+"Urban Honolulu CDP, Hawaii",347397
+"Santa Ana city, California",332725
+"Riverside city, California",330063
+"Corpus Christi city, Texas",326554
+"Lexington-Fayette urban county, Kentucky",323780
+"Stockton city, California",311178
+"Henderson city, Nevada",310390
+"St. Paul city, Minnesota",307695
+"St. Louis city, Missouri",302838
+"Cincinnati city, Ohio",302605
+"Pittsburgh city, Pennsylvania",301048
+"Greensboro city, North Carolina",294722
+"Anchorage municipality, Alaska",291538
+"Plano city, Texas",288061
+"Lincoln city, Nebraska",287401
+"Orlando city, Florida",285713
+"Irvine city, California",282572
+"Newark city, New Jersey",282090
+"Toledo city, Ohio",274975
+"Durham city, North Carolina",274291
+"Chula Vista city, California",271651
+"Fort Wayne city, Indiana",267633
+"Jersey City city, New Jersey",265549
+"St. Petersburg city, Florida",265098
+"Laredo city, Texas",261639
+"Madison city, Wisconsin",258054
+"Chandler city, Arizona",257165
+"Buffalo city, New York",256304
+"Lubbock city, Texas",255885
+"Scottsdale city, Arizona",255310
+"Reno city, Nevada",250998
+"Glendale city, Arizona",250702
+"Gilbert town, Arizona",248279
+"Winston-Salem city, North Carolina",246328
+"North Las Vegas city, Nevada",245949
+"Norfolk city, Virginia",244076
+"Chesapeake city, Virginia",242634
+"Garland city, Texas",242507
+"Irving city, Texas",242242
+"Hialeah city, Florida",238942
+"Fremont city, California",237807
+"Boise City city, Idaho",228790
+"Richmond city, Virginia",228783
+"Baton Rouge city, Louisiana",221599
+"Spokane city, Washington",219190
+"Des Moines city, Iowa",216853
+"Tacoma city, Washington",216279
+"San Bernardino city, California",215941
+"Modesto city, California",215030
+"Fontana city, California",213739
+"Santa Clarita city, California",210089
+"Birmingham city, Alabama",209880
+"Oxnard city, California",209877
+"Fayetteville city, North Carolina",209468
+"Moreno Valley city, California",209050
+"Rochester city, New York",206284
+"Glendale city, California",201361
+"Huntington Beach city, California",200641
+"Salt Lake City city, Utah",200591
+"Grand Rapids city, Michigan",200217
+"Amarillo city, Texas",199924
+"Yonkers city, New York",199663
+"Aurora city, Illinois",199602
+"Montgomery city, Alabama",198218
+"Akron city, Ohio",198006
+"Little Rock city, Arkansas",197881
+"Huntsville city, Alabama",197318
+"Augusta-Richmond County consolidated government (balance), Georgia",196939
+"Port St. Lucie city, Florida",195248
+"Grand Prairie city, Texas",194614
+"Columbus city, Georgia",194160
+"Tallahassee city, Florida",193551
+"Overland Park city, Kansas",192536
+"Tempe city, Arizona",192364
+"McKinney city, Texas",191645
+"Mobile city, Alabama",189572
+"Cape Coral city, Florida",189343
+"Shreveport city, Louisiana",188987
+"Frisco city, Texas",188170
+"Knoxville city, Tennessee",187500
+"Worcester city, Massachusetts",185877
+"Brownsville city, Texas",183392
+"Vancouver city, Washington",183012
+"Fort Lauderdale city, Florida",182595
+"Sioux Falls city, South Dakota",181883
+"Ontario city, California",181107
+"Chattanooga city, Tennessee",180557
+"Providence city, Rhode Island",179335
+"Newport News city, Virginia",178626
+"Rancho Cucamonga city, California",177751
+"Santa Rosa city, California",177586
+"Oceanside city, California",176080
+"Salem city, Oregon",173442
+"Elk Grove city, California",172886
+"Garden Grove city, California",172646
+"Pembroke Pines city, Florida",172374
+"Peoria city, Arizona",172259
+"Eugene city, Oregon",171245
+"Corona city, California",168819
+"Cary town, North Carolina",168160
+"Springfield city, Missouri",168122
+"Fort Collins city, Colorado",167830
+"Jackson city, Mississippi",164422
+"Alexandria city, Virginia",160530
+"Hayward city, California",159620
+"Lancaster city, California",159053
+"Lakewood city, Colorado",156798
+"Clarksville city, Tennessee",156794
+"Palmdale city, California",156667
+"Salinas city, California",156259
+"Springfield city, Massachusetts",155032
+"Hollywood city, Florida",154823
+"Pasadena city, Texas",153219
+"Sunnyvale city, California",153185
+"Macon-Bibb County, Georgia",153095
+"Kansas City city, Kansas",152958
+"Pomona city, California",152361
+"Escondido city, California",152213
+"Killeen city, Texas",149103
+"Naperville city, Illinois",148304
+"Joliet city, Illinois",148099
+"Bellevue city, Washington",147599
+"Rockford city, Illinois",146526
+"Savannah city, Georgia",145862
+"Paterson city, New Jersey",145627
+"Torrance city, California",145182
+"Bridgeport city, Connecticut",144900
+"McAllen city, Texas",143433
+"Mesquite city, Texas",142816
+"Syracuse city, New York",142749
+"Midland city, Texas",142344
+"Pasadena city, California",141371
+"Murfreesboro city, Tennessee",141344
+"Miramar city, Florida",140823
+"Dayton city, Ohio",140640
+"Fullerton city, California",139640
+"Olathe city, Kansas",139605
+"Orange city, California",139484
+"Thornton city, Colorado",139436
+"Roseville city, California",139117
+"Denton city, Texas",138541
+"Waco city, Texas",138183
+"Surprise city, Arizona",138161
+"Carrollton city, Texas",136879
+"West Valley City city, Utah",136401
+"Charleston city, South Carolina",136208
+"Warren city, Michigan",134587
+"Hampton city, Virginia",134313
+"Gainesville city, Florida",133857
+"Visalia city, California",133800
+"Coral Springs city, Florida",133507
+"Columbia city, South Carolina",133451
+"Cedar Rapids city, Iowa",133174
+"Sterling Heights city, Michigan",132964
+"New Haven city, Connecticut",130418
+"Stamford city, Connecticut",129775
+"Concord city, California",129688
+"Kent city, Washington",129618
+"Santa Clara city, California",129488
+"Elizabeth city, New Jersey",128885
+"Round Rock city, Texas",128739
+"Thousand Oaks city, California",127690
+"Lafayette city, Louisiana",126143
+"Athens-Clarke County unified government (balance), Georgia",125964
+"Topeka city, Kansas",125904
+"Simi Valley city, California",125851
+"Fargo city, North Dakota",124844
+"Norman city, Oklahoma",123471
+"Columbia city, Missouri",123180
+"Abilene city, Texas",122999
+"Wilmington city, North Carolina",122607
+"Hartford city, Connecticut",122587
+"Victorville city, California",122312
+"Pearland city, Texas",122149
+"Vallejo city, California",121913
+"Ann Arbor city, Michigan",121890
+"Berkeley city, California",121643
+"Allentown city, Pennsylvania",121433
+"Richardson city, Texas",120981
+"Odessa city, Texas",120568
+"Arvada city, Colorado",120492
+"Cambridge city, Massachusetts",118977
+"Sugar Land city, Texas",118600
+"Beaumont city, Texas",118428
+"Lansing city, Michigan",118427
+"Evansville city, Indiana",117963
+"Rochester city, Minnesota",116961
+"Independence city, Missouri",116925
+"Fairfield city, California",116884
+"Provo city, Utah",116702
+"Clearwater city, Florida",116478
+"College Station city, Texas",116218
+"West Jordan city, Utah",116046
+"Carlsbad city, California",115877
+"El Monte city, California",115586
+"Murrieta city, California",114985
+"Temecula city, California",114742
+"Springfield city, Illinois",114694
+"Palm Bay city, Florida",114194
+"Costa Mesa city, California",113615
+"Westminster city, Colorado",113479
+"North Charleston city, South Carolina",113237
+"Miami Gardens city, Florida",113069
+"Manchester city, New Hampshire",112525
+"High Point city, North Carolina",112316
+"Downey city, California",112269
+"Clovis city, California",112022
+"Pompano Beach city, Florida",111954
+"Pueblo city, Colorado",111750
+"Elgin city, Illinois",111683
+"Lowell city, Massachusetts",111670
+"Antioch city, California",111535
+"West Palm Beach city, Florida",111398
+"Peoria city, Illinois",111388
+"Everett city, Washington",111262
+"San Buenaventura (Ventura) city, California",111128
+"Centennial city, Colorado",110831
+"Lakeland city, Florida",110516
+"Gresham city, Oregon",110158
+"Richmond city, California",110146
+"Billings city, Montana",109550
+"Inglewood city, California",109419
+"Broken Arrow city, Oklahoma",109171
+"Sandy Springs city, Georgia",108797
+"Jurupa Valley city, California",108393
+"Hillsboro city, Oregon",108389
+"Waterbury city, Connecticut",108093
+"Santa Maria city, California",107408
+"Boulder city, Colorado",107353
+"Greeley city, Colorado",107348
+"Daly City city, California",107008
+"Meridian city, Idaho",106804
+"Lewisville city, Texas",106586
+"Davie town, Florida",106558
+"West Covina city, California",106311
+"League City city, Texas",106244
+"Tyler city, Texas",105729
+"Norwalk city, California",105120
+"San Mateo city, California",105025
+"Green Bay city, Wisconsin",104879
+"Wichita Falls city, Texas",104576
+"Sparks city, Nevada",104246
+"Burbank city, California",103695
+"Rialto city, California",103440
+"Allen city, Texas",103383
+"El Cajon city, California",103241
+"Las Cruces city, New Mexico",102926
+"Renton city, Washington",102153
+"Davenport city, Iowa",102085
+"South Bend city, Indiana",101860
+"Vista city, California",101224
+"Tuscaloosa city, Alabama",101113
+"San Angelo city, Texas",100215
+"Kenosha city, Wisconsin",100164
+"Vacaville city, California",100154
+"Roanoke city, Virginia",99920
+"Spokane Valley city, Washington",99703
+"Boca Raton city, Florida",99244
+"Beaverton city, Oregon",98962
+"Edinburg city, Texas",98665
+"Lee's Summit city, Missouri",98461
+"Rio Rancho city, New Mexico",98023
+"Yuma city, Arizona",97908
+"Bend city, Oregon",97590
+"Orem city, Utah",97521
+"Lawrence city, Kansas",97286
+"Albany city, New York",97279
+"South Fulton city, Georgia",97277
+"Federal Way city, Washington",97044
+"Sandy city, Utah",96901
+"San Marcos city, California",96847
+"Compton city, California",96617
+"Longmont city, Colorado",96577
+"Erie city, Pennsylvania",96471
+"Nampa city, Idaho",96252
+"Flint city, Michigan",95943
+"Brockton city, Massachusetts",95777
+"Sunrise city, Florida",95458
+"New Bedford city, Massachusetts",95315
+"Hesperia city, California",95274
+"Mission Viejo city, California",95202
+"Chico city, California",94776
+"Lynn city, Massachusetts",94654
+"Roswell city, Georgia",94650
+"Portsmouth city, Virginia",94632
+"Quincy city, Massachusetts",94580
+"South Gate city, California",94443
+"Dearborn city, Michigan",94333
+"Plantation city, Florida",94288
+"Concord city, North Carolina",94130
+"Livonia city, Michigan",93971
+"Yakima city, Washington",93884
+"Carmel city, Indiana",93510
+"Fishers city, Indiana",93362
+"Greenville city, North Carolina",93137
+"Edmond city, Oklahoma",93127
+"Lawton city, Oklahoma",92859
+"Menifee city, California",92595
+"Asheville city, North Carolina",92452
+"Deltona city, Florida",91951
+"Carson city, California",91909
+"Tracy city, California",91812
+"Redding city, California",91772
+"Miami Beach city, Florida",91718
+"Chino city, California",91583
+"Santa Monica city, California",91411
+"Santa Barbara city, California",91350
+"Indio city, California",91240
+"Suffolk city, Virginia",91185
+"Westminster city, California",90938
+"Bellingham city, Washington",90665
+"Livermore city, California",90269
+"San Leandro city, California",89703
+"Fall River city, Massachusetts",89661
+"Kirkland city, Washington",89557
+"Mount Pleasant town, South Carolina",89338
+"Nashua city, New Hampshire",89246
+"Norwalk city, Connecticut",89047
+"Newton city, Massachusetts",88904
+"Reading city, Pennsylvania",88495
+"O'Fallon city, Missouri",88472
+"Champaign city, Illinois",88029
+"Citrus Heights city, California",87910
+"Fort Smith city, Arkansas",87845
+"Conroe city, Texas",87654
+"Palm Coast city, Florida",87607
+"Ogden city, Utah",87325
+"St. George city, Utah",87178
+"Hawthorne city, California",86965
+"Waukegan city, Illinois",86792
+"Fayetteville city, Arkansas",86751
+"Redwood City city, California",86200
+"Whittier city, California",86064
+"Duluth city, Minnesota",85884
+"Avondale city, Arizona",85835
+"Lake Forest city, California",85623
+"Bloomington city, Minnesota",85578
+"Bryan city, Texas",85445
+"Newport Beach city, California",85326
+"Hemet city, California",85275
+"Clifton city, New Jersey",85273
+"Hoover city, Alabama",85108
+"Largo city, Florida",84996
+"Bloomington city, Indiana",84981
+"Mission city, Texas",84827
+"Danbury city, Connecticut",84730
+"Alhambra city, California",84649
+"Santa Fe city, New Mexico",84612
+"New Braunfels city, Texas",84612
+"Johns Creek city, Georgia",84310
+"Troy city, Michigan",84272
+"Trenton city, New Jersey",83974
+"Chino Hills city, California",83447
+"Mountain View city, California",83377
+"Merced city, California",83316
+"Kennewick city, Washington",82943
+"Goodyear city, Arizona",82835
+"Melbourne city, Florida",82826
+"Buena Park city, California",82421
+"Sioux City city, Iowa",82396
+"Pleasanton city, California",82372
+"Medford city, Oregon",82347
+"Fort Myers city, Florida",82254
+"Lynchburg city, Virginia",82126
+"Auburn city, Washington",81905
+"Westland city, Michigan",81720
+"Longview city, Texas",81647
+"Cicero town, Illinois",81597
+"Manteca city, California",81592
+"Somerville city, Massachusetts",81562
+"Cranston city, Rhode Island",81274
+"Farmington Hills city, Michigan",81093
+"Springdale city, Arkansas",81029
+"Franklin city, Tennessee",80914
+"Deerfield Beach city, Florida",80863
+"Warwick city, Rhode Island",80847
+"Brooklyn Park city, Minnesota",80610
+"Milpitas city, California",80430
+"Lawrence city, Massachusetts",80376
+"Lakewood city, California",80140
+"Tustin city, California",79795
+"Pharr city, Texas",79707
+"Plymouth city, Minnesota",79450
+"Napa city, California",79263
+"Perris city, California",79133
+"Folsom city, California",79022
+"Parma city, Ohio",78751
+"New Rochelle city, New York",78742
+"Alameda city, California",78338
+"Boynton Beach city, Florida",78050
+"Lake Charles city, Louisiana",78001
+"Bloomington city, Illinois",77962
+"Loveland city, Colorado",77446
+"Racine city, Wisconsin",77432
+"Flower Mound town, Texas",77329
+"Layton city, Utah",77303
+"Scranton city, Pennsylvania",77182
+"Bellflower city, California",77131
+"Gastonia city, North Carolina",77024
+"Baytown city, Texas",77024
+"Upland city, California",77000
+"Cedar Park city, Texas",76999
+"Jonesboro city, Arkansas",76990
+"Kalamazoo city, Michigan",76545
+"Iowa City city, Iowa",76290
+"Temple city, Texas",76256
+"St. Joseph city, Missouri",75959
+"San Ramon city, California",75839
+"Wyoming city, Michigan",75820
+"Baldwin Park city, California",75813
+"Warner Robins city, Georgia",75797
+"Hammond city, Indiana",75795
+"Bethlehem city, Pennsylvania",75790
+"Rapid City city, South Dakota",75443
+"Gary city, Indiana",75282
+"Albany city, Georgia",75249
+"Arlington Heights village, Illinois",75249
+"Bolingbrook village, Illinois",75178
+"Pasco city, Washington",74778
+"Missouri City city, Texas",74705
+"Rochester Hills city, Michigan",74696
+"Rancho Cordova city, California",74585
+"Union City city, California",74559
+"Appleton city, Wisconsin",74526
+"Missoula city, Montana",74428
+"Buckeye city, Arizona",74370
+"Rock Hill city, South Carolina",74309
+"Georgetown city, Texas",74180
+"South Jordan city, Utah",74149
+"Evanston city, Illinois",74106
+"Camden city, New Jersey",73973
+"Flagstaff city, Arizona",73964
+"Kissimmee city, Florida",73597
+"Schaumburg village, Illinois",73509
+"Apple Valley town, California",73508
+"Turlock city, California",73504
+"Southfield city, Michigan",73158
+"Framingham city, Massachusetts",73123
+"Bismarck city, North Dakota",73112
+"Jacksonville city, North Carolina",72896
+"Waukesha city, Wisconsin",72549
+"New Britain city, Connecticut",72453
+"Pittsburg city, California",72437
+"Lafayette city, Indiana",72168
+"Frederick city, Maryland",72146
+"Lauderhill city, Florida",72094
+"Gulfport city, Mississippi",71870
+"Pawtucket city, Rhode Island",71847
+"Maple Grove city, Minnesota",71807
+"Redlands city, California",71586
+"Woodbury city, Minnesota",71306
+"Decatur city, Illinois",71290
+"Weston city, Florida",71210
+"Mansfield city, Texas",70981
+"North Richland Hills city, Texas",70836
+"St. Charles city, Missouri",70764
+"Wilmington city, Delaware",70635
+"Lynwood city, California",70504
+"Homestead city, Florida",70477
+"Canton city, Ohio",70458
+"Passaic city, New Jersey",69948
+"Walnut Creek city, California",69825
+"Marysville city, Washington",69779
+"Delray Beach city, Florida",69358
+"Davis city, California",69289
+"Broomfield city, Colorado",69267
+"Camarillo city, California",69127
+"Daytona Beach city, Florida",68866
+"Eau Claire city, Wisconsin",68866
+"North Port city, Florida",68628
+"Greenville city, South Carolina",68563
+"Muncie city, Indiana",68529
+"Union City city, New Jersey",68520
+"Bowling Green city, Kentucky",68401
+"Gaithersburg city, Maryland",68289
+"Rockville city, Maryland",68268
+"Dothan city, Alabama",68247
+"Bossier City city, Louisiana",68235
+"Lake Elsinore city, California",68183
+"Palatine village, Illinois",68053
+"St. Cloud city, Minnesota",68043
+"Waterloo city, Iowa",67798
+"Yorba Linda city, California",67787
+"South San Francisco city, California",67733
+"Redmond city, Washington",67678
+"Rogers city, Arkansas",67600
+"Mount Vernon city, New York",67593
+"Redondo Beach city, California",67412
+"Rocklin city, California",67221
+"Ames city, Iowa",67154
+"Victoria city, Texas",67015
+"Lodi city, California",66995
+"Yuba City city, California",66992
+"Jackson city, Tennessee",66903
+"Johnson City city, Tennessee",66778
+"Oshkosh city, Wisconsin",66729
+"Palo Alto city, California",66666
+"Kenner city, Louisiana",66657
+"West Des Moines city, Iowa",66641
+"Eagan city, Minnesota",66527
+"Conway city, Arkansas",66426
+"Portland city, Maine",66417
+"Rowlett city, Texas",66285
+"Laguna Niguel city, California",66266
+"Alpharetta city, Georgia",66255
+"North Little Rock city, Arkansas",66127
+"Tamarac city, Florida",66054
+"Lehi city, Utah",66037
+"Lakeville city, Minnesota",65877
+"Shawnee city, Kansas",65845
+"Auburn city, Alabama",65738
+"Sammamish city, Washington",65733
+"Madera city, California",65706
+"Schenectady city, New York",65575
+"Jupiter town, Florida",65524
+"Harlingen city, Texas",65436
+"Ankeny city, Iowa",65284
+"Blaine city, Minnesota",65212
+"Wellington village, Florida",65200
+"Bayonne city, New Jersey",65083
+"Youngstown city, Ohio",64958
+"San Clemente city, California",64857
+"Castle Rock town, Colorado",64827
+"Eastvale city, California",64822
+"Santa Cruz city, California",64725
+"Janesville city, Wisconsin",64565
+"Tulare city, California",64475
+"East Orange city, New Jersey",64457
+"Pflugerville city, Texas",64431
+"Eden Prairie city, Minnesota",64334
+"Port Orange city, Florida",64252
+"Haverhill city, Massachusetts",64041
+"Lorain city, Ohio",64028
+"Cheyenne city, Wyoming",63957
+"Brentwood city, California",63800
+"San Marcos city, Texas",63509
+"Dublin city, California",63445
+"Grand Junction city, Colorado",63374
+"Skokie village, Illinois",63280
+"Noblesville city, Indiana",63133
+"North Miami city, Florida",62996
+"Springfield city, Oregon",62979
+"Waltham city, Massachusetts",62962
+"Encinitas city, California",62904
+"Pico Rivera city, California",62888
+"Montebello city, California",62632
+"Coon Rapids city, Minnesota",62527
+"Council Bluffs city, Iowa",62421
+"La Habra city, California",62183
+"Hamilton city, Ohio",62174
+"Moore city, Oklahoma",62103
+"Petaluma city, California",61917
+"Doral city, Florida",61824
+"Idaho Falls city, Idaho",61535
+"National City city, California",61431
+"Coconut Creek city, Florida",61361
+"Millcreek city, Utah",61270
+"Burnsville city, Minnesota",61203
+"Taylor city, Michigan",61148
+"Malden city, Massachusetts",61036
+"Chapel Hill town, North Carolina",60988
+"Novi city, Michigan",60951
+"Marietta city, Georgia",60806
+"Terre Haute city, Indiana",60753
+"Lakewood city, Washington",60538
+"Woodland city, California",60531
+"Ocala city, Florida",60429
+"Monterey Park city, California",60401
+"Taylorsville city, Utah",60192
+"Cupertino city, California",60170
+"Utica city, New York",60100
+"Sanford city, Florida",60035
+"Bristol city, Connecticut",60032
+"Porterville city, California",59988
+"Vineland city, New Jersey",59966
+"Owensboro city, Kentucky",59809
+"Pontiac city, Michigan",59772
+"Gardena city, California",59721
+"La Mesa city, California",59556
+"Meriden city, Connecticut",59540
+"West Allis city, Wisconsin",59492
+"Royal Oak city, Michigan",59461
+"Lancaster city, Pennsylvania",59420
+"St. Clair Shores city, Michigan",59409
+"Bartlett city, Tennessee",59315
+"Springfield city, Ohio",59282
+"Des Plaines city, Illinois",58959
+"Greenwood city, Indiana",58778
+"Gilroy city, California",58756
+"San Rafael city, California",58704
+"Great Falls city, Montana",58701
+"Bowie city, Maryland",58682
+"Margate city, Florida",58656
+"Corvallis city, Oregon",58641
+"Arcadia city, California",58610
+"Commerce City city, Colorado",58449
+"Orland Park village, Illinois",58312
+"Huntington Park city, California",58173
+"Santee city, California",58115
+"White Plains city, New York",58111
+"Dubuque city, Iowa",57941
+"Kokomo city, Indiana",57869
+"Medford city, Massachusetts",57765
+"Sarasota city, Florida",57738
+"Weymouth Town city, Massachusetts",57719
+"Bradenton city, Florida",57644
+"Hendersonville city, Tennessee",57576
+"Casper city, Wyoming",57461
+"Bonita Springs city, Florida",57370
+"Euless city, Texas",57346
+"Midwest City city, Oklahoma",57325
+"Richland city, Washington",57303
+"Taunton city, Massachusetts",57296
+"Casa Grande city, Arizona",57232
+"St. Peters city, Missouri",57127
+"Huntersville town, North Carolina",57098
+"Grand Forks city, North Dakota",56948
+"Hanford city, California",56910
+"Shoreline city, Washington",56752
+"Smyrna city, Georgia",56706
+"Caldwell city, Idaho",56541
+"Valdosta city, Georgia",56426
+"Palm Beach Gardens city, Florida",56284
+"Diamond Bar city, California",56275
+"Pocatello city, Idaho",56266
+"Tinley Park village, Illinois",56204
+"Leander city, Texas",56111
+"New Brunswick city, New Jersey",56100
+"Fountain Valley city, California",55814
+"Novato city, California",55655
+"Parker town, Colorado",55636
+"Dearborn Heights city, Michigan",55616
+"Chicopee city, Massachusetts",55582
+"Oak Lawn village, Illinois",55511
+"Carson City, Nevada",55414
+"Highland city, California",55406
+"Lenexa city, Kansas",55294
+"Hempstead village, New York",55255
+"Blue Springs city, Missouri",55104
+"Kettering city, Ohio",55103
+"Lake Havasu City city, Arizona",55090
+"Anderson city, Indiana",55037
+"Port Arthur city, Texas",55018
+"Manhattan city, Kansas",54959
+"Southaven city, Mississippi",54944
+"Berwyn city, Illinois",54917
+"Cathedral City city, California",54902
+"West Haven city, Connecticut",54879
+"Tigard city, Oregon",54758
+"Normal town, Illinois",54742
+"Colton city, California",54741
+"Stonecrest city, Georgia",54522
+"Albany city, Oregon",54453
+"Rosemead city, California",54412
+"Paramount city, California",54387
+"Decatur city, Alabama",54264
+"Rocky Mount city, North Carolina",54242
+"Mount Prospect village, Illinois",54198
+"Brookhaven city, Georgia",54145
+"Apple Valley city, Minnesota",54121
+"St. Cloud city, Florida",54115
+"Kingsport city, Tennessee",54076
+"Harrisonburg city, Virginia",54033
+"Grapevine city, Texas",53976
+"Minnetonka city, Minnesota",53953
+"Watsonville city, California",53920
+"Leesburg town, Virginia",53917
+"Elyria city, Ohio",53881
+"Apex town, North Carolina",53852
+"Revere city, Massachusetts",53821
+"Burlington city, North Carolina",53748
+"West Sacramento city, California",53727
+"Yucaipa city, California",53682
+"Bellevue city, Nebraska",53627
+"DeSoto city, Texas",53523
+"Apopka city, Florida",53489
+"Hoboken city, New Jersey",53455
+"Peabody city, Massachusetts",53278
+"Palm Desert city, California",53185
+"Wheaton city, Illinois",53150
+"Milford city (balance), Connecticut",53120
+"Pinellas Park city, Florida",53098
+"Delano city, California",53014
+"West New York town, New Jersey",52990
+"Pensacola city, Florida",52713
+"Olympia city, Washington",52555
+"Edina city, Minnesota",52490
+"Elkhart city, Indiana",52367
+"Oak Park village, Illinois",52265
+"Glendora city, California",52002
+"Perth Amboy city, New Jersey",51928
+"Burien city, Washington",51908
+"Kentwood city, Michigan",51868
+"Aliso Viejo city, California",51783
+"Summerville town, South Carolina",51692
+"Placentia city, California",51671
+"Logan city, Utah",51619
+"Wylie city, Texas",51585
+"La Crosse city, Wisconsin",51567
+"Grand Island city, Nebraska",51478
+"Coeur d'Alene city, Idaho",51303
+"Florissant city, Missouri",51272
+"Battle Creek city, Michigan",51247
+"Hoffman Estates village, Illinois",51197
+"Bentonville city, Arkansas",51111
+"Coral Gables city, Florida",50999
+"Smyrna town, Tennessee",50775
+"Lacey city, Washington",50718
+"Methuen Town city, Massachusetts",50698
+"Plainfield city, New Jersey",50693
+"Joplin city, Missouri",50657
+"Collierville town, Tennessee",50616
+"Cerritos city, California",50462
+"Galveston city, Texas",50457
+"Madison city, Alabama",50440
+"Stillwater city, Oklahoma",50391
+"Little Elm city, Texas",50314
+"Lakewood city, Ohio",50100
+"Newark city, Ohio",50029
+"Maricopa city, Arizona",50024
+"Enid city, Oklahoma",49585
+"Troy city, New York",49374
+"Saginaw city, Michigan",48323
+"Niagara Falls city, New York",48144
+"Charleston city, West Virginia",47215
