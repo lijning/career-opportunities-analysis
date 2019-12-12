@@ -22,12 +22,29 @@ We encountered a major problem dealing with this data source. Glassdoor restruct
 
 ## Indeed
 
-{
-[jl]
-(1) What is the data source (with links)? Who collected it? How were the data collected?
-(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
-(3) Describe the problems of the data. For instance, Glassdoor data changed.
-}
+Since the dataset from glassdoor contain only job openings in 10 cities, and we are also interested in the frequent words in the job descriptions of different job openings, more detailed dataset are needed.
+
+Initially, we found that Indeed.com provides a [job searching API](https://opensource.indeedeng.io/api-documentation/docs/job-search/), which allow s users to get access to data about job openings. Its results would contain information about job titles, recruiting company and location. However, applications for token of this API failed, because we are not qualified. Then, we decided to scrape data from Indeed.com instead.
+
+[Sample search results on Web](https://www.indeed.com/jobs?q=data+sceintist&l=New+York%2C+NY)
+
+When searching on Indeed.com, users can filter the results with key words, job titles, location or companies. In the scraper pipeline, search results on job openings with title of "Data scientist", "Data Analyst", "Financial Analyst" and "Business Analyst" around the US were included. At the first phase, scraping results are like these:
+
+Only a preview of the job description is included, because the complete content of job description text require extra web requests, for which we concerned about its cost to Indeed.com server.
+
+However, the analysis of the preview is not satisfying, so in the next phase, we also scraped the complete job description. The complete job description page look like this.
+
+[Sample detail page](https://www.indeed.com/viewjob?cmp=Biz2Credit-Inc.&t=Data+Science+Manager&jk=e7c5dc3b25111e1b&sjdu=QwrRXKrqZ3CNX5W-O9jEveJgZ7DRbh_ySwPONsqRa9Y_P0u65BR9sswVPFKEuwHB-Scyziy6GodSDbmULzuMGw&tk=1drtm5c5ep7ck800&adid=320883392&pub=4a1b367933fd867b19b072952f68dceb&vjs=3)
+
+In the search results, there exist a bunch of duplicates. That's because Indeed repeatedly presented some sponsored results.
+
+Eventually, the scraping results contain 4 files, each for search results of one job title in the US. Duplicates have been removed. A preview of the data is as below:
+
+```{r}
+data = read.csv("../data/raw/indeed_ds.csv")
+head(data)
+```
+
 
 ## City data
 
