@@ -7,12 +7,12 @@
 2.	Since national data and city level data are on different levels, we separate the dataset into two main categories: national and city levels.
 3.	The next step is to construct the datasets containing only the variables we are interested in, used for analysis later. Here are a few examples:
       a.	In order to focus on relationship between job title and median base pay, we subset the corresponding dataset:
-```{r}
+```{r, echo=FALSE}
 city_jobtitle = read_csv("../data/clean/glassdoor/city_jobtitle.csv")
 head(city_jobtitle)
 ```
       b.	In order to find out the timeseries trend of change in median pay, we subset the corresponding dataset:
-```{r}
+```{r, echo=FALSE}
 na_ts_pay = read_csv("../data/clean/glassdoor/na_ts_pay.csv")
 head(na_ts_pay)
 ```
@@ -27,7 +27,7 @@ We used Indeed dataset in two parts of the analysis and conducted the data clean
 
 1. To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we web scraped all the search result from indeed.com using the four job titles, then grouped the jobs from the same state and finally counted the number of four jobs from each state.
 
-```{r}
+```{r, echo=FALSE}
 df_total_state = read_csv("../data/clean/indeed/df_total_state.csv")
 head(df_total_state)
 ```
