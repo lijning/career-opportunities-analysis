@@ -107,8 +107,14 @@
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#us-labor-market-data-related-jobs-vs.others"><i class="fa fa-check"></i><b>5.1</b> US labor market: Data related jobs vs. others</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#geographical-patterns-of-data-related-jobs"><i class="fa fa-check"></i><b>5.3</b> Geographical patterns of data related jobs</a></li>
-<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a></li>
-<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#data-scientist-job-statistics-in-10-different-cities"><i class="fa fa-check"></i><b>5.4.1</b> Data Scientist job statistics in 10 different cities</a></li>
+<li class="chapter" data-level="5.4.2" data-path="results.html"><a href="results.html#correlation-between-city-features"><i class="fa fa-check"></i><b>5.4.2</b> Correlation between city features</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#data-scientist-vs-data-analyst"><i class="fa fa-check"></i><b>5.5.1</b> Data Scientist vs Data Analyst</a></li>
+<li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#business-analyst-vs-financial-analyst"><i class="fa fa-check"></i><b>5.5.2</b> Business Analyst vs Financial Analyst</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a><ul>
@@ -136,11 +142,11 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
-<p><img src="../others/resource/44.png" /></p>
+<p><img src="https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/44.png" /></p>
 <div id="glassdoor-2" class="section level2">
 <h2><span class="header-section-number">4.1</span> Glassdoor</h2>
 <p>The data set we downloaded from Glassdoor includes many missing values, but here we just analyze missing values of the data we have used.</p>
-<p><img src="finalproject_files/figure-html/unnamed-chunk-106-1.png" width="672" /></p>
+<p><img src="CareerOpportunitiesAnalysis_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>The data used to draw this graph is the time series of median base pay and job openings in each city. This graph is reordered both vertically and horizontally.</p>
 <p>Column pattern: Only two variables have missing values. Median base pay has the most missing values. At least 2/3 of them are missing. As for job openings, approximately one third of them are missing. Other variables have no missing values, because they are more like “key” rather than “value”.</p>
 <p>Row pattern: Every row has at least one missing value, and there are three missing patterns: no base pay, no job openings, or both missing. It seems that median base pay and job openings cannot appear together, which is very odd. We cannot explain why this happens, but the pattern does bring many troubles to our analysis.</p>
@@ -149,7 +155,7 @@
 <div id="indeed-2" class="section level2">
 <h2><span class="header-section-number">4.2</span> Indeed</h2>
 <p>We scraped some job information from Indeed. These jobs are data scientists, data analysts, business analysts and financial analysts. Their missing patterns are quite similar, thus only the missing pattern of data scientists is presented here.</p>
-<p><img src="finalproject_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p><img src="CareerOpportunitiesAnalysis_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>In this data set, each row is a job, and the column shows the information of the job. This graph is reordered both vertically and horizontally.</p>
 <p>Column pattern: Salary has the most missing values, which is in line with our expectations. We know many companies do not disclose the salary in the preliminary stage of recruitment.</p>
 <p>empb_id is the Indeed id of each employer, and empn_rate is the rating (scale from 0 to 5) of each employer. However, the rating is meaningless because every job of the same company will have the same rating. We don’t use them in our analysis, so their absence is OK. We also don’t care about variables like detail and preview. Even though some values are missing, there’s no impact.</p>
@@ -199,7 +205,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lijning/career-opportunities-analysis/edit/master/04-missing.Rmd",
+"link": "https://github.com/lijning/career-opportunities-analysis/edit/master/analysis-bookdown/04-missing.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -207,7 +213,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/lijning/career-opportunities-analysis/blob/master/04-missing.Rmd",
+"link": "https://github.com/lijning/career-opportunities-analysis/blob/master/analysis-bookdown/04-missing.Rmd",
 "text": null
 },
 "download": null,

@@ -427,6 +427,7 @@ library(parcoords)
 df<-rownames_to_column(df,"city")
 ```
 
+### Data Scientist job statistics in 10 different cities
 
 ```{r}
   parcoords(
@@ -591,6 +592,8 @@ for (i in rownames(df_total_total)){
 }
 ```
 
+### Correlation between city features
+
 ```{r}
 library(GGally)
 ggpairs(df_total_total, columns = 2:6, aes(color = job_title_abbr))
@@ -609,6 +612,8 @@ This graph shows us the median income of four jobs (data scientist, data analyst
 library(tidyverse)
 library(wordcloud)
 ```
+
+### Data Scientist vs Data Analyst
 
 ```{r } 
 df_ds=read_csv("../data/clean/wordcloud_data/ds_word_freq.csv")[,2:3]
@@ -635,6 +640,9 @@ Those two wordclouds show the most frequent words appearing in the job descripti
 - The second figure: The most important requirement for data analyst is the ability to do data analysis. Also, writing and verbal skills, project management, Microsort Office skills are also vital to data analysts.
 
 Since the avarage income of data scientists is higher than that of data analysts, we can see that requirements for data scientists are higher than that for data analysts. Data scientists are required to gain more skills in programming language and cutting-edge technology, such as deeping learning and machine learning. However, data analysts are more about team work and business sense.
+
+
+###  Business Analyst vs Financial Analyst
 
 ```{r}
 set.seed(32)

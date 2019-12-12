@@ -107,8 +107,14 @@
 <li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#us-labor-market-data-related-jobs-vs.others"><i class="fa fa-check"></i><b>5.1</b> US labor market: Data related jobs vs. others</a></li>
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#geographical-patterns-of-data-related-jobs"><i class="fa fa-check"></i><b>5.3</b> Geographical patterns of data related jobs</a></li>
-<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a></li>
-<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#data-scientist-job-statistics-in-10-different-cities"><i class="fa fa-check"></i><b>5.4.1</b> Data Scientist job statistics in 10 different cities</a></li>
+<li class="chapter" data-level="5.4.2" data-path="results.html"><a href="results.html#correlation-between-city-features"><i class="fa fa-check"></i><b>5.4.2</b> Correlation between city features</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#data-scientist-vs-data-analyst"><i class="fa fa-check"></i><b>5.5.1</b> Data Scientist vs Data Analyst</a></li>
+<li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#business-analyst-vs-financial-analyst"><i class="fa fa-check"></i><b>5.5.2</b> Business Analyst vs Financial Analyst</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a><ul>
@@ -136,16 +142,16 @@
             <section class="normal" id="section-">
 <div id="data-transformation" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> Data transformation</h1>
-<p><img src="../others/resource/33.png" /></p>
+<p><img src="https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/33.png" /></p>
 <div id="glassdoor-1" class="section level2">
 <h2><span class="header-section-number">3.1</span> Glassdoor</h2>
 <ol style="list-style-type: decimal">
 <li><p>The raw dataset is monthly. In order to explore the temporal changes of median base pay, we first concatenated the 22 datasets into a single data frame.</p></li>
 <li><p>Since national data and city level data are on different levels, we separated the dataset into two main categories: national level and city levels.</p></li>
-<li><p>The next step is to construct the datasets containing only the variables we are interested in, which are for futher analysis. Here are a few examples:</p>
+<li><p>The next step is to construct the datasets containing only the variables we are interested in, which are for futher analysis. Here are a few examples:</p></li>
+</ol>
 <ol style="list-style-type: lower-alpha">
 <li>In order to focus on the relationship between job title and median base pay, we subsetted the corresponding dataset:</li>
-</ol></li>
 </ol>
 <pre><code>## # A tibble: 6 x 8
 ##      X1 Metro  Dimension.Type Month  Dimension       Measure   Value  YoY  
@@ -156,8 +162,9 @@
 ## 4   130 Atlan… Job Title      2019-… Bank Teller     Median B… $33,2… 6.70%
 ## 5   131 Atlan… Job Title      2019-… Barista         Median B… $23,6… 3.90%
 ## 6   132 Atlan… Job Title      2019-… Bartender       Median B… $36,8… 14.1…</code></pre>
-<pre><code>  b.    In order to find out the secular and cyclical trend of median base pay, we subsetted the corresponding dataset:
-  </code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>In order to find out the secular and cyclical trend of median base pay, we subsetted the corresponding dataset:</li>
+</ol>
 <pre><code>## # A tibble: 6 x 8
 ##      X1 Metro Dimension.Type Month  Dimension       Measure     Value YoY  
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;
@@ -169,7 +176,7 @@
 ## 6  1445 U.S.  Timeseries     2019-… Metro Median B… Median Ba… 53525  NA</code></pre>
 <p>We did the subsetting for all possible dimensions and got 10 separate datasets in total: na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts. As for the filenames, na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay.</p>
 <p>Here is a graph indicates the structure of the cleaning process</p>
-<p><img src="../others/resource/Screen%20Shot%202019-12-12%20at%203.26.12%20PM.png" /></p>
+<p><img src="https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/Screen%20Shot%202019-12-12%20at%203.26.12%20PM.png" /></p>
 </div>
 <div id="indeed-1" class="section level2">
 <h2><span class="header-section-number">3.2</span> Indeed</h2>
@@ -237,7 +244,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/lijning/career-opportunities-analysis/edit/master/03-cleaning.Rmd",
+"link": "https://github.com/lijning/career-opportunities-analysis/edit/master/analysis-bookdown/03-cleaning.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -245,7 +252,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/lijning/career-opportunities-analysis/blob/master/03-cleaning.Rmd",
+"link": "https://github.com/lijning/career-opportunities-analysis/blob/master/analysis-bookdown/03-cleaning.Rmd",
 "text": null
 },
 "download": null,
