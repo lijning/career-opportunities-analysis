@@ -59,68 +59,6 @@
 <script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -145,7 +83,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#glassdoor"><i class="fa fa-check"></i><b>2.1</b> Glassdoor</a></li>
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#indeed"><i class="fa fa-check"></i><b>2.2</b> Indeed</a></li>
-<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#city-data"><i class="fa fa-check"></i><b>2.3</b> City data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#city-data"><i class="fa fa-check"></i><b>2.3</b> City data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-sources.html"><a href="data-sources.html#median-income"><i class="fa fa-check"></i><b>2.3.1</b> <span>2018 median income</span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-sources.html"><a href="data-sources.html#population"><i class="fa fa-check"></i><b>2.3.2</b> <span>Population</span></a></li>
+<li class="chapter" data-level="2.3.3" data-path="data-sources.html"><a href="data-sources.html#violent-crime"><i class="fa fa-check"></i><b>2.3.3</b> <span>Violent crime</span></a></li>
+<li class="chapter" data-level="2.3.4" data-path="data-sources.html"><a href="data-sources.html#cpi"><i class="fa fa-check"></i><b>2.3.4</b> <span>CPI</span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#glassdoor-1"><i class="fa fa-check"></i><b>3.1</b> Glassdoor</a></li>
@@ -162,7 +105,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#geographical-patterns-of-data-related-jobs"><i class="fa fa-check"></i><b>5.3</b> Geographical patterns of data related jobs</a></li>
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a></li>
-<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a><ul>
@@ -200,8 +142,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In order to focus on relationship between job title and median base pay, we subset the corresponding dataset:</li>
 </ol></li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">city_jobtitle =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/glassdoor/city_jobtitle.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="kw">head</span>(city_jobtitle)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ##      X1 Metro  Dimension.Type Month  Dimension       Measure   Value  YoY  
 ##   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;
@@ -212,8 +152,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5   131 Atlan~ Job Title      2019-~ Barista         Median B~ $23,6~ 3.90%
 ## 6   132 Atlan~ Job Title      2019-~ Bartender       Median B~ $36,8~ 14.1~</code></pre>
 <pre><code>  b.    In order to find out the timeseries trend of change in median pay, we subset the corresponding dataset:</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">na_ts_pay =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/glassdoor/na_ts_pay.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">head</span>(na_ts_pay)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 8
 ##      X1 Metro Dimension.Type Month  Dimension       Measure     Value YoY  
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;          &lt;chr&gt;  &lt;chr&gt;           &lt;chr&gt;       &lt;dbl&gt; &lt;lgl&gt;
@@ -231,8 +169,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li>To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we web scraped all the search result from indeed.com using the four job titles, then grouped the jobs from the same state and finally counted the number of four jobs from each state.</li>
 </ol>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">df_total_state =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;../data/clean/indeed/df_total_state.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="kw">head</span>(df_total_state)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 7
 ##      X1 state jo_ba jo_da jo_ds jo_fa jo_total
 ##   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;
@@ -245,11 +181,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="city-data-1" class="section level2">
 <h2><span class="header-section-number">3.3</span> City data</h2>
-<p>{
-[wc]
-(1) Describe how we cleaned the data.
-(2) What do the clean data look like?
-}</p>
+<p>The goal of the data cleaning is to map city statistics into 10 cities.</p>
+<p>To do that the median income column is supposed to be numeric but there are dollar sign and comma in this column, thus we need to remove the dollar sign and comma in this column and then convert it into numeric variables.</p>
+<p>Firstly I used two for loops to map the city statistics into cities. However, the city names in each dataset are different, which led to some mismatch. To fix it, I assign the values manually.</p>
+<p>There is no value of all_median_income in Atlanta in 2018. To make the Parallel Coordinates to work, I have to find this value online.</p>
+<p>To find the patterns in different cities, I standardized the resulting dataset for using Parallel Coordinates.</p>
+<p>We need to plot wordclouds to help us analyze. In python, I vectorized the details by 1-gram and 2-gram, removing common English stopwords and some less informative words and combining 1-gram and 2-gram into one list. The final result is in the form of word vs frequency.</p>
 
 </div>
 </div>

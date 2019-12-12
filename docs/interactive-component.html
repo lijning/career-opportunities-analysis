@@ -59,68 +59,6 @@
 <script src="libs/plotly-main-1.46.1/plotly-latest.min.js"></script>
 
 
-<style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
-}
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  }
-@media screen {
-a.sourceLine::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -145,7 +83,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#glassdoor"><i class="fa fa-check"></i><b>2.1</b> Glassdoor</a></li>
 <li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#indeed"><i class="fa fa-check"></i><b>2.2</b> Indeed</a></li>
-<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#city-data"><i class="fa fa-check"></i><b>2.3</b> City data</a></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#city-data"><i class="fa fa-check"></i><b>2.3</b> City data</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="data-sources.html"><a href="data-sources.html#median-income"><i class="fa fa-check"></i><b>2.3.1</b> <span>2018 median income</span></a></li>
+<li class="chapter" data-level="2.3.2" data-path="data-sources.html"><a href="data-sources.html#population"><i class="fa fa-check"></i><b>2.3.2</b> <span>Population</span></a></li>
+<li class="chapter" data-level="2.3.3" data-path="data-sources.html"><a href="data-sources.html#violent-crime"><i class="fa fa-check"></i><b>2.3.3</b> <span>Violent crime</span></a></li>
+<li class="chapter" data-level="2.3.4" data-path="data-sources.html"><a href="data-sources.html#cpi"><i class="fa fa-check"></i><b>2.3.4</b> <span>CPI</span></a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#glassdoor-1"><i class="fa fa-check"></i><b>3.1</b> Glassdoor</a></li>
@@ -162,7 +105,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#trends-of-data-related-jobs"><i class="fa fa-check"></i><b>5.2</b> Trends of data related jobs</a></li>
 <li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#geographical-patterns-of-data-related-jobs"><i class="fa fa-check"></i><b>5.3</b> Geographical patterns of data related jobs</a></li>
 <li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#best-cities-for-data-related-jobs"><i class="fa fa-check"></i><b>5.4</b> Best cities for data related jobs</a></li>
-<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#what-are-the-most-relevant-to-data-related-jobs"><i class="fa fa-check"></i><b>5.5</b> What are the most relevant to data related jobs?</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a><ul>
@@ -190,11 +132,299 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="interactive-component" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Interactive component</h1>
-<p>{
-[jl]
-Brief introduction to the interactive component</p>
-<p>The interactive component (a link? javascript?)
-}</p>
+<p>*<iframe></p>
+<pre><code>&lt;head&gt;
+    &lt;script src=&quot;https://d3js.org/d3.v5.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.25.6/d3-legend.js&quot;&gt;&lt;/script&gt;
+    &lt;style&gt;
+        svg {
+            height: 500;
+            width: 800;
+        }
+
+        chart-title {
+            text-align: center;
+            font: 300 18px / 1.2 &#39;nyt-franklin&#39;, Arial, sans-serif;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .g-chart path {
+            stroke-width: 2.5;
+        }
+
+        .player-line {
+            fill: none;
+            stroke-dasharray: 5, 5;
+        }
+
+        .dot {
+            fill: #ffab00;
+            stroke: #fff;
+        }
+
+        g.playable rect {
+            fill: yellowgreen;
+            opacity: 0.1;
+        }
+
+        .huge-button {
+            display: block;
+            /* width: fit-content; */
+            padding: 0.35em 1.2em;
+            border: 0.05em solid rgb(36, 17, 66);
+            margin: 0 0.3em 0.3em 0;
+            border-radius: 0.12em;
+            box-sizing: border-box;
+            text-decoration: none;
+            font-family: &#39;Roboto&#39;, sans-serif;
+            font-weight: 300;
+            color: rgb(36, 17, 66);
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .huge-button:hover {
+            color: #FFFFFF;
+            background-color: #000000;
+        }
+
+        .g-points circle {
+            fill: cornflowerblue;
+            stroke: cornflowerblue;
+        }
+
+        .hidden {
+            display: none;
+        }
+    &lt;/style&gt;
+    &lt;script&gt;
+        function groupBy(list, keyGetter) {
+            const map = new Map();
+            list.forEach((item) =&gt; {
+                const key = keyGetter(item);
+                const collection = map.get(key);
+                if (!collection) {
+                    map.set(key, [item]);
+                } else {
+                    collection.push(item);
+                }
+            });
+            return map;
+        }
+        function usePalette(key) {
+            return globalPool.colorScale(key);
+            // if (globalPool.palette.has(key)) {
+            //     return globalPool.palette.get(key);
+            // } else {
+            //     pick = colorsArray.pop();
+            //     if (pick) {
+            //         globalPool.palette.set(key, pick);
+            //         return pick;
+            //     } else {
+            //         throw Error(&quot;Running out of colors.&quot;)
+            //     }
+            // }
+        }
+        function getCoordinates(data) {
+            return data.map(
+                elem =&gt; {
+                    return {
+                        k: elem.job,
+                        x: new Date(elem.month),
+                        y: elem.medianBasePay
+                    }
+                }
+            ).sort((a, b) =&gt; a.x - b.x);
+        }
+        function forkDataset(dataMap, hiddenKey) {
+            let keys = Array.from(dataMap.keys());
+            hiddenKVP = { key: hiddenKey, values: undefined }
+            let kvps = keys.map(key =&gt; {
+                let arr = getCoordinates(dataMap.get(key));
+                if (key == hiddenKey) {
+                    hiddenKVP.values = arr.slice(idxHiddenStart - 1);
+                    lastElem = arr[idxHiddenStart - 1];
+                    globalPool.playerData
+                        .push([globalPool.xScale(lastElem.x), globalPool.yScale(lastElem.y)])
+                    shownValues = arr.slice(0, idxHiddenStart);
+                }
+                else {
+                    shownValues = arr;
+                }
+                return {
+                    key: key, values: shownValues
+                };
+            });
+            if (!hiddenKVP.values) {
+                throw Error(&quot;Key not matched.&quot;);
+            }
+            globalPool.shownData = kvps;
+            globalPool.hiddenData = hiddenKVP;
+            return hiddenKVP;
+        }
+        const dataSrc = &quot;https://raw.githubusercontent.com/lijning/career-opportunities-analysis/dev/data/clean/job-month-pay.csv&quot;;
+        const chartMargin = { left: 80, bottom: 80, top: 30 };
+        const idxHiddenStart = 8;
+        const chartDim = { height: 400, width: 500 };
+        const legendTrans = { left: chartMargin.left + chartDim.width + 50, top: chartMargin.top + 80 };
+        const globalPool = {
+            xScale: undefined, yScale: undefined,
+            shownData: [], hiddenData: {},
+            playerData: [], palette: new Map(),
+            allDataPoints: [], colorScale: undefined
+        };
+        const colorsArray = [&quot;#FF4136&quot;, &quot;#2ECC40&quot;, &quot;#FFDC00&quot;, &quot;#001f3f&quot;, &quot;#FF851B&quot;]
+        const jobPlayWith = &quot;Data Scientist&quot;;
+    &lt;/script&gt;
+    &lt;script&gt;
+        function addPoints(points) {
+            points.forEach(pt =&gt; { globalPool.allDataPoints.push(pt); })
+            let gPt = d3.select(&quot;#diy #g-points&quot;);
+            let sel = gPt.selectAll(&quot;circle&quot;);
+            sel.data(globalPool.allDataPoints)
+                .enter()
+                .append(&quot;circle&quot;)
+                .merge(sel)
+                .attr(&#39;cx&#39;, d =&gt; globalPool.xScale(d.x))
+                .attr(&#39;cy&#39;, d =&gt; globalPool.yScale(d.y))
+                .transition()
+                .attr(&#39;r&#39;, 3);
+        }
+        function drawLines(data, flag) {
+            let lineGen = d3.line()
+                .x((d, i) =&gt; { return globalPool.xScale(d.x); }) // set the x values for the line generator
+                .y((d, i) =&gt; { return globalPool.yScale(d.y); }) // set the y values for the line generator 
+                .curve(d3.curveMonotoneX);
+            let lineClass;
+            if (flag == 0) {
+                lineClass = &quot;fact-line&quot;
+            } else {
+                lineClass = &quot;answer-line&quot;
+            }
+            let gPaths = d3.select(&quot;g#g-paths&quot;);
+
+            gPaths
+                //.selectAll(&quot;g&quot;).attr(&quot;class&quot;, &quot;g-fact-line&quot;)
+                .selectAll(`path .${lineClass}`)
+                .data(data.map(elem =&gt; elem.values))
+                .enter()
+                .append(&quot;path&quot;)
+                .attr(&quot;class&quot;, lineClass)
+                .attr(&quot;fill&quot;, &quot;none&quot;)
+                .style(&#39;stroke&#39;, (d, i) =&gt; usePalette(d[0].k))
+                .style(&quot;opacity&quot;, 0)
+                // .attr(&quot;duration&quot;,5000)
+                .transition().duration(1000)
+                .style(&quot;opacity&quot;, 1)
+                .attr(&quot;d&quot;, lineGen);
+            data.forEach(elem =&gt; { addPoints(elem.values) });
+        }
+        function fnClickingDraw() {
+            let chart = d3.select(&quot;.g-chart&quot;);
+            let coords = d3.mouse(chart.node());
+            xValue = globalPool.xScale.invert(coords[0]);
+            yValue = globalPool.yScale.invert(coords[1]);
+            globalPool.playerData.push(coords);
+            globalPool.playerData.sort((a, b) =&gt; a[0] - b[0]);
+            let sel = d3.select(&quot;.g-chart&quot;).selectAll(&quot;path.player-line&quot;)
+            sel.data([globalPool.playerData])
+                .enter()
+                .append(&quot;path&quot;).attr(&quot;class&quot;, &quot;player-line&quot;)
+                .merge(sel)
+                .attr(&quot;d&quot;, d3.line())
+                .style(&quot;stroke&quot;, usePalette(jobPlayWith));
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;h3 class=&quot;chart-title&quot;&gt;Guess how is data jobs&#39; pay compared with other jobs? &lt;br&gt; You draw it!&lt;/h3&gt;
+    &lt;h5&gt;Since the beginning of 2018, the median base pay of data scientist jobs have been...&lt;/h5&gt;
+    &lt;svg id=&quot;diy&quot;&gt;
+        &lt;text x=&quot;20&quot; y=&quot;10&quot; style=&quot;font: 10px sans-serif;&quot;&gt;Median Base Pay&lt;/text&gt;
+        &lt;g class=&quot;g-y-axis&quot;&gt;&lt;/g&gt;
+        &lt;g class=&quot;g-x-axis&quot;&gt;&lt;/g&gt;
+        &lt;g class=&quot;g-chart&quot;&gt;
+            &lt;g id=&quot;g-paths&quot;&gt;&lt;/g&gt;
+            &lt;g id=&quot;g-points&quot;&gt;&lt;/g&gt;
+        &lt;/g&gt;
+        &lt;g class=&quot;g-legend&quot;&gt;&lt;/g&gt;
+    &lt;/svg&gt;
+    &lt;div id=&quot;answer-board&quot;&gt;
+        &lt;p id=&quot;btn-show-answer&quot; class=&quot;huge-button&quot;&gt;Show me the answer.&lt;/p&gt;
+        &lt;h5 id=&quot;answer-text&quot; class=&quot;hidden&quot;&gt;...fluctuating and reach the peak at the end of this year. Over two
+            years, it&#39;s been always the highest one.&lt;/h5&gt;
+    &lt;/div&gt;
+
+
+    &lt;script&gt;
+
+        let svg = d3.select(&quot;svg#diy&quot;);
+        let yAxis = svg.select(&quot;.g-y-axis&quot;)
+            .attr(&quot;transform&quot;, &quot;translate(&quot; + chartMargin.left + &quot;, &quot; + chartMargin.top + &quot;)&quot;);
+        let xAxis = svg.select(&quot;.g-x-axis&quot;)
+            .attr(&quot;transform&quot;,
+                `translate(${chartMargin.left},${chartMargin.top + chartDim.height})`);
+        let chart = svg.select(&quot;.g-chart&quot;)
+            .attr(&quot;transform&quot;, `translate(${chartMargin.left},${chartMargin.top})`);
+        d3.select(&quot;svg#diy .g-legend&quot;)
+            .attr(&#39;transform&#39;, &#39;translate(&#39; + (legendTrans.left) +
+                &#39;,&#39; + (legendTrans.top) + &#39;)&#39;)
+        d3.csv(dataSrc).then(data =&gt; {
+            globalPool.rawDataset = data;
+            data = data.filter(row =&gt; [&quot;Data Scientist&quot;,
+                &quot;Software Engineer&quot;, &quot;Product Manager&quot;].includes(row.job));
+            mapDataGrouped = groupBy(data, row =&gt; row.job);
+            globalPool.mapDataGrouped = mapDataGrouped;
+
+            let xScale = d3.scaleTime()
+                // .domain([d3.extent(data, row =&gt; new Date(row.month))])
+                .domain([new Date(2017, 5, 1), new Date(2019, 3, 1)])
+                .range([0, chartDim.width]);
+            globalPool.xScale = xScale;
+            let yScale = d3.scaleLinear()
+                .domain(d3.extent(data, row =&gt; +row.medianBasePay)).nice()
+                .range([chartDim.height, 0]);
+            globalPool.yScale = yScale;
+            xAxis.call(d3.axisBottom(xScale));
+            yAxis.call(d3.axisLeft(yScale));
+
+            let hiddenKVP = forkDataset(mapDataGrouped, jobPlayWith);
+            globalPool.colorScale = d3.scaleOrdinal()
+                .domain([&quot;Data Scientist&quot;, &quot;Software Engineer&quot;, &quot;Product Manager&quot;])
+                .range(colorsArray.slice(0, 3));
+
+            let leftBoundPlayable = xScale(hiddenKVP.values[0].x);
+            let playground = chart.append(&quot;g&quot;)
+                .attr(&quot;class&quot;, &quot;playable&quot;)
+                .attr(&quot;transform&quot;, `translate(${leftBoundPlayable},0)`);
+            let clickboard = playground.append(&quot;rect&quot;)
+                .attr(&quot;width&quot;, chartDim.width - leftBoundPlayable)
+                .attr(&quot;height&quot;, chartDim.height)
+                .attr(&quot;id&quot;, &quot;playboard&quot;);
+            clickboard.on(&quot;click&quot;, fnClickingDraw);
+            drawLines(globalPool.shownData, 0);
+            let legendOrdinal = d3.legendColor()
+                .shape(&quot;path&quot;, d3.symbol().type(d3.symbolCircle).size(100)())
+                .shapePadding(10)
+                //use cellFilter to hide the &quot;e&quot; cell
+                .cellFilter(function (d) { return d.label !== &quot;e&quot; })
+                .scale(globalPool.colorScale);
+            d3.selectAll(&quot;#diy .g-legend&quot;).call(legendOrdinal);
+        });
+        d3.select(&quot;#btn-show-answer&quot;).on(&quot;click&quot;, () =&gt; {
+            drawLines([globalPool.hiddenData], 1);
+            d3.select(&quot;#btn-show-answer&quot;).style(&quot;display&quot;, &quot;none&quot;);
+            d3.select(&quot;#answer-text&quot;).style(&quot;display&quot;, &quot;block&quot;);
+        });
+
+    &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+<iframe/>
+<ul>
+<li></li>
+</ul>
 
 </div>
             </section>
