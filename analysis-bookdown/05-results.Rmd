@@ -288,27 +288,470 @@ In general, from this graph we can conclude that data scientist position is the 
 
 ## Best cities for data related jobs 
 
-{
-[wc]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(psycho)
+```
 
-All graphs should be accompanied by textual description / interpretation.
+
+```{r}
+city_jobtitle=read.csv("city_jobtitle.csv")
+
+df=city_jobtitle %>%
+    filter(Month=="2019-03") %>%
+    filter(Dimension=="Data Scientist") %>%
+   select(Metro,Value) %>%
+  rename(city=Metro,median_income=Value)
+
+df$median_income = gsub("\\$", "", Data_Analyst$median_income )
+df$median_income = as.numeric(gsub("\\,", "", Data_Analyst$median_income ))
+df=df %>% remove_rownames %>% column_to_rownames(var="city")
+```
+
+
+
+
+
+```{r}
+df2<-read.csv("all_median_income.csv")
+df2$all_median_income = as.numeric(gsub("\\,", "", df2$all_median_income))
+df2=df2 %>% remove_rownames %>% column_to_rownames(var="city")
+```
+
+```{r}
+for (i in rownames(df)){
+   
+  for (j in rownames(df2)){
+    
+    if(grepl(tolower(i),tolower(j))){
+      df[i,"all_median_income"]=df2[j,"all_median_income"]
+    }
+  }
 }
+
+df["Washington DC","all_median_income"]=df2["Washington city, District of Columbia","all_median_income"]
+df["Atlanta","all_median_income"]=65381  # this is 2017 stat
+```
+
+
+```{r}
+df["population"]=NA
+df_3=read.csv("population.csv")
+df_3=df_3 %>% remove_rownames %>% column_to_rownames(var="city")
+```
+
+```{r}
+for (i in rownames(df)){
+   
+  for (j in rownames(df_3)){
+    
+    if(grepl(tolower(i),tolower(j))){
+      df[i,"population"]=df_3[j,"Population"]
+    }
+  }
+}
+```
+
+```{r}
+df["Washington DC","population"]=df_3["Washington city, District of Columbia","Population"]
+```
+
+
+```{r}
+df_4=read_csv("violent_crime.csv")
+df_4=df_4 %>% remove_rownames %>% column_to_rownames(var="city")
+```
+
+```{r}
+df["violent_crime"]=NA
+colnames(df_4)=c("v_c")
+```
+
+
+```{r}
+
+
+for (i in rownames(df)){
+   
+  for (j in rownames(df_4)){
+    
+    if(grepl(tolower(i),tolower(j))){
+      df[i,"violent_crime"]=df_4[j,"v_c"]
+    }
+  }
+}
+```
+
+```{r}
+df["Washington DC","violent_crime"]=df_4["Washington","v_c"]
+df["New York City","violent_crime"]=df_4["New York","v_c"]
+```
+
+
+
+```{r}
+df_5=read_csv("cpi.csv")
+df_5=df_5 %>% remove_rownames %>% column_to_rownames(var="city")
+```
+```{r}
+df["cpi"]=NA
+colnames(df_5)=c("cpi")
+for (i in rownames(df)){
+   
+  for (j in rownames(df_5)){
+    
+    if(grepl(tolower(i),tolower(j))){
+      df[i,"cpi"]=df_5[j,"cpi"]
+    }
+  }
+}
+```
+
+```{r}
+df["New York City","cpi"]=df_5["New York-Newark-Jersey City, NY-NJ-PA","cpi"]
+df["Washington DC","cpi"]=df_5["Washington-Arlington-Alexandria, DC-VA-MD-WV","cpi"]
+```
+
+
+```{r}
+library(parcoords)
+```
+
+
+```{r}
+df<-rownames_to_column(df,"city")
+```
+
+
+```{r}
+  parcoords(
+    data=df  %>% standardize() %>% column_to_rownames('city')  ,
+    rownames = T 
+    , brushMode = "1D-axes"
+    , reorderable = T
+    , queue = T
+    , color = list(
+      colorBy = "cpi"
+      ,colorScale = "scaleOrdinal"
+      ,colorScheme = "schemeCategory10"
+      )
+    , withD3 = TRUE
+    ) 
+```
+
+
+(1) Briefly describe the content of the graph. What does this graph show?
+
+This graph shows us data scientists job statistics in 10 different cities colored by each cities.
+
+(2) State the patterns obtained from the graph.
+
+The median income of data scientists is postively related to overall median income in each city.
+
+The median pay of data scientists is highest in San Francisco and there are hugh gaps between the first and the second cities.
+
+Houston, Chicago and Atlanta those three cities have relatively low data scientists median income, and low average median income, population, cpi and relatively high crime rate.
+
+Cities with high all median income tend to have low population, vice versa
+
+(3) Try to explain the pattern. 
+
+One reason that San Francisco has the highest data scientist income maybe due to the high median income of all jobs in San Francisco. This may indicate that San Francisco is more developed than other cities. We can also see that working in San Francisco would feel safer than in others cities. However, this comes at some expense. The price level is San Francisco is the highest among all the cities.
+
+(4) What can we learn from the pattern, if any? 
+What can see that for data scientists job, the high pay cities is San Francisco, DC, Seattle, New York, and Los Angeles. In those cities, all cities have high price levels. Thus it may be a huge live burden. Some of the cities have high population with low crime rate, such as nyc. Some if the cities have low population but with high crime rate, such as DC. Thus the situations in cities are different and we should choose the city according to our preference.
+
+
+
+```{r}
+df["west_or_east"]=c("m","e","w","e","m","w","w","m","e","e")
+
+  parcoords(
+    data=df[order(df$median_income),][-1,] %>% standardize()%>% column_to_rownames('city') ,
+    rownames = T 
+    , brushMode = "1D-axes"
+    , reorderable = T
+    , queue = T
+    , color = list(
+      colorBy = "west_or_east"
+      ,colorScale = "scaleOrdinal"
+      ,colorScheme = "schemeCategory10"
+      )
+    , withD3 = TRUE
+    ) 
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+
+This graph shows us data scientists job statistics in 10 different cities colored by geographic locations (west, middle or east).
+
+(2) State the patterns obtained from the graph.
+From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low data scientists median income and low overall median income.
+
+Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
+
+The situations in east cities are more spreadout.
+
+(3) Try to explain the pattern. 
+
+One reasons that cities in the middle have low data scientists maybe that the overall median income is lower than cities in other part of US.
+
+(4) What can we learn from the pattern, if any?
+From this graph we can learn that as a data scientist, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
+
+
+```{r}
+#df %>% standardize() %>% column_to_rownames('city') %>%  
+#  parcoords(
+#    rownames = T 
+#    , brushMode = "1D-axes"
+#    , reorderable = T
+#    , queue = T) 
+```
+
+```{r}
+#df<-rownames_to_column(df,"city")
+```
+
+```{r}
+#df<-filter(df,city !="National")
+```
+
+```{r}
+df["job_title"]="data_scientist"
+```
+
+
+
+
+
+```{r}
+Data_Analyst=city_jobtitle %>%
+    filter(Month=="2019-03") %>%
+    filter(Dimension=="Data Analyst") %>%
+   select(Metro,Value) %>%
+  rename(city=Metro,median_income=Value)
+
+Data_Analyst$median_income = gsub("\\$", "", Data_Analyst$median_income )
+Data_Analyst$median_income = as.numeric(gsub("\\,", "", Data_Analyst$median_income ))
+```
+
+```{r}
+df_Data_Analyst=merge(Data_Analyst,df[,-2][,-7])
+```
+
+```{r}
+  parcoords(
+    data=df_Data_Analyst  %>% standardize() %>% column_to_rownames(var="city"),
+    rownames = T 
+    , brushMode = "1D-axes"
+    , reorderable = T
+    , queue = T
+    , color = list(
+      colorBy = "west_or_east"
+      ,colorScale = "scaleOrdinal"
+      ,colorScheme = "schemeCategory10"
+      )
+    , withD3 = TRUE
+    ) 
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+
+This graph shows us data analyst job statistics in 10 different cities colored by geographic locations (west, middle or east).
+
+(2) State the patterns obtained from the graph.
+
+From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low data analyst median income and low overall median income.
+
+Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
+
+The situations in east cities are more spreadout.
+
+San Francisco	has the highest data analyst median income. The cities in CA tend to have higher median income.
+
+(3) Try to explain the pattern. 
+
+One reasons that cities in the middle have low data analyst maybe that the overall median income is lower than cities in other part of US.
+
+(4) What can we learn from the pattern, if any?
+From this graph we can learn that as a data analyst, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
+
+
+```{r}
+Business_Analyst=city_jobtitle %>%
+    filter(Month=="2019-03") %>%
+    filter(Dimension=="Business Analyst") %>%
+   select(Metro,Value) %>%
+  rename(city=Metro,median_income=Value)
+
+Business_Analyst$median_income = gsub("\\$", "", Business_Analyst$median_income )
+Business_Analyst$median_income = as.numeric(gsub("\\,", "", Business_Analyst$median_income ))
+```
+
+```{r}
+df_Business_Analyst=merge(Business_Analyst,df[,-2][,-7])
+
+parcoords(
+  data=df_Business_Analyst  %>% standardize() %>% column_to_rownames(var="city"),
+  rownames = T 
+  , brushMode = "1D-axes"
+  , reorderable = T
+  , queue = T
+  , color = list(
+    colorBy = "west_or_east"
+    ,colorScale = "scaleOrdinal"
+    ,colorScheme = "schemeCategory10"
+    )
+  , withD3 = TRUE
+  ) 
+```
+
+(1) Briefly describe the content of the graph. What does this graph show?
+
+This graph shows us business analyst job statistics in 10 different cities colored by geographic locations (west, middle or east).
+
+(2) State the patterns obtained from the graph.
+
+From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low business analyst median income and low overall median income.
+
+Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
+
+The situations in east cities are more spreadout.
+
+San Francisco	has the highest business analyst median income. The cities in CA tend to have higher median income.
+
+(3) Try to explain the pattern. 
+
+One reasons that cities in the middle have low data analyst maybe that the overall median income is lower than cities in other part of US.
+
+(4) What can we learn from the pattern, if any?
+From this graph we can learn that as a business analyst, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
+
+```{r}
+library(GGally)
+ggpairs(df[,-8][,-7][,-1])
+```
+```{r}
+ggpairs(df_Data_Analyst[,-7][,-1])
+```
+
+
+```{r}
+ggpairs(df_Business_Analyst[,-7][,-1])
+```
+
+```{r}
+df_total=df[,-7]
+df_total["job_title"]="data_scientist"
+df_total
+```
+
+```{r}
+df_total_1=df_Business_Analyst[,-7]
+df_total_1["job_title"]="Business_Analyst"
+df_total_1
+```
+
+
+```{r}
+df_total_2=df_Data_Analyst[,-7]
+df_total_2["job_title"]="Data_Analyst"
+df_total_2
+```
+
+```{r}
+df_total_total=bind_rows(df_total, df_total_1,df_total_2)
+```
+```{r}
+ggpairs(df_total_total, columns = 2:6, aes(color = job_title))
+```
+
+(1) Briefly describe the content of the graph. What does this graph show?
+
+This graph shows us the median income of three jobs (data scientist, data analyst and business analyst) vs statistics of 10 different cities. We are only interesting in the first column since we want to compare the median income of three job vs statistics of cities.
+
+(2) State the patterns obtained from the graph.
+
+median income of those three job is postively related to cpi and over all median income and no relation to population and violent_crime.
+
+(3) Try to explain the pattern. 
+
+I think this makes sense since the higher the overall median income, the higher the income of our three jobs.
+Also, the higher the median income, the more expensive people can afford goods, thus the cpi is higher.
+
+
+(4) What can we learn from the pattern, if any?
 
 
 ## What are the most relevant to data related jobs? 
 
-{
-[wc]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+```{r}
+library(wordcloud2)
+library(tidyverse)
+library(wordcloud)
+```
 
-All graphs should be accompanied by textual description / interpretation.
-}
+```{r } 
+df_ds=read_csv("ds_word_freq.csv")[,2:3]
+set.seed(32)
+wordcloud(words = df_ds$word, freq = df_ds$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(2,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(15, "Dark2"))
+```
+
+```{r}
+df_da=read_csv("da_word_freq.csv")[,2:3]
+set.seed(32)
+wordcloud(words = df_da$word, freq = df_da$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.8,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+Those two wordclouds show us the job requirements of data scientists and data analysts.
+(2) State the patterns obtained from the graph.
+The most obvious finding is that the largest requirement for data scientist is machine learning. Data mining, analysis,visulization, deep learning and  problem solving, python and other programming language abilities are also important requirements for data scientist.
+
+The most important requirement for data analyst is the ability to do data analysis, Also, written and verbal skills, project management, microsort office ability are also important to data analysts.
+
+(3) Try to explain the pattern. 
+Since the avarage income of data scientists is higher than data analysts, we can see that requirement for data scientists is higher than data analysts. Data scientists are required to gain more skills in programming language and cutting edge technology, such as deeping learning and machine learning. However, data analysts are more about team management and project managment.
+
+(4) What can we learn from the pattern, if any? 
+From this graph, to be good data scientists
+```{r}
+set.seed(32)
+df_ba=read_csv("ba_word_freq.csv")[,2:3]
+wordcloud(words = df_ba$word, freq = df_ba$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.6,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+
+```{r}
+set.seed(32)
+df_fa=read_csv("fa_word_freq.csv")[,2:3]
+wordcloud(words = df_fa$word, freq = df_fa$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.4,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(15, "Dark2"))
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+Those two wordclouds show us the job requirements of business analysts and financial analysts.
+(2) State the patterns obtained from the graph.
+
+The most obvious finding is that the largest requirement for business analysts is project management. Having strong ability to solve clients' problems is also vital.
+
+For financial analysts, they are required to have strong knowledge in finance and accounting and communication skills.
+
+Microsoft office is a must-known tool for those two jobs.
+
+
+(3) Try to explain the pattern. 
+Since
+
+(4) What can we learn from the pattern, if any? 
+From this graph, to be good data scientists
 
 
