@@ -278,18 +278,15 @@ p1 <- plot_geo(df_total_state, locationmode = 'USA-states') %>%
 p1
 ```
 
-From the interactive map, we will be able to gain an overall sense of distribution of the job opportunities at the first glance at the map by seeing the color of each state. Also, by hovering over the state, the breakdown of number of jobs for each of the four data related jobs will show up. There are a few patterns of the regional distribution of data-related jobs:
+From the interactive map, we will be able to gain an overall sense of distribution of the job opportunities by seeing the color of each state. Also, by hovering over the state, the breakdown of job openings for each of the four data related jobs will show up. There are a few patterns of the regional distribution of data related jobs:
 
-1.	In general, east coast, west coast and Great Lakes area have more job opportunities compared to the central area. The main reason is that these areas have more technology companies and big companies, that will hire data related professionals. 
-2.	Among all the states, California and New York are the two states having most data-related job opportunities. Both of the two states are having around 1,000 data-related jobs posted, which the job breakdown is very different. California is mainly hiring for Data Scientist while New York is leaning more towards Data Analyst and Business Analyst. The main reason is that there are more technical companies in California, for example companies in Silicon Valley, who will have a higher need for Data Scientists than for Business Analyst and there are more financial companies in New York area, who are mainly looking for Analyst professionals. 
-3.	Almost all the states, except California, are offering more Data Analyst, Financial Analyst and Business Analyst compared to Data Scientist position, which indicates that the Data Scientist position is the rarest position among the four data-related jobs and potentially most competitive. 
+1.	In general, east coast, west coast and Great Lakes area have more job opportunities compared to the central area. The main reason is that these areas have more technology companies and big companies, which will hire data related professionals. 
 
-In general, from this graph we can conclude that data scientist position is the rarest in most states. We would suggest people who are looking for data scientist job pay more attention to California and people who are interested in analyst related job pay more attention to east coast. 
+2.	Among all the states, California and New York are the two states having most data related job opportunities. Both of the two states have around 1,000 data related jobs posted, while their job breakdown is very different. California is mainly hiring Data Scientist while New York is leaning more towards Data Analyst and Business Analyst. The main reason is that there are more technical companies in California, especially in Silicon Valley, which will have higher demands for DS than for BA and there are more financial companies in New York area, which are mainly looking for analyst professionals. 
 
+3.	Almost all the states, except California, are offering more jobs of Data Analyst, Financial Analyst and Business Analyst compared to Data Scientist positions, which indicates that the DS position is the rarest position among the four data related jobs and potentially most competitive. 
 
-
-
-
+In general, from this graph we can conclude that DS position is the rarest in most of the states. We would suggest DSI students who want a Data Scientist job to pay more attention to job postings in California, and we recommend those who are interested in analyst related jobs to pay more attention to the east coast. 
 
 
 ## Best cities for data related jobs 
@@ -448,14 +445,14 @@ df<-rownames_to_column(df,"city")
 ```
 This graph shows us data scientists job statistics in 10 different cities colored by each cities.
 
-The median income of data scientists is postively related to overall median income in each city.
-The median pay of data scientists is highest in San Francisco and there are hugh gaps between the first and the second cities.
-Houston, Chicago and Atlanta those three cities have relatively low data scientists median income, and low average median income, population, cpi and relatively high crime rate.
-Cities with high all median income tend to have low population, vice versa
+- The median income of data scientists is postively related to overall median income in each city.
+- The median pay of data scientists is highest in San Francisco, and there are huge gaps between it and the pay in other cities. 
+- Houston, Chicago and Atlanta have relatively low median income for data scientists, low average median income, population, CPI and relatively high crime rate.
+- Cities with high overall median income tend to have low population, vice versa.
 
-One reason that San Francisco has the highest data scientist income maybe due to the high median income of all jobs in San Francisco. This may indicate that San Francisco is more developed than other cities. We can also see that working in San Francisco would feel safer than in others cities. However, this comes at some expense. The price level is San Francisco is the highest among all the cities.
+One reason that San Francisco has the highest data scientist income may be due to the high median income of all jobs in San Francisco. This may indicate that San Francisco is more developed than other cities. We can also see that people working in San Francisco would feel safer than in others cities. However, the price level in San Francisco is the highest among all the cities.
 
-What can see that for data scientists job, the high pay cities is San Francisco, DC, Seattle, New York, and Los Angeles. In those cities, all cities have high price levels. Thus it may be a huge live burden. Some of the cities have high population with low crime rate, such as nyc. Some if the cities have low population but with high crime rate, such as DC. Thus the situations in cities are different and we should choose the city according to our preference.
+We can see that for data scientists jobs, the high pay cities are SF, DC, Seattle, NYC, and LA. They all have high price levels. Thus there might be a huge life burden. Some of the cities have high population with low crime rates, such as NYC. Some of the cities have low population but with high crime rates, such as DC. Thus the situations in cities are different and we should choose the city according to our preference.
 
 
 
@@ -477,15 +474,15 @@ df["west_or_east"]=c("m","e","w","e","m","w","w","m","e","e")
     , withD3 = TRUE
     ) 
 ```
-This graph shows us data scientists job statistics in 10 different cities colored by geographic locations (west, middle or east).
+This graph shows the data scientists job statistics in 10 different cities colored by geographic locations (west, middle or east).
 
-From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low data scientists median income and low overall median income.
-Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
-The situations in east cities are more spreadout.
+- From this graph we can see that cities from middle part of US tend to have low CPI, high violent crime rate, low population, low data scientists median income and low overall median income. One of the reasons that cities in the middle have low data scientists income might be that the overall median income is lower than cities in other parts of the US.
+- Cities from west part of US tend to have high CPI, low violent crime rate, high data scientists median income and high overall median income.
+- The values of variables of eastern cities have more variations.
 
-One reasons that cities in the middle have low data scientists maybe that the overall median income is lower than cities in other part of US.
+From this graph we can learn that as a data scientist, if we want to gain more, we need to avoid working in middle part of the US and Philadelphia.
 
-From this graph we can learn that as a data scientist, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
+We also drew the PCP for data analysts, business analysts and financial analysts. They all have the similar pattern with data scientists.
 
 
 
@@ -509,33 +506,6 @@ Data_Analyst$median_income = as.numeric(gsub("\\,", "", Data_Analyst$median_inco
 df_Data_Analyst=merge(Data_Analyst,df[,-2][,-7])
 ```
 
-```{r}
-  parcoords(
-    data=df_Data_Analyst  %>% standardize() %>% column_to_rownames(var="city"),
-    rownames = T 
-    , brushMode = "1D-axes"
-    , reorderable = T
-    , queue = T
-    , color = list(
-      colorBy = "west_or_east"
-      ,colorScale = "scaleOrdinal"
-      ,colorScheme = "schemeCategory10"
-      )
-    , withD3 = TRUE
-    ) 
-```
-This graph shows us data analyst job statistics in 10 different cities colored by geographic locations (west, middle or east).
-
-From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low data analyst median income and low overall median income.
-Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
-The situations in east cities are more spreadout.
-San Francisco	has the highest data analyst median income. The cities in CA tend to have higher median income.
-
-One reasons that cities in the middle have low data analyst maybe that the overall median income is lower than cities in other part of US.
-
-From this graph we can learn that as a data analyst, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
-
-
 
 ```{r}
 Business_Analyst=city_jobtitle %>%
@@ -550,33 +520,7 @@ Business_Analyst$median_income = as.numeric(gsub("\\,", "", Business_Analyst$med
 
 ```{r}
 df_Business_Analyst=merge(Business_Analyst,df[,-2][,-7])
-
-parcoords(
-  data=df_Business_Analyst  %>% standardize() %>% column_to_rownames(var="city"),
-  rownames = T 
-  , brushMode = "1D-axes"
-  , reorderable = T
-  , queue = T
-  , color = list(
-    colorBy = "west_or_east"
-    ,colorScale = "scaleOrdinal"
-    ,colorScheme = "schemeCategory10"
-    )
-  , withD3 = TRUE
-  ) 
 ```
-
-This graph shows us business analyst job statistics in 10 different cities colored by geographic locations (west, middle or east).
-
-From this graph we can see that cities from middle part of us tend to have low cpi,high violent crime rate, low population, low business analyst median income and low overall median income.
-Cities from west part of us tend to have high cpi, low violent crime rate, high data scientists median income and high overall median income.
-The situations in east cities are more spreadout.
-San Francisco	has the highest business analyst median income. The cities in CA tend to have higher median income.
-
-One reasons that cities in the middle have low data analyst maybe that the overall median income is lower than cities in other part of US.
-
-From this graph we can learn that as a business analyst, if we want to gain more, we need to avoid working in middle part of US and in Philadelphia.
-
 
 ```{r}
 Financial_Analyst=city_jobtitle %>%
@@ -591,24 +535,10 @@ Financial_Analyst$median_income = as.numeric(gsub("\\,", "", Financial_Analyst$m
 
 ```{r}
 df_Financial_Analyst=merge(Financial_Analyst,df[,-2][,-7])
-
-parcoords(
-  data=df_Business_Analyst  %>% standardize() %>% column_to_rownames(var="city"),
-  rownames = T 
-  , brushMode = "1D-axes"
-  , reorderable = T
-  , queue = T
-  , color = list(
-    colorBy = "west_or_east"
-    ,colorScale = "scaleOrdinal"
-    ,colorScheme = "schemeCategory10"
-    )
-  , withD3 = TRUE
-  ) 
 ```
-This graph shows us financial analyst job statistics in 10 different cities colored by geographic locations (west, middle or east).
 
-The pattern is similiar to previous graphs.
+
+
 
 ```{r}
 df_total=df[,-7]
@@ -643,12 +573,10 @@ library(GGally)
 ggpairs(df_total_total, columns = 2:6, aes(color = job_title))
 ```
 
-This graph shows us the median income of three jobs (data scientist, data analyst and business analyst) vs statistics of 10 different cities. We are only interesting in the first column since we want to compare the median income of three job vs statistics of cities.
+This graph shows us the median income of four jobs (data scientist, data analyst, business analyst and financial analyst) vs. statistics of 10 different cities. We are only interested in the first column, since we want to compare the median income of four job vs. statistics of cities. (Dots in the second to fourth column overlap, because the city data are the same.)
 
-Median income of those three job is postively related to cpi and all median income and no relation to population and violent_crime.
-
-I think this makes sense since the higher the overall median income, the higher the income of our three jobs.
-Also, the higher the median income, the more expensive people can afford goods, thus the cpi is higher.
+- On the one hand, there are no overall relations between median income and other features of the cities. 
+- On the other hand, for each city, there are some postive relations between median income and overall median income. Median income and CPI also have positive relations.
 
 
 
@@ -676,12 +604,14 @@ wordcloud(words = df_da$word, freq = df_da$freq, min.freq = 1,
          # colors=rainbow)
             colors=brewer.pal(8, "Dark2"))
 ```
-Those two wordclouds show us the job requirements of data scientists and data analysts.
 
-The most obvious finding is that the largest requirement for data scientist is machine learning. Data mining, analysis,visulization, deep learning and  problem solving, python and other programming language abilities are also important requirements for data scientist.
-The most important requirement for data analyst is the ability to do data analysis, Also, written and verbal skills, project management, microsort office ability are also important to data analysts.
+Those two wordclouds show the most frequent words appearing in the job descriptions of data scientists and data analysts.
 
-Since the avarage income of data scientists is higher than data analysts, we can see that requirement for data scientists is higher than data analysts. Data scientists are required to gain more skills in programming language and cutting edge technology, such as deeping learning and machine learning. However, data analysts are more about team management and project managment.
+
+- The first figure: The most obvious finding is that the most common requirement for data scientist is machine learning. Other important skills include: data mining, analysis, visulization, deep learning and problem solving. Python and other programming language abilities are essential. 
+- The second figure: The most important requirement for data analyst is the ability to do data analysis. Also, writing and verbal skills, project management, Microsort Office skills are also vital to data analysts.
+
+Since the avarage income of data scientists is higher than that of data analysts, we can see that requirements for data scientists are higher than that for data analysts. Data scientists are required to gain more skills in programming language and cutting-edge technology, such as deeping learning and machine learning. However, data analysts are more about team work and business sense.
 
 ```{r}
 set.seed(32)
@@ -700,15 +630,12 @@ wordcloud(words = df_fa$word, freq = df_fa$freq, min.freq = 1,
          # colors=rainbow)
             colors=brewer.pal(15, "Dark2"))
 ```
-Those two wordclouds show us the job requirements of business analysts and financial analysts.
 
-The most obvious finding is that the largest requirement for business analysts is project management. Having strong ability to solve clients' problems and technical ability are also important.
-For financial analysts, they are required to have strong knowledge in finance and accounting and communication skills.
-Microsoft office is a must-known tool for those two jobs.
+Those two wordclouds show the most frequent words appearing in the job descriptions of business analysts and financial analysts.
 
-As financial analysts, people are required to solve problems in finance domain. Thus they are required to have finance knowledge naturally, such as budget, performance and credit card.
-Business analysts position are mixed domain, thus they must have both the skills in project management and in coding to better solve the problems.
-Since most of time, the goal of those two jobs is to solve clients' problems. Thus learning the easiest tool, Microsoft Office is important.
+- The first figure: The most important requirement for business analysts is project management. Having strong ability to solve clients' problems and technical ability are also important.
+- The second figure: For financial analysts, they are expected to have strong knowledge in communication skills and finance & accounting, such as budget, performance and credit card.
+- Microsoft Office is a must-known tool for both jobs. This is because they are not expected to use more advanced data analysis and visualization tools, such as Python and D3, while Microsoft Office can satisfy most basic needs.  
 
-We can see that compared to data scientists, data analyst, business analyst and financial analyst they have lower requirements for coding skill. But business analysts and financial analysts are required to have more background in domain background and their
+Business analysts and financial analysts have lower requirements for coding skills, compared to data scientists and data analysts. However, business analysts and financial analysts are required to have more domain knowledge.
 

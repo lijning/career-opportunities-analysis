@@ -56,13 +56,12 @@ In this data set, each row is a job, and the column shows the information of the
 
 Column pattern: Salary has the most missing values, which is in line with our expectations. We know many companies do not disclose the salary in the preliminary stage of recruitment.
 
-empb_id is the Indeed id of each employer, and empn_rate is the rating (scale from 0 to 5) of each employer. However, the rating is meaningless because every job of the same company will have the same rating. We don't use them in our analysis, so their absence is OK. We also don't care about Variables like detail and preview. Even though some values are missing, there's no impact. 
+empb_id is the Indeed id of each employer, and empn_rate is the rating (scale from 0 to 5) of each employer. However, the rating is meaningless because every job of the same company will have the same rating. We don't use them in our analysis, so their absence is OK. We also don't care about variables like detail and preview. Even though some values are missing, there's no impact. 
 
-It's quite interesting that some company names are also missing. It's odd because company name should definitely appear in a recruitment ad. We took a look at the website of these jobs, and we found that the company name is buried in the job description part and it's hard to see.
+It's quite interesting that some company names are also missing. It's odd because the company name should definitely appear in a recruitment ad. We took a look at the website of these jobs, and we found that the company name is buried in the job description part and it's hard to see.
 
 Row pattern: There are 22 row patterns in all, and only a small number of rows contain no missing value. We cannot observe any patterns here, because the missing values seem very random.
 
 
 ## City data
-In the all_median_income dataset, there is no all_median_income for Atlanta since the source did not release the median income for Atlanta in 2018. However, to plot the Parallel Coordinates Plot successfully, there can not be a missing value in the dataset. Thus,I have to find the the median income for Atlanta in 2017 as a substitute.
-
+In the all_median_income dataset, there is no all_median_income for Atlanta since the source did not release the median income for Atlanta in 2018. However, to plot the parallel coordinates plot successfully, there cannot be any missing value. Thus, we used the median income for Atlanta in 2017 as a substitute (2018 data cannot be found).
