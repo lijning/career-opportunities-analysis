@@ -146,7 +146,7 @@ nation_job %>%
   ggplot() +
   geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
   labs(x = "", y = "Scaled Median Base Pay",
-       title = "Median Base Pay in the US (2017-2019)") + 
+       title = "Scaled Median Base Pay in the US (2017-2019)") + 
   scale_color_manual(values = c("deepskyblue", "black", "magenta", "chartreuse2", "red")) + 
   scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
   theme_light(16) +
@@ -206,8 +206,8 @@ city_job %>%
   ggplot() + 
   geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
   facet_wrap(~Metro) + 
-  labs(x = "", y = "Median Base Pay", 
-       title = "Median Base Pay in 10 US Metros (2017-2019)") + 
+  labs(x = "", y = "Scaled Median Base Pay", 
+       title = "Scaled Median Base Pay in 10 US Metros (2017-2019)") + 
   scale_color_manual(values = c("gray", "magenta", "deepskyblue", "chartreuse2", "red")) + 
   scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
   scale_y_continuous(limits = c(90, 110)) + 
