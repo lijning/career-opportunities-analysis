@@ -1,6 +1,6 @@
 # Results
 
-![](../others/resource/55.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/55.png)
 
 ## US labor market: Data related jobs vs. others 
 
