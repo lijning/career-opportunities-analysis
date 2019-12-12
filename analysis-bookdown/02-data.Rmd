@@ -1,6 +1,6 @@
 # Data sources
 
-![](../others/resource/22.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master//others/resource/22.png)
 
 ## Glassdoor
 
