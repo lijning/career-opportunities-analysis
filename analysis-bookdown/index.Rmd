@@ -13,7 +13,7 @@ library(tidyverse)
 
 # Introduction
 
-![](../others/resource/11.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/11.png)
 
 All the code can be found in our [GitHub repo](https://github.com/lijning/career-opportunities-analysis/tree/master).
 
