@@ -1,5 +1,6 @@
 # Data transformation
 
+![](../others/resource/33.png)
 
 ## Glassdoor
 
@@ -22,7 +23,11 @@ na_ts_pay = read_csv("../data/clean/glassdoor/na_ts_pay.csv")
 head(na_ts_pay)
 ```
 
-We did the subsetting for all possible dimensions and got 10 separate datasets in total: na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts. As for the filenames, na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay. 
+We did the subsetting for all possible dimensions and got 10 separate datasets in total: na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts. As for the filenames, na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay.
+
+Here is a graph indicates the structure of the cleaning process
+
+![](../others/resource/Screen Shot 2019-12-12 at 3.26.12 PM.png)
 
 
 ## Indeed
