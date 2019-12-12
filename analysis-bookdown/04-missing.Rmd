@@ -63,5 +63,5 @@ Row pattern: There are 22 row patterns in all, and only a small number of rows c
 
 
 ## City data
-
+In the all_median_income dataset, there is no all_median_income for Atlanta since the source did not release the median income for Atlanta in 2018. However, to plot the Parallel Coordinates Plot successfully, there can not be a missing value in the dataset. Thus,I have to find the the median income for Atlanta in 2017 as a substitute.
 
