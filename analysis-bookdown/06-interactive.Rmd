@@ -6,3 +6,5 @@
 
 This component is about the trend of Data Scientists' median base pay. A main interest of our project is why the salary of data sceintists is usually higher than other data related jobs. The game reveals this phenomenon, and the reader can find the answer in our analysis. (The graph is implemented in D3.)
 
+
+In the previous sections, there are also two interactive components. One is the [job openings map](https://lijning.github.io/career-opportunities-analysis/results.html#geographical-patterns-of-data-related-jobs) implemented by plotly, and the other one is the [parallel coordinates plots](https://lijning.github.io/career-opportunities-analysis/results.html#best-cities-for-data-related-jobs) implemented via parcoods package.
