@@ -15,12 +15,15 @@ library(tidyverse)
 
 ![](../others/resource/11.png)
 
+All the code can be found in our [GitHub repo](https://github.com/lijning/career-opportunities-analysis/tree/master).
+
 ## Background
 
 As the development of the businesses, Data Science and Analytics are no longer just accessories, they are essential business tools. As new technologies and methods make a dent in the economy, so are they making a dent in the data science job market. Data related jobs are being considered as an emerging industry that provides lots of opportunities. 
 
 Back in 2012, the Harvard Business review called data scientists “the sexiest job of 21st century”. Also, according to the article [“Data Scientist: A Hot Job That Pays Well”](https://www.hiringlab.org/2019/01/17/data-scientist-job-outlook/) published by Indeed Hiring Lab, since 2013, the job posting of data related job has been almost tripled while the interests of job seekers have grown slowly. The article also mentions that the salary for data scientists varies a lot for different regions - Houston and San Francisco offer best salaries. 
 
+Want to guess the salary of data scientists? [Clike me](https://lijning.github.io/career-opportunities-analysis/interactive-component.html)!
 
 ## Motivation
 
