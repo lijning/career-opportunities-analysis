@@ -574,10 +574,8 @@ ggpairs(df_total_total, columns = 2:6, aes(color = job_title))
 
 This graph shows us the median income of four jobs (data scientist, data analyst, business analyst and financial analyst) vs. statistics of 10 different cities. We are only interested in the first column, since we want to compare the median income of four job vs. statistics of cities. (Dots in the second to fourth column overlap, because the city data are the same.)
 
-Median income of those four job is postively related to CPI and all median income. There's no relation to population and violent_crime.
-
-We think this makes sense since the higher the overall median income, the higher the income of the four data related jobs.
-Also, the higher the median income, the more expensive goods people can afford, thus the CPI is higher.
+- On the one hand, there are no overall relations between median income and other features of the cities. 
+- On the other hand, for each city, there are some postive relations between median income and overall median income. Median income and CPI also have positive relations.
 
 
 
