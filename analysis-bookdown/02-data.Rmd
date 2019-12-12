@@ -1,13 +1,24 @@
 # Data sources
 
 ## Glassdoor
+One dataset we used is gathered from the Job Market Report from Glassdoor: https://www.glassdoor.com/research/job-market-report-historical/ This dataset mainly contain the job opening number and median base pay of different type of jobs, facted by different dimensions 
 
-{
-[xh]
-(1) What is the data source (with links)? Who collected it? How were the data collected?
-(2) Provide basic information of the data: number of variables, types of variables, number of records, time of the data, etc. Show an overview of the data, e.g. head(data).
-(3) Describe the problems of the data. For instance, Glassdoor data changed.
-}
+One dataset we used is gathered from the Job Market Report from Glassdoor: https://www.glassdoor.com/research/job-market-report-historical/. This website has the monthly data from October, 2016 to November, 2019. 
+
+Each monthly dataset mainly contains the national and ten cities’ job opening number and median base pay for different type of jobs, for different industry and for different company sizes. The structure of the dataset can be shown in the graph:
+
+#####################graph needed##################
+
+The dataset looks like:
+
+```{r}
+library(openxlsx)
+df = read.xlsx("https://www.glassdoor.com/research/app/uploads/sites/2/2019/12/LPR_data-2019-03.xlsx")
+head(df)
+```
+
+We encountered a major problem dealing with this data source. Glassdoor restructured and updated the datasets while we are doing data analysis part and only the datasets from June, 2017 to March, 2019 are left as same formatted and structured, so we only use the 22 months’ datasets when conducting data analysis. 
+
 
 ## Indeed
 

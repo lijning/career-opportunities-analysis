@@ -22,7 +22,8 @@ df_total_state = df_jo_ba_state %>%
   merge(df_jo_fa_state, by = "state")
 
 df_total_state$jo_total <- rowSums(df_total_state[,c(2,3,4,5)])
-df_total_state
+
+write.csv(df_total_state, "../data/clean/indeed/df_total_state.csv")
 
 df_total_state$hover <- with(df_total_state, paste(state, '<br>', "BA job openings:", jo_ba, '<br>', "DA job openings:", jo_da, '<br>', "DS job openings:", jo_ds, '<br>', "FA job openings:", jo_fa))
 ```
