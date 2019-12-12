@@ -35,8 +35,14 @@ head(df_total_state)
 
 ## City data
 
-{
-[wc]
-(1) Describe how we cleaned the data. 
-(2) What do the clean data look like?
-}
+The goal of the data cleaning is to map city statistics into 10 cities. 
+
+To do that the median income column is supposed to be numeric but there are dollar sign and comma in this column, thus we need to remove the dollar sign and comma in this column and then convert it into numeric variables.
+
+Firstly I used two for loops to map the city statistics into cities. However, the city names in each dataset are different, which led to some mismatch. To fix it, I assign the values manually.
+
+There is no value of all_median_income in Atlanta in 2018. To make the Parallel Coordinates to work, I have to find this value online.
+
+To find the patterns in different cities, I standardized the resulting dataset for using Parallel Coordinates.
+
+We need to plot wordclouds to help us analyze. In python, I vectorized the details by 1-gram and 2-gram, removing common English stopwords and some less informative words and combining 1-gram and 2-gram into one list. The final result is in the form of word vs frequency.
