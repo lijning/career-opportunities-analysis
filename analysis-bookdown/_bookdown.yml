@@ -1,8 +1,8 @@
-book_filename: "finalproject"
+book_filename: "CareerOpportunitiesAnalysis"
 output_dir: ../docs
 delete_merged_file: true
-edit: https://github.com/lijning/career-opportunities-analysis/edit/master/%s
-view: https://github.com/lijning/career-opportunities-analysis/blob/master/%s
+edit: https://github.com/lijning/career-opportunities-analysis/edit/master/analysis-bookdown/%s
+view: https://github.com/lijning/career-opportunities-analysis/blob/master/analysis-bookdown/%s
 language:
   ui:
     chapter_name: "Chapter "
