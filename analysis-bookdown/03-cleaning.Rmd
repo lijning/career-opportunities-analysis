@@ -1,6 +1,6 @@
 # Data transformation
 
-![](../others/resource/33.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/33.png)
 
 ## Glassdoor
 
@@ -27,7 +27,7 @@ We did the subsetting for all possible dimensions and got 10 separate datasets i
 
 Here is a graph indicates the structure of the cleaning process
 
-![](../others/resource/Screen Shot 2019-12-12 at 3.26.12 PM.png)
+![](https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/others/resource/Screen Shot 2019-12-12 at 3.26.12 PM.png)
 
 
 ## Indeed
