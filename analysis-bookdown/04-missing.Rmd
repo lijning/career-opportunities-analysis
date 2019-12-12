@@ -1,1 +1,67 @@
 # Missing values
+
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(extracat)
+
+city_job <- read_csv("../data/clean/glassdoor/city_jobtitle.csv") # no NA
+nation_job <- read_csv("../data/clean/glassdoor/na_jobtitle.csv") # no NA
+
+city_ts <- read_csv("../data/clean/glassdoor/city_ts.csv")
+nation_ts <- read_csv("../data/clean/glassdoor/na_ts_pay.csv") # no NA
+```
+
+```{r, echo=FALSE}
+indeed_ds <- read_csv("../data/raw/indeed_ds.csv")
+indeed_da <- read_csv("../data/raw/indeed_da.csv")
+indeed_fa <- read_csv("../data/raw/indeed_fa.csv")
+indeed_ba <- read_csv("../data/raw/indeed_ba.csv")
+```
+
+## Glassdoor
+
+The data set we downloaded from Glassdoor includes many missing values, but here we just analyze missing values of the data we have used. 
+
+```{r, echo=FALSE}
+city_ts %>% 
+  select(-c(X1)) %>% 
+  rename(Base.Pay = `Median Base Pay`, Openings = `Job Openings`) %>% 
+  visna(sort = "b")
+```
+
+
+The data used to draw this graph is the time series of median base pay and job openings in each city. This graph is reordered both vertically and horizontally.
+
+Column pattern: Only two variables have missing values. Median base pay has the most missing values. At least 2/3 of them are missing. As for job openings, approximately one third of them are missing. Other variables have no missing values, because they are more like "key" rather than "value".
+
+Row pattern: Every row has at least one missing value, and there are three missing patterns: no base pay, no job openings, or both missing. It seems that median base pay and job openings cannot appear together, which is very odd. We cannot explain why this happens, but the pattern does bring many troubles to our analysis. 
+
+Other data from Glassdoor also have missing values. We only have the base pay of each job, but not the number of job openings. Our analysis was somewhat limited due to these missing values. 
+
+
+## Indeed
+
+We scraped some job information from Indeed. These jobs are data scientists, data analysts, business analysts and financial analysts. Their missing patterns are quite similar, thus only the missing pattern of data scientists is presented here. 
+
+
+```{r, echo=FALSE}
+indeed_ds %>% 
+  rename(post_time= posted_time) %>% 
+  visna(sort = "b")
+```
+
+In this data set, each row is a job, and the column shows the information of the job. This graph is reordered both vertically and horizontally.
+
+Column pattern: Salary has the most missing values, which is in line with our expectations. We know many companies do not disclose the salary in the preliminary stage of recruitment.
+
+empb_id is the Indeed id of each employer, and empn_rate is the rating (scale from 0 to 5) of each employer. However, the rating is meaningless because every job of the same company will have the same rating. We don't use them in our analysis, so their absence is OK. We also don't care about Variables like detail and preview. Even though some values are missing, there's no impact. 
+
+It's quite interesting that some company names are also missing. It's odd because company name should definitely appear in a recruitment ad. We took a look at the website of these jobs, and we found that the company name is buried in the job description part and it's hard to see.
+
+Row pattern: There are 22 row patterns in all, and only a small number of rows contain no missing value. We cannot observe any patterns here, because the missing values seem very random.
+
+
+## City data
+
+

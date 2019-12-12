@@ -100,19 +100,12 @@ Have only median pay data but no job opening data at all
 ```{r}
 #national job title, only pay, no job opening data
 na_jobtitle = subset(df_total, Metro == "National" & Dimension.Type == "Job Title")
-#names(na_jobtitle)
 na_jobtitle
-#na_jobtitle$Measure <- as.factor(na_jobtitle$Measure)
-#levels(na_jobtitle$Measure)
-
 
 #city job title, only pay, no job opening data
 city_jobtitle = subset(df_total, Metro != "National" & Dimension.Type == "Job Title")
 city_jobtitle
-#city_jobtitle$Measure <- as.factor(city_jobtitle$Measure)
-#levels(city_jobtitle$Measure)
-#city_jobtitle$Metro <- as.factor(city_jobtitle$Metro)
-#levels(city_jobtitle$Metro)
+
 
 write.csv(na_jobtitle, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/na_jobtitle.csv")
 write.csv(city_jobtitle, "/Users/xinyuanhe/Desktop/career-opportunities-analysis/data/clean/city_jobtitle.csv")

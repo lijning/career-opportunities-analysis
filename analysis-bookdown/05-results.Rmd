@@ -3,41 +3,287 @@
 
 ## US labor market: Data related jobs vs. others 
 
-{
-[mw]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+The horizontal bar chart shows the jobs in the US with median base pay higher than ~60k. The base pay of each job is the average salary between Jun 2017 and Mar 2019. 
 
-All graphs should be accompanied by textual description / interpretation.
-}
+
+
+```{r, echo=FALSE}
+library(zoo)
+library(tidyverse)
+city_job <- read_csv("../data/clean/glassdoor/city_jobtitle.csv")
+nation_job <- read_csv("../data/clean/glassdoor/na_jobtitle.csv")
+
+city_ts <- read_csv("../data/clean/glassdoor/city_ts.csv")
+nation_ts <- read_csv("../data/clean/glassdoor/na_ts_pay.csv")
+
+invisible(Sys.setlocale("LC_TIME", "C"))
+city_job <- city_job %>% 
+  mutate_at(vars(Value), ~str_replace(.x, "[$]", "")) %>% 
+  mutate_at(vars(Value), ~str_replace(.x, ",", "")) %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Metro = as.factor(Metro)) %>% 
+  transform(Month = as.Date(as.yearmon(Month)))
+
+nation_job <- nation_job %>% 
+  mutate_at(vars(Value), ~str_replace(.x, "[$]", "")) %>% 
+  mutate_at(vars(Value), ~str_replace(.x, ",", "")) %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Month = as.Date(as.yearmon(Month)))
+
+city_ts <- city_ts %>% 
+  filter(!is.na(`Median Base Pay`)) %>% 
+  transform(`Median Base Pay` = as.numeric(`Median Base Pay`)) %>% 
+  transform(Month = as.Date(as.yearmon(Month))) %>%
+  filter(Month >= as.Date("2017-06-01") & Month <= as.Date("2019-03-01")) %>%
+  mutate_at(vars(Dimension), ~str_replace(.x, "Metro Median Base Pay", "Metro")) %>% 
+  rename(Value = Median.Base.Pay) %>% 
+  select(-c(Job.Openings))
+  
+nation_ts <- nation_ts %>%
+  transform(Value = as.numeric(Value)) %>% 
+  transform(Month = as.Date(as.yearmon(Month))) %>%
+  filter(Month >= as.Date("2017-06-01") & Month <= as.Date("2019-03-01")) %>%
+  mutate_at(vars(Dimension), ~str_replace(.x, "Metro Median Base Pay", "US"))
+```
+
+```{r fig.height = 8, fig.width = 8, echo=FALSE}
+nation_job %>% 
+  group_by(Dimension) %>%
+  summarize(Pay = sum(Value)/n()) %>% 
+  filter(Pay > 59000) %>% 
+  ggplot() + 
+  geom_col(aes(x = reorder(Dimension, Pay), y = Pay)) + 
+  coord_flip() + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay (> ~60k) in the US") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  theme_light(16) + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+It can be seen that pharmacists, solution architects and attorneys have the highest median base pay. Besides, most of job titles in this graph contains "manager", "engineer" or "analyst". 
+
+In fact, there are 38 jobs in the graph, and at least 8 of them are highly related to IT industry. This report mainly focuses on data scientists (DS), data analysts (DA), business analysts (BA) and financial analysts (FA), because they are the jobs that are most relevant to data science program. All of the four jobs have something to do with data, but their base pay varies. To be specific, in the Unites States, data scientists have much higher salary than DA, BA and FA. 
+
+This pattern surprised us, because we thought these jobs are similar and they should have the same salary level. Is this just a national pattern? Can we still observe this pattern locally? 
+
+```{r fig.height = 7, fig.width = 12, echo=FALSE}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst", 
+        "Java Developer", "Software Engineer", "Systems Engineer", "Web Developer")
+city_job %>% 
+  filter(Dimension %in% joi) %>% 
+  group_by(Dimension, Metro) %>% 
+  summarize(Pay = sum(Value)/n()) %>%
+  ggplot() + 
+  geom_col(aes(x = reorder(Dimension, Pay), y = Pay)) + 
+  facet_wrap(~Metro) + 
+  coord_flip() + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  theme_light(16) + 
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+This graph can confirm our findings! It shows the base pay of eight IT jobs in ten metropolises. We removed other jobs which we are not interested in. 
+
+The previous pattern is still true in this faceted bar chart. Generally speaking, in all of the ten metropoises, data scientists have the highest salary, while BA, FA and DA have the lowest. Why does this happen?
+
+We did some research and tried to explain this pattern. In the article, [Data Analyst vs. Data Scientist](https://www.springboard.com/blog/data-analyst-vs-data-scientist), Leigh Kunis compares the differences between DS and DA. She thinks data analysts can be considered as junior data scientists. The former focuses on basic data analysis and visualization. Data scientists, however, have to do some more profound data analysis. They need to grasp machine learning skills. They also need to know how to clean data, build algorithms, design experiments and present the results. In conclusion, data scientists' work is more complicated and comprehensive.
+
+As for financial analysts and business analysts, they need to know more domain knowledge than pure data analysts, so their salary is slightly higher than DA. Yet their analysis is still not that profound, which makes their salary lower than data scientists. In the later part, we scraped some job descriptions from Indeed and used basic NLP techniques to prove our explanation.
+
+Based on this pattern we found, we suggest that DSI students should look for a DS job instead of a DA job.
+
+Another pattern is that, the 8 IT jobs in this faceted bar chart are clearly divided into 4 clusters. The first cluster is the job ending with "scientist"; this cluster has the highest base pay. The second cluster is the jobs ending with "engineer"; this cluster has the second highest salary. The third cluster is the jobs ending with "developer"; its salary is the third highest. The last cluster is the jobs ending with "analyst"; its salary is the lowest among the 8 IT jobs.
+
+This pattern is not counterintuitive at all, since there is a natural order: scientist > engineer > developer > analyst.
 
 
 ## Trends of data related jobs 
 
-{
-[mw]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+The line chart shows the salary of eight IT jobs in the US from Jun 2017 to Mar 2019. 
 
-All graphs should be accompanied by textual description / interpretation.
-}
+```{r, echo=FALSE}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst", 
+        "Java Developer", "Software Engineer", "Systems Engineer", "Web Developer")
+nation_job %>% 
+  filter(Dimension %in% joi) %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value))) + 
+  geom_point(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value)), size = 1) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in the US (2017-2019)") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_color_manual(values = c("red", "brown", "coral2", "green4", 
+                                "yellow3", "magenta", "chartreuse2", "deepskyblue")) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5))
+```
+
+The graph of time series can again prove the pattern we found before. That is, from Jun 2017 to Mar 2019, the salary of DS is much higher than DA, BA and FA. 
+
+It can also be shown that the salary of each job does not change too much since Jun 2017. Two jobs that fluctuate the most are data scientists and Java developers. The salary of software engineers and data analysts increases steadily in this period. 
+
+In addition, the lines representing web developers and business analysts have several crosses, while the relative position of other jobs remains unchanged. 
+
+To have a clearer view of the salary change of the data related jobs, we scaled the data and drew the line chart below. 
+
+```{r, echo=FALSE}
+joi = c("Data Analyst", "Data Scientist", "Financial Analyst", "Business Analyst")
+nation_job %>% 
+  filter(Dimension %in% joi) %>% 
+  rbind(nation_ts) %>% 
+  group_by(Dimension) %>%
+  arrange(Month, .by_group = TRUE) %>%
+  mutate(index = row_number()) %>% 
+  mutate(tmp = if_else(index == 1, Value, as.numeric(NA))) %>% 
+  fill(tmp) %>% 
+  mutate(Value1 = 100*Value/tmp) %>% 
+  ungroup() %>% 
+  ggplot() +
+  geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
+  labs(x = "", y = "Scaled Median Base Pay",
+       title = "Median Base Pay in the US (2017-2019)") + 
+  scale_color_manual(values = c("deepskyblue", "black", "magenta", "chartreuse2", "red")) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  theme_light(16) +
+  theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5))
+```
+
+In this graph, the value of the first data point is scaled to 100, and the trend of salary is magnified. In addition, the median base pay of the US is added to this graph. It can function as a reference. 
+
+Cyclical trend: To help us recognize the cyclical trend, the tick mark labels of this graph are the first month of every quarter. However, We can hardly observe any cyclical trend, perhaps because the time span is too short. 
+
+Secular trend: Generally speaking, every median base pay slightly increases. 2017/10 - 2017/11 seems to be a bad time when the median base pay of most jobs are the lowest. However, since 2018/08, the overall salary steps up to a higher level. 
+
+The salary of DA fluctuates a lot, and it "greatly" drops since the beginning of 2019. The salary of DA has the best momentum, since it has the highest growth rate in 2019. The trends of BA and FA are very similar, and they are similar to the trend of US median base pay.
+
+Since the absolute value of DA's salary is the lowest, so it's not strange that DA's salary has the highest growth rate. Similarly, the absolute value of DS's salary is very high, so it's natural that the salary drops a bit. Since BA and FA are similar, it's reasonable that there trends are similar. 
+
+So far we have analyzed in detail the trend of median base pay in the national level. What about the city level?
+
+```{r fig.height = 8, fig.width = 12, echo=FALSE}
+joi = c("Business Analyst", "Data Analyst", "Data Scientist", "Financial Analyst")
+city_job %>% 
+  filter(Dimension %in% joi) %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value, color = fct_reorder2(Dimension, Month, Value))) + 
+  facet_wrap(~Metro) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros (2017-2019)") + 
+  scale_y_continuous(labels = scales::dollar) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_color_manual(values = c("red", "magenta", "deepskyblue", "chartreuse2")) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), panel.grid = element_blank(), 
+        plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = -40))
+```
+
+This faceted line chart shows the change of salary in 10 metropolises from Jun 2017 to Mar 2019. Overall speaking, the change of 4 data related jobs' salary is very small. However, it seems that the salary of DS in Houston fluctuates the most. 
+
+Obviously, the overall salary in San Francisco is the highest. This is expected because of the big techs in the Silicon Valley. 
+
+The interest thing is that the salary of DA, BA and FA in Seattle and DC is almost the same, but the salary of DS in Seattle is much higher than that in DC. We guess seattle has more big companies, such as Amazon, Boeing, Mircosoft, etc. In fact, Seattle is also the nation's fastest growing tech hub. 
+
+To have a clearer view of the change over time, we scaled the data and drew the following graph.
+
+```{r fig.height = 8, fig.width = 12, echo=FALSE}
+joi = c("Data Analyst", "Data Scientist", "Business Analyst", "Financial Analyst")
+city_job %>% 
+  select(-c(Dimension.Type, Measure, YoY)) %>%
+  filter(Dimension %in% joi) %>% 
+  rbind(city_ts) %>% 
+  group_by(Dimension, Metro) %>%
+  arrange(Month, .by_group = TRUE) %>%
+  mutate(index = row_number()) %>% 
+  mutate(tmp = if_else(index == 1, Value, as.numeric(NA))) %>% 
+  fill(tmp) %>% 
+  mutate(Value1 = 100*Value/tmp) %>% 
+  ungroup() %>% 
+  ggplot() + 
+  geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
+  facet_wrap(~Metro) + 
+  labs(x = "", y = "Median Base Pay", 
+       title = "Median Base Pay in 10 US Metros (2017-2019)") + 
+  scale_color_manual(values = c("gray", "magenta", "deepskyblue", "chartreuse2", "red")) + 
+  scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
+  scale_y_continuous(limits = c(90, 110)) + 
+  theme_light(16) + 
+  theme(legend.title = element_blank(), panel.grid = element_blank(), 
+        plot.title = element_text(hjust = 0.5), axis.text.x = element_text(angle = -40))
+```
+
+In this graph, the value of the first data point is scaled to 100. In addition, the median base pay of each city is added to this graph. 
+
+It can be seen that Boston, LA, NYC, SF, Chicago and Philadelphia share the similar pattern. The trend of the 4 data related jobs' base pay is close to the trend of city base pay. 
+
+In Atlanta, the trend of BA and FA's base pay is close to the trend of city base pay. Compared to the city base pay, the salary of DS grows faster and the salary of DA grows slower. 
+
+In Houston, the trend of DA, BA and FA's base pay is close to the trend of city base pay. The salary of DS fluctuates and decreases, compared to the city base pay. 
+
+In Seattle, the salary of DA does not have a good growth rate. In DC, the salary of DS does not have a good growth rate.
+
+
+From the above observation, we don't suggest DSI students to look for a DS job in Houston or DC, because salary there grows slowly or even negatively and its absolute value is not that high.
 
 
 ## Geographical patterns of data related jobs
+```{r}
+library(tidyverse)
+df_jo_ba_state = read.csv("../data/clean/indeed/state_jo_ba.csv",na.strings = "NNN") %>% select(state, jo_ba)
+df_jo_da_state = read.csv("../data/clean/indeed/state_jo_da.csv",na.strings = "NNN") %>% select(state, jo_da)
+df_jo_ds_state = read.csv("../data/clean/indeed/state_jo_ds.csv",na.strings = "NNN") %>% select(state, jo_ds)
+df_jo_fa_state = read.csv("../data/clean/indeed/state_jo_fa.csv",na.strings = "NNN") %>% select(state, jo_fa)
 
-{
-[xh]
-(1) Briefly describe the content of the graph. What does this graph show?
-(2) State the patterns obtained from the graph.
-(3) Try to explain the pattern. For instance, why DS have higher pay than DA?
-(4) What can we learn from the pattern, if any? For example, we should try to find a DS job instead of a DA job.
+df_total_state = df_jo_ba_state %>% 
+  merge(df_jo_da_state, by = "state") %>% 
+  merge(df_jo_ds_state, by = "state") %>% 
+  merge(df_jo_fa_state, by = "state")
 
-All graphs should be accompanied by textual description / interpretation.
-}
+df_total_state$jo_total <- rowSums(df_total_state[,c(2,3,4,5)])
+
+df_total_state$hover <- with(df_total_state, paste(state, '<br>', "BA job openings:", jo_ba, '<br>', "DA job openings:", jo_da, '<br>', "DS job openings:", jo_ds, '<br>', "FA job openings:", jo_fa))
+```
+
+```{r}
+library(plotly)
+# give state boundaries a white border
+l <- list(color = toRGB("white"), width = 2)
+
+# specify some map projection/options
+g <- list(
+  scope = 'usa',
+  projection = list(type = 'albers usa'),
+  showlakes = TRUE,
+  lakecolor = toRGB('white')
+)
+
+p1 <- plot_geo(df_total_state, locationmode = 'USA-states') %>%
+  add_trace(
+    z = ~jo_total, text = ~hover, locations = ~state,
+    color = ~jo_total, colors = 'Purples'
+  ) %>%
+  colorbar(title = "number of job openings") %>%
+  layout(
+    title = 'Data Related Job Openings Count by State<br>(Hover for breakdown by jobs)',
+    geo = g,
+    annotations = list(x = 1, y = -0.1, text = "BA: business analyst DA: data analyst <br> DS: data scientist FA: financial analyst", showarrow = F, xref='paper', yref='paper', 
+      xanchor='middle', yanchor='auto', xshift=0, yshift=0,
+      font=list(size=15, color="black"))
+  )
+
+p1
+```
+
+From the interactive map, we will be able to gain an overall sense of distribution of the job opportunities at the first glance at the map by seeing the color of each state. Also, by hovering over the state, the breakdown of number of jobs for each of the four data related jobs will show up. There are a few patterns of the regional distribution of data-related jobs:
+
+1.	In general, east coast, west coast and Great Lakes area have more job opportunities compared to the central area. The main reason is that these areas have more technology companies and big companies, that will hire data related professionals. 
+2.	Among all the states, California and New York are the two states having most data-related job opportunities. Both of the two states are having around 1,000 data-related jobs posted, which the job breakdown is very different. California is mainly hiring for Data Scientist while New York is leaning more towards Data Analyst and Business Analyst. The main reason is that there are more technical companies in California, for example companies in Silicon Valley, who will have a higher need for Data Scientists than for Business Analyst and there are more financial companies in New York area, who are mainly looking for Analyst professionals. 
+3.	Almost all the states, except California, are offering more Data Analyst, Financial Analyst and Business Analyst compared to Data Scientist position, which indicates that the Data Scientist position is the rarest position among the four data-related jobs and potentially most competitive. 
+
+In general, from this graph we can conclude that data scientist position is the rarest in most states. We would suggest people who are looking for data scientist job pay more attention to California and people who are interested in analyst related job pay more attention to east coast. 
 
 
 ## Best cities for data related jobs 

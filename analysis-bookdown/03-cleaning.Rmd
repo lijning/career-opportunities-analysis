@@ -3,20 +3,34 @@
 
 ## Glassdoor
 
-{
-[xh]
-(1) Describe how we cleaned the data. 
-(2) What do the clean data look like?
-}
+1.	Since the raw dataset is monthly, in order to explore the timeseries changes of median pay, we first concatenated the 22 datasets into a single data frame. 
+2.	Since national data and city level data are on different levels, we separate the dataset into two main categories: national and city levels.
+3.	The next step is to construct the datasets containing only the variables we are interested in, used for analysis later. Here are a few examples:
+      a.	In order to focus on relationship between job title and median base pay, we subset the corresponding dataset:
+```{r}
+city_jobtitle = read_csv("../data/clean/glassdoor/city_jobtitle.csv")
+head(city_jobtitle)
+```
+      b.	In order to find out the timeseries trend of change in median pay, we subset the corresponding dataset:
+```{r}
+na_ts_pay = read_csv("../data/clean/glassdoor/na_ts_pay.csv")
+head(na_ts_pay)
+```
+
+We did the subseting for all possible dimensions and got 10 separate datasets in total, which are na_industry, na_jobtitle, na_size, na_ts_opening, na_ts_pay, city_industry, city_jobtitle, city_size and city_ts, where na stands for national; ts stands for timeseries; size stands for company size; opening stands for job opening; pay stands for median base pay. 
+
 
 
 ## Indeed
 
-{
-[xh]
-(1) Describe how we cleaned the data. 
-(2) What do the clean data look like?
-}
+We used Indeed dataset in two parts of the analysis and conducted the data cleaning process differently based on different needs:
+
+1. To find out the regional distribution pattern of the four data related jobs we are interested in: data analyst, data scientist, business analyst and financial analyst, we web scraped all the search result from indeed.com using the four job titles, then grouped the jobs from the same state and finally counted the number of four jobs from each state.
+
+```{r}
+df_total_state = read_csv("../data/clean/indeed/df_total_state.csv")
+head(df_total_state)
+```
 
 
 ## City data
