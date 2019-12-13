@@ -131,10 +131,11 @@
         xScale: undefined, yScale: undefined,
         shownData: [], hiddenData: {},
         playerData: [], palette: new Map(),
-        allDataPoints: [], colorScale: undefined
+        allDataPoints: [], colorScale: undefined,
+        jobPlayWith: "Data Scientist",
+        jobsOnShow: ["Data Scientist", "Software Engineer", "Product Manager"]
     };
     const colorsArray = ["#FF4136", "#2ECC40", "#FFDC00", "#001f3f", "#FF851B"]
-    const jobPlayWith = "Data Scientist";
 </script>
 <script>
     function addPoints(points) {
@@ -192,12 +193,12 @@
             .append("path").attr("class", "player-line")
             .merge(sel)
             .attr("d", d3.line())
-            .style("stroke", usePalette(jobPlayWith));
+            .style("stroke", usePalette(globalPool.jobPlayWith));
     }
 </script>
 
 <h3 class="chart-title">Guess how much are data scientists earning compared to others?<br>You draw it!</h3>
-<h5>Since the beginning of 2018, the median base pay of data scientist jobs has been ...</h5>
+<h5>Since the beginning of 2018, the median base pay of <span id="job-title">data scientist</span> jobs has been ...</h5>
 <svg id="diy" width="800px" height="500px">
     <text x="20" y="10" style="font: 10px sans-serif;">Median Base Pay</text>
     <g class="g-y-axis"></g>
@@ -216,22 +217,9 @@
 
 
 <script>
-
-    let svg = d3.select("svg#diy");
-    let yAxis = svg.select(".g-y-axis")
-        .attr("transform", "translate(" + chartMargin.left + ", " + chartMargin.top + ")");
-    let xAxis = svg.select(".g-x-axis")
-        .attr("transform",
-            `translate(${chartMargin.left},${chartMargin.top + chartDim.height})`);
-    let chart = svg.select(".g-chart")
-        .attr("transform", `translate(${chartMargin.left},${chartMargin.top})`);
-    d3.select("svg#diy .g-legend")
-        .attr('transform', 'translate(' + (legendTrans.left) +
-            ',' + (legendTrans.top) + ')')
-    d3.csv(dataSrc).then(data => {
+    function fnReceivingData(data){
         globalPool.rawDataset = data;
-        data = data.filter(row => ["Data Scientist",
-            "Software Engineer", "Product Manager"].includes(row.job));
+        data = data.filter(row => globalPool.jobsOnShow.includes(row.job));
         mapDataGrouped = groupBy(data, row => row.job);
         globalPool.mapDataGrouped = mapDataGrouped;
 
@@ -247,9 +235,9 @@
         xAxis.call(d3.axisBottom(xScale));
         yAxis.call(d3.axisLeft(yScale));
 
-        let hiddenKVP = forkDataset(mapDataGrouped, jobPlayWith);
+        let hiddenKVP = forkDataset(mapDataGrouped, globalPool.jobPlayWith);
         globalPool.colorScale = d3.scaleOrdinal()
-            .domain(["Data Scientist", "Software Engineer", "Product Manager"])
+            .domain(globalPool.jobsOnShow)
             .range(colorsArray.slice(0, 3));
 
         let leftBoundPlayable = xScale(hiddenKVP.values[0].x);
@@ -265,11 +253,24 @@
         let legendOrdinal = d3.legendColor()
             .shape("path", d3.symbol().type(d3.symbolCircle).size(100)())
             .shapePadding(10)
-            //use cellFilter to hide the "e" cell
-            .cellFilter(function (d) { return d.label !== "e" })
             .scale(globalPool.colorScale);
         d3.selectAll("#diy .g-legend").call(legendOrdinal);
-    });
+    }
+    
+    let svg = d3.select("svg#diy");
+    let yAxis = svg.select(".g-y-axis")
+        .attr("transform", "translate(" + chartMargin.left + ", " + chartMargin.top + ")");
+    let xAxis = svg.select(".g-x-axis")
+        .attr("transform",
+            `translate(${chartMargin.left},${chartMargin.top + chartDim.height})`);
+    let chart = svg.select(".g-chart")
+        .attr("transform", `translate(${chartMargin.left},${chartMargin.top})`);
+    d3.select("svg#diy .g-legend")
+        .attr('transform', 'translate(' + (legendTrans.left) +
+            ',' + (legendTrans.top) + ')')
+
+    d3.csv(dataSrc).then(fnReceivingData);
+
     d3.select("#btn-show-answer").on("click", () => {
         drawLines([globalPool.hiddenData], 1);
         d3.select("#btn-show-answer").style("display", "none");
