@@ -56,6 +56,49 @@
     .hidden {
         display: none;
     }
+
+    .form-radio {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        display: inline-block;
+        position: relative;
+        background-color: #f1f1f1;
+        color: #666;
+        top: 10px;
+        height: 30px;
+        width: 30px;
+        border: 0;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-right: 7px;
+        outline: none;
+    }
+
+    .form-radio:checked::before {
+        position: absolute;
+        font: 13px/1 'Open Sans', sans-serif;
+        left: 11px;
+        top: 7px;
+        content: '\02143';
+        transform: rotate(40deg);
+    }
+
+    .form-radio:hover {
+        background-color: #f7f7f7;
+    }
+
+    .form-radio:checked {
+        background-color: #f1f1f1;
+    }
+
+    label {
+        font: 15px/1.7 'Open Sans', sans-serif;
+        color: #333;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        cursor: pointer;
+    }
 </style>
 <script>
     function groupBy(list, keyGetter) {
@@ -122,7 +165,7 @@
         globalPool.hiddenData = hiddenKVP;
         return hiddenKVP;
     }
-    const dataSrc = "https://raw.githubusercontent.com/lijning/career-opportunities-analysis/master/data/clean/job-month-pay.csv";
+    const dataSrc = "https://raw.githubusercontent.com/lijning/career-opportunities-analysis/dev/data/clean/job-month-pay.csv";
     const chartMargin = { left: 80, bottom: 80, top: 30 };
     const idxHiddenStart = 8;
     const chartDim = { height: 400, width: 500 };
@@ -133,7 +176,8 @@
         playerData: [], palette: new Map(),
         allDataPoints: [], colorScale: undefined,
         jobPlayWith: "Data Scientist",
-        jobsOnShow: ["Data Scientist", "Software Engineer", "Product Manager"]
+        jobsOnShow: ["Data Scientist", "Software Engineer", "Product Manager"],
+        rawDataset: []
     };
     const colorsArray = ["#FF4136", "#2ECC40", "#FFDC00", "#001f3f", "#FF851B"]
 </script>
@@ -198,7 +242,14 @@
 </script>
 
 <h3 class="chart-title">Guess how much are data scientists earning compared to others?<br>You draw it!</h3>
-<h5>Since the beginning of 2018, the median base pay of <span id="job-title">data scientist</span> jobs has been ...</h5>
+<form class="cntr" id="job-switch">
+    <input type="radio" name="job-choice" value="ds" id="radio-ds" class="form-radio" checked><label for="radio-ds">Data
+        Scientist</label>
+    <input type="radio" name="job-choice" value="da" id="radio-da" class="form-radio"><label for="radio-da">Data
+        Analyst</label>
+</form>
+<h5>Since the beginning of 2018, the median base pay of <span id="job-title">data scientist</span> jobs has been ...
+</h5>
 <svg id="diy" width="800px" height="500px">
     <text x="20" y="10" style="font: 10px sans-serif;">Median Base Pay</text>
     <g class="g-y-axis"></g>
@@ -217,9 +268,13 @@
 
 
 <script>
-    function fnReceivingData(data){
-        globalPool.rawDataset = data;
-        data = data.filter(row => globalPool.jobsOnShow.includes(row.job));
+    function clearScreen(){
+        d3.selectAll("#g-paths path,#g-points circle,rect#playboard,.player-line").remove();
+        globalPool.playerData = [];
+    }
+
+    function fnRender() {
+        data = globalPool.rawDataset.filter(row => globalPool.jobsOnShow.includes(row.job));
         mapDataGrouped = groupBy(data, row => row.job);
         globalPool.mapDataGrouped = mapDataGrouped;
 
@@ -256,7 +311,7 @@
             .scale(globalPool.colorScale);
         d3.selectAll("#diy .g-legend").call(legendOrdinal);
     }
-    
+
     let svg = d3.select("svg#diy");
     let yAxis = svg.select(".g-y-axis")
         .attr("transform", "translate(" + chartMargin.left + ", " + chartMargin.top + ")");
@@ -269,8 +324,22 @@
         .attr('transform', 'translate(' + (legendTrans.left) +
             ',' + (legendTrans.top) + ')')
 
-    d3.csv(dataSrc).then(fnReceivingData);
+    d3.csv(dataSrc).then((data) => { globalPool.rawDataset = data; fnRender(); });
 
+    d3.select("#job-switch").on('change', () => {
+        let checked = document.querySelector('input[name="job-choice"]:checked').value;
+        clearScreen();
+        if (checked == "ds") {
+            globalPool.jobsOnShow = ["Data Scientist", "Software Engineer", "Product Manager"];
+            globalPool.jobPlayWith = "Data Scientist";
+            fnRender();
+        } else {
+            console.log("DA");
+            globalPool.jobsOnShow = ["Data Analyst", "Business Analyst", "Financial Analyst"];
+            globalPool.jobPlayWith = "Data Analyst";
+            fnRender();
+        }
+    });
     d3.select("#btn-show-answer").on("click", () => {
         drawLines([globalPool.hiddenData], 1);
         d3.select("#btn-show-answer").style("display", "none");
