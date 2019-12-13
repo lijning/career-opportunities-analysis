@@ -29,8 +29,8 @@ Want to guess the salary of data scientists? [Clike me](https://lijning.github.i
 
 In this project, we want to find out and verify:
 
-1.	Whether data science industry is indeed a high-paid industry, compared to other jobs in IT industry.
+1.	Whether data scientist is indeed a high-paid job, compared to other jobs in IT industry.
 
 2.	The regional and temporal patterns of median base pay of data related jobs as well as the potential factors that may contribute to the patterns.
 
-3.	The comparison between the four different data related jobs: data scientist, data analyst, business analyst and financial analyst. We make the comparison from the perspective of (1) skill sets, (2) median base pay and (3) regional job openings.
+3.	The comparison between the four different data related jobs: data scientist, data analyst, business analyst and financial analyst. We make the comparison from the perspective of (1) regional job openings, (2) skill sets, (3) and median base pay vs. city data.
