@@ -146,7 +146,7 @@ nation_job %>%
   ggplot() +
   geom_line(aes(x = Month, y = Value1, color = fct_reorder2(Dimension, Month, Value1))) + 
   labs(x = "", y = "Scaled Median Base Pay",
-       title = "Scaled Median Base Pay in the US (2017-2019)") + 
+       title = "Scaled Median Base Pay in US (2017-2019)") + 
   scale_color_manual(values = c("deepskyblue", "black", "magenta", "chartreuse2", "red")) + 
   scale_x_date(date_labels = ("%y/%m"), date_breaks = "3 months") + 
   theme_light(16) +
@@ -615,6 +615,8 @@ library(wordcloud)
 
 ### Data Scientist vs Data Analyst
 
+WordCloud for Data Scientist
+
 ```{r } 
 df_ds=read_csv("../data/clean/wordcloud_data/ds_word_freq.csv")[,2:3]
 set.seed(32)
@@ -623,6 +625,7 @@ wordcloud(words = df_ds$word, freq = df_ds$freq, min.freq = 1,
          # colors=rainbow)
             colors=brewer.pal(15, "Dark2"))
 ```
+WordCloud for Data Analyst
 
 ```{r}
 df_da=read_csv("../data/clean/wordcloud_data/da_word_freq.csv")[,2:3]
@@ -644,6 +647,7 @@ Since the avarage income of data scientists is higher than that of data analysts
 
 ###  Business Analyst vs Financial Analyst
 
+WordCloud for Business Analyst
 ```{r}
 set.seed(32)
 df_ba=read_csv("../data/clean/wordcloud_data/ba_word_freq.csv")[,2:3]
@@ -652,6 +656,8 @@ wordcloud(words = df_ba$word, freq = df_ba$freq, min.freq = 1,
          # colors=rainbow)
             colors=brewer.pal(8, "Dark2"))
 ```
+
+WordCloud for Financial Analyst
 
 ```{r}
 set.seed(32)
