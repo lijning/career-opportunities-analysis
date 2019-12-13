@@ -615,7 +615,7 @@ library(wordcloud)
 
 ### Data Scientist vs Data Analyst
 
-WordCloud for Data Scientist
+**WordCloud for Data Scientist**
 
 ```{r } 
 df_ds=read_csv("../data/clean/wordcloud_data/ds_word_freq.csv")[,2:3]
@@ -625,7 +625,8 @@ wordcloud(words = df_ds$word, freq = df_ds$freq, min.freq = 1,
          # colors=rainbow)
             colors=brewer.pal(15, "Dark2"))
 ```
-WordCloud for Data Analyst
+
+**WordCloud for Data Analyst**
 
 ```{r}
 df_da=read_csv("../data/clean/wordcloud_data/da_word_freq.csv")[,2:3]
@@ -647,7 +648,8 @@ Since the avarage income of data scientists is higher than that of data analysts
 
 ###  Business Analyst vs Financial Analyst
 
-WordCloud for Business Analyst
+**WordCloud for Business Analyst**
+
 ```{r}
 set.seed(32)
 df_ba=read_csv("../data/clean/wordcloud_data/ba_word_freq.csv")[,2:3]
@@ -657,7 +659,7 @@ wordcloud(words = df_ba$word, freq = df_ba$freq, min.freq = 1,
             colors=brewer.pal(8, "Dark2"))
 ```
 
-WordCloud for Financial Analyst
+**WordCloud for Financial Analyst**
 
 ```{r}
 set.seed(32)
