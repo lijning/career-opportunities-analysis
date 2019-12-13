@@ -1,0 +1,100 @@
+---
+title: "R Notebook"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+  
+fig_width: 60 
+fig_height: 40 
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+#library(devtools)
+#devtools::install_github("lchiffon/wordcloud2")
+```
+```{r}
+#library(wordcloud2)
+library(tidyverse)
+library(wordcloud)
+```
+
+```{r } 
+df_ds=read_csv("ds_word_freq.csv")[,2:3]
+set.seed(32)
+wordcloud(words = df_ds$word, freq = df_ds$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(2,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+
+```{r}
+df_da=read_csv("da_word_freq.csv")[,2:3]
+set.seed(32)
+wordcloud(words = df_da$word, freq = df_da$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.4,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+Those two wordclouds show us the job requirements of data scientists and data analysts.
+(2) State the patterns obtained from the graph.
+The most obvious finding is that the largest requirement for data scientist is machine learning. Data mining, analysis,visulization, deep learning and  problem solving, python and other programming language abilities are also important requirements for data scientist.
+
+The most important requirement for data analyst is the ability to do data analysis, Also, written and verbal skills, project management, microsort office ability are also important to data analysts.
+
+(3) Try to explain the pattern. 
+Since the avarage income of data scientists is higher than data analysts, we can see that requirement for data scientists is higher than data analysts. Data scientists are required to gain more skills in programming language and cutting edge technology, such as deeping learning and machine learning. However, data analysts are more about team management and project managment.
+
+(4) What can we learn from the pattern, if any? 
+From this graph, to be good data scientists
+```{r}
+set.seed(32)
+df_ba=read_csv("ba_word_freq.csv")[,2:3]
+wordcloud(words = df_ba$word, freq = df_ba$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.4,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+
+```{r}
+set.seed(30)
+df_fa=read_csv("fa_word_freq.csv")[,2:3]
+wordcloud(words = df_fa$word, freq = df_fa$freq, min.freq = 1,
+          max.words=100, random.order=FALSE, rot.per=0.15,scale=c(1.3,0.5),
+         # colors=rainbow)
+            colors=brewer.pal(8, "Dark2"))
+```
+(1) Briefly describe the content of the graph. What does this graph show?
+Those two wordclouds show us the job requirements of business analysts and financial analysts.
+(2) State the patterns obtained from the graph.
+
+The most obvious finding is that the largest requirement for business analysts is project management. Having strong ability to solve clients' problems and technical ability are also important.
+
+For financial analysts, they are required to have strong knowledge in finance and accounting and communication skills.
+
+Microsoft office is a must-known tool for those two jobs.
+
+
+(3) Try to explain the pattern. 
+As financial analysts, people are required to solve problems in finance domain. Thus they are required to have finance knowledge naturally, such as budget, performance and credit card.
+
+Business analysts position are mixed domain, thus they must have both the skills in project management and in coding to better solve the problems.
+
+Since most of time, the goal of those two jobs is to solve clients' problems. Thus learning the easiest tool, Microsoft Office is important.
+
+(4) What can we learn from the pattern, if any? 
+
+We can see that compared to data scientists, data analyst, business analyst and financial analyst they have lower requirements for coding skill. But business analysts and financial analysts are required to have more background in domain background and their
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
