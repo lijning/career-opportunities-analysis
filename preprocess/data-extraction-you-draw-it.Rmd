@@ -26,8 +26,7 @@ unique(na_jobtitle$Dimension)
 ## Data Filtering
 
 ```{r filtering}
-jobs.of.interest <- c( "Attorney","Product Manager","Data Scientist","Software Engineer","Systems Engineer")
-# jobs.of.interest <- c("Data Analyst","Data Scientist","Business Analyst","Financial Analyst")
+jobs.of.interest <- c("Product Manager","Data Scientist","Software Engineer", "Data Analyst","Data Scientist","Business Analyst","Financial Analyst")
 data.of.interest <- na_jobtitle %>%
   subset(Dimension %in% jobs.of.interest, c(Dimension, Month, Value)) %>%
   transmute(
